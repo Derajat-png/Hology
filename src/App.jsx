@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Sidebar from './components/Sidebar';
 import NewSimulationModal from './components/NewSimulationModal';
+import AuthPage from './components/auth/AuthPage';
 import DashboardView from './components/views/DashboardView';
 import SimulationView from './components/views/SimulationView';
 import PortfolioView from './components/views/PortfolioView';
@@ -10,9 +11,17 @@ import SettingsView from './components/views/SettingsView';
 import { MenuIcon, PlusIcon } from './components/Icons';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('dasbor');
+  const [currentUser, setCurrentUser] = useState({
+    name: 'Budi Santoso',
+    email: 'user.demo@financialtwin.id',
+    role: 'Twin Platinum Member',
+  });
+
+  const [activeTab, setActiveTab] = useState('simulasi');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [authMode, setAuthMode] = useState('login');
 
   const handleOpenSimulationModal = () => {
     setIsModalOpen(true);
@@ -26,6 +35,31 @@ function App() {
     console.log('Simulasi baru dibuat:', simulationData);
     setActiveTab('simulasi');
   };
+
+  const handleOpenAuth = (mode = 'login') => {
+    setAuthMode(mode);
+    setIsAuthOpen(true);
+    setIsSidebarOpen(false);
+  };
+
+  const handleAuthSuccess = (userData) => {
+    setCurrentUser(userData);
+    setIsAuthOpen(false);
+  };
+
+  const handleLogout = () => {
+    handleOpenAuth('login');
+  };
+
+  // If Auth page is active (accessed via profile or menu), display the Login & Register flow
+  if (isAuthOpen) {
+    return (
+      <AuthPage
+        onAuthSuccess={handleAuthSuccess}
+        initialMode={authMode}
+      />
+    );
+  }
 
   const renderActiveView = () => {
     switch (activeTab) {
@@ -55,12 +89,17 @@ function App() {
           />
         );
       case 'pengaturan':
-        return <SettingsView />;
+        return (
+          <SettingsView
+            currentUser={currentUser}
+            onOpenAuth={handleOpenAuth}
+            onLogout={handleLogout}
+          />
+        );
       default:
         return (
-          <DashboardView
+          <SimulationView
             onNewSimulation={handleOpenSimulationModal}
-            onNavigate={(tab) => setActiveTab(tab)}
           />
         );
     }
@@ -75,6 +114,9 @@ function App() {
         onNewSimulation={handleOpenSimulationModal}
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
+        currentUser={currentUser}
+        onOpenAuth={handleOpenAuth}
+        onLogout={handleLogout}
       />
 
       {/* Main Content Area */}

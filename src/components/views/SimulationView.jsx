@@ -77,48 +77,68 @@ export default function SimulationView() {
     showToast('Analisis Finansial Terpadu Selesai! Rekomendasi siap dieksekusi.');
   };
 
-  // Real-time Calculations
+  // Real-time Comprehensive Calculations
   const takeHomePay = Math.max(0, formData.gajiPokok - formData.pajakPPh21);
   const totalLiabilitas = formData.hutangPinjaman + formData.cicilanKPR;
   const totalOperasional = formData.makanMinum + formData.belanjaRumahTangga;
   const totalKewajiban = totalLiabilitas + totalOperasional;
-  const sisaKasBebas = takeHomePay - totalKewajiban;
+
+  // Sisa Kas Operasional sebelum tabungan target
+  const sisaKasSebelumTarget = takeHomePay - totalKewajiban;
+
+  // Sisa Uang Bersih Akhir (Take Home Pay - Pengeluaran - Tabungan Target)
+  const sisaUangAkhir = sisaKasSebelumTarget - formData.alokasiTabungan;
 
   // Surplus percentage based on Take Home Pay
   const surplusPercent =
     takeHomePay > 0
-      ? ((sisaKasBebas / takeHomePay) * 100).toFixed(1).replace('.', ',')
+      ? ((sisaUangAkhir / takeHomePay) * 100).toFixed(1).replace('.', ',')
       : '0';
 
-  const isSurplusPositive = sisaKasBebas >= 0;
+  const isSurplusPositive = sisaUangAkhir >= 0;
 
-  // Allocations based on surplus
+  // Dynamic Emergency Fund Allocation (30% of free cash, aiming for 4 months buffer)
   const alokasiDanaDarurat = isSurplusPositive
-    ? Math.round((sisaKasBebas * 0.3) / 10000) * 10000
+    ? Math.max(0, Math.round((sisaKasSebelumTarget * 0.3) / 10000) * 10000)
     : 0;
+  const targetBufferDarurat = Math.max(20000000, totalKewajiban * 2.2);
+  const durasiBulanDarurat =
+    alokasiDanaDarurat > 0
+      ? Math.round(targetBufferDarurat / alokasiDanaDarurat)
+      : 14;
+
+  // Dynamic Investment Allocation (~47% of free cash flow)
   const targetInvestasi = isSurplusPositive
-    ? Math.max(0, Math.round((sisaKasBebas * 0.47) / 50000) * 50000)
+    ? Math.max(0, Math.round((sisaKasSebelumTarget * 0.467) / 50000) * 50000)
     : 0;
 
-  // Target & Impian Calculations
+  // Dynamic Target & Impian Calculations
   const akumulasiTahunan = formData.alokasiTabungan * 12;
   const totalBulan =
-    formData.alokasiTabungan > 0
+    formData.alokasiTabungan > 0 && formData.biayaTarget > 0
       ? Math.round(formData.biayaTarget / formData.alokasiTabungan)
       : 0;
   const totalTahun =
-    formData.alokasiTabungan > 0
-      ? ((formData.biayaTarget / (formData.alokasiTabungan * 12)) * 0.992).toFixed(1).replace('.', ',')
-      : '0';
+    totalBulan > 0 ? (totalBulan / 12).toFixed(1).replace('.', ',') : '0';
+
+  // Dynamic Milestones
+  const persenTahun1 =
+    formData.biayaTarget > 0 && formData.alokasiTabungan > 0
+      ? Math.min(100, Math.round(((formData.alokasiTabungan * 12) / formData.biayaTarget) * 100))
+      : 17;
+  const persenTahun3 =
+    formData.biayaTarget > 0 && formData.alokasiTabungan > 0
+      ? Math.min(100, Math.round(((formData.alokasiTabungan * 36) / formData.biayaTarget) * 100))
+      : 50;
 
   // Accelerated Simulation (+Rp 1.000.000 / bln)
   const tabunganCepat = formData.alokasiTabungan + 1000000;
   const bulanCepat =
-    tabunganCepat > 0 ? Math.round(formData.biayaTarget / tabunganCepat) : 0;
+    tabunganCepat > 0 && formData.biayaTarget > 0
+      ? Math.round(formData.biayaTarget / tabunganCepat)
+      : 0;
   const tahunCepat =
-    tabunganCepat > 0
-      ? (formData.biayaTarget / (tabunganCepat * 12)).toFixed(1).replace('.', ',')
-      : '0';
+    bulanCepat > 0 ? (bulanCepat / 12).toFixed(1).replace('.', ',') : '0';
 
   return (
     <div className="sim-view-wrapper">
@@ -416,7 +436,7 @@ export default function SimulationView() {
                 <span className="currency-suffix-unit">/ bln</span>
               </div>
               <span className="sim-input-helper text-saving-helper">
-                Dari sisa kas bebas Rp {formatNumber(sisaKasBebas)}/bln
+                Dari sisa kas operasional Rp {formatNumber(sisaKasSebelumTarget)}/bln
               </span>
             </div>
           </div>
@@ -456,8 +476,8 @@ export default function SimulationView() {
 
               <div className="target-timeline-ticks">
                 <span className="tick-start">Mulai Bulan Ini</span>
-                <span className="tick-year1">Tahun ke-1 (17%)</span>
-                <span className="tick-year3">Tahun ke-3 (50%)</span>
+                <span className="tick-year1">Tahun ke-1 ({persenTahun1}%)</span>
+                <span className="tick-year3">Tahun ke-3 ({persenTahun3}%)</span>
                 <span className="tick-end">Tercapai (~{totalBulan} bln)</span>
               </div>
             </div>
@@ -486,71 +506,56 @@ export default function SimulationView() {
               <span className="ratio-dot"></span>
               <span>
                 {isSurplusPositive
-                  ? `Rasio Sehat (Surplus ${surplusPercent}%)`
+                  ? `Rasio Sehat (Sisa ${surplusPercent}%)`
                   : `Defisit Arus Kas (${surplusPercent}%)`}
               </span>
             </div>
           </div>
 
-          {/* 4 Summary Cards Grid */}
+          {/* 3 Summary Cards Grid: Tabungan Target, Pengeluaran, Sisa Uang */}
           <div className="sim-summary-cards-grid">
-            {/* Card 1: Dana Darurat */}
-            <div className="summary-stat-card card-emergency">
-              <div className="stat-card-top">
-                <span className="stat-card-lbl">Alokasi Dana Darurat</span>
-                <ShieldIcon size={16} className="stat-icon-muted" />
-              </div>
-              <div className="stat-card-val">
-                Rp {formatNumber(alokasiDanaDarurat)}
-                <span className="stat-unit">/bln</span>
-              </div>
-              <div className="stat-card-sub">
-                30% sisa kas (~14 bln tercapai)
-              </div>
-            </div>
-
-            {/* Card 2: Target Investasi (Highlight Lime/Green) */}
+            {/* Card 1: Tabungan Target */}
             <div className="summary-stat-card card-investment-highlight">
               <div className="stat-card-top">
-                <span className="stat-card-lbl">Target Investasi</span>
+                <span className="stat-card-lbl">Tabungan Target</span>
                 <TrendUpIcon size={16} className="stat-icon-trend" />
               </div>
               <div className="stat-card-val">
-                Rp {formatNumber(targetInvestasi)}
+                Rp {formatNumber(formData.alokasiTabungan)}
                 <span className="stat-unit">/bln</span>
               </div>
               <div className="stat-card-sub">
-                Portofolio Reksa Dana & SBN
+                Untuk {formData.namaTarget || 'Target Impian'}
               </div>
             </div>
 
-            {/* Card 3: Total Kewajiban */}
+            {/* Card 2: Pengeluaran */}
             <div className="summary-stat-card card-obligations">
               <div className="stat-card-top">
-                <span className="stat-card-lbl">Total Kewajiban</span>
+                <span className="stat-card-lbl">Pengeluaran</span>
                 <ReceiptIcon size={16} className="stat-icon-muted" />
               </div>
               <div className="stat-card-val">
                 Rp {formatNumber(totalKewajiban)}
               </div>
               <div className="stat-card-sub">
-                Hutang & Keseharian
+                Cicilan & Kebutuhan Harian
               </div>
             </div>
 
-            {/* Card 4: Sisa Kas Bebas */}
+            {/* Card 3: Sisa Uang */}
             <div className="summary-stat-card card-surplus">
               <div className="stat-card-top">
-                <span className="stat-card-lbl">Sisa Kas Bebas</span>
+                <span className="stat-card-lbl">Sisa Uang</span>
                 <CheckCircleIcon size={16} className="stat-icon-surplus" />
               </div>
               <div className={`stat-card-val ${isSurplusPositive ? 'text-surplus-green' : 'text-deficit-red'}`}>
-                Rp {formatNumber(sisaKasBebas)}
+                Rp {formatNumber(sisaUangAkhir)}
               </div>
               <div className="stat-card-sub">
                 {isSurplusPositive
-                  ? 'Surplus aman dialokasikan'
-                  : 'Pengeluaran melebihi pemasukan'}
+                  ? 'Surplus bersih setelah tabungan target'
+                  : 'Tabungan & pengeluaran melebihi pemasukan'}
               </div>
             </div>
           </div>

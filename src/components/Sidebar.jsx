@@ -8,6 +8,7 @@ import {
   SettingsIcon,
   PlusIcon,
   CloseIcon,
+  LogoutIcon,
 } from './Icons';
 
 export default function Sidebar({
@@ -16,6 +17,9 @@ export default function Sidebar({
   onNewSimulation,
   isOpen,
   onClose,
+  currentUser,
+  onOpenAuth,
+  onLogout,
 }) {
   const menuItems = [
     {
@@ -119,12 +123,34 @@ export default function Sidebar({
 
         {/* Sidebar Footer / User Twin Badge */}
         <div className="sidebar-footer">
-          <div className="twin-badge-card">
-            <div className="twin-avatar">FT</div>
-            <div className="twin-info">
-              <span className="twin-name">Akun Finansial</span>
-              <span className="twin-model">AI Twin v2.4</span>
+          <div
+            className="twin-badge-card"
+            onClick={() => onOpenAuth && onOpenAuth('login')}
+            title="Klik untuk membuka alur Login / Daftar Akun"
+            style={{ cursor: 'pointer' }}
+          >
+            <div className="twin-avatar">
+              {currentUser?.name ? currentUser.name.substring(0, 2).toUpperCase() : 'FT'}
             </div>
+            <div className="twin-info">
+              <span className="twin-name">{currentUser?.name || 'Akun Finansial'}</span>
+              <span className="twin-model">{currentUser?.role || 'AI Twin v2.4'}</span>
+            </div>
+            {onLogout && (
+              <button
+                type="button"
+                className="btn-sidebar-logout"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onLogout();
+                }}
+                title="Keluar / Ganti Akun"
+                aria-label="Logout"
+                id="btn-sidebar-logout"
+              >
+                <LogoutIcon size={16} />
+              </button>
+            )}
           </div>
         </div>
       </aside>

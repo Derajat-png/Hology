@@ -244,6 +244,25 @@
   color: var(--color-text-muted);
 }
 
+.btn-sidebar-logout {
+  margin-left: auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-sidebar-logout:hover {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
 /* Mobile Close Button */
 .sidebar-mobile-close {
   display: none;
