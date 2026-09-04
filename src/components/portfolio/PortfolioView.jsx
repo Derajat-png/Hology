@@ -1,5 +1,5 @@
 import React from 'react';
-import './Views.css';
+import './PortfolioView.css';
 import { PlusIcon } from '../Icons';
 
 export default function PortfolioView({ onNewSimulation }) {

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import './App.css';
-import Sidebar from './components/Sidebar';
-import NewSimulationModal from './components/NewSimulationModal';
-import AuthPage from './components/auth/AuthPage';
-import DashboardView from './components/views/DashboardView';
-import SimulationView from './components/views/SimulationView';
-import PortfolioView from './components/views/PortfolioView';
-import StrategyView from './components/views/StrategyView';
-import SettingsView from './components/views/SettingsView';
+import Sidebar from './components/sidebar/Sidebar';
+import NewSimulationModal from './components/modal/NewSimulationModal';
+import LoginPage from './components/login/LoginPage';
+import RegisterPage from './components/register/RegisterPage';
+import DashboardView from './components/dashboard/DashboardView';
+import SimulationView from './components/simulation/SimulationView';
+import PortfolioView from './components/portfolio/PortfolioView';
+import StrategyView from './components/strategy/StrategyView';
+import SettingsView from './components/settings/SettingsView';
 import { MenuIcon, PlusIcon } from './components/Icons';
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
-  const [authMode, setAuthMode] = useState('login');
+  const [authMode, setAuthMode] = useState('login'); // 'login' | 'register'
 
   const handleOpenSimulationModal = () => {
     setIsModalOpen(true);
@@ -51,12 +52,20 @@ function App() {
     handleOpenAuth('login');
   };
 
-  // If Auth page is active (accessed via profile or menu), display the Login & Register flow
+  // If Auth page is active (accessed via profile or menu)
   if (isAuthOpen) {
+    if (authMode === 'register') {
+      return (
+        <RegisterPage
+          onAuthSuccess={handleAuthSuccess}
+          onNavigateToLogin={() => setAuthMode('login')}
+        />
+      );
+    }
     return (
-      <AuthPage
+      <LoginPage
         onAuthSuccess={handleAuthSuccess}
-        initialMode={authMode}
+        onNavigateToRegister={() => setAuthMode('register')}
       />
     );
   }

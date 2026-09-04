@@ -1,5 +1,5 @@
 import React from 'react';
-import './Views.css';
+import './StrategyView.css';
 import { PlusIcon } from '../Icons';
 
 export default function StrategyView({ onNewSimulation }) {
@@ -68,9 +68,9 @@ export default function StrategyView({ onNewSimulation }) {
                 <span>Pencapaian: {strat.progress}%</span>
                 <span>Target: 100%</span>
               </div>
-              <div className="progress-bar-container">
+              <div className="strategy-progress-bar-container">
                 <div
-                  className="progress-bar-fill"
+                  className="strategy-progress-bar-fill"
                   style={{ width: `${strat.progress}%` }}
                 ></div>
               </div>

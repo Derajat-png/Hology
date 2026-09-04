@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Views.css';
+import './SettingsView.css';
 import { UserIcon, LockIcon } from '../Icons';
 
 export default function SettingsView({ currentUser, onOpenAuth, onLogout }) {
@@ -26,48 +26,25 @@ export default function SettingsView({ currentUser, onOpenAuth, onLogout }) {
             Informasi akun Financial Twin yang aktif saat ini.
           </p>
 
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '14px',
-            padding: '16px',
-            backgroundColor: '#f8fafc',
-            border: '1px solid #e2e8f0',
-            borderRadius: '12px',
-            marginTop: '12px',
-            marginBottom: '16px'
-          }}>
-            <div style={{
-              width: '44px',
-              height: '44px',
-              borderRadius: '10px',
-              backgroundColor: 'var(--color-secondary)',
-              color: 'var(--color-primary)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontWeight: 700,
-              fontSize: '16px',
-              fontFamily: 'var(--font-poppins)'
-            }}>
+          <div className="settings-user-card">
+            <div className="settings-user-avatar">
               {currentUser?.name ? currentUser.name.substring(0, 2).toUpperCase() : 'FT'}
             </div>
             <div>
-              <div style={{ fontWeight: 600, fontSize: '15px', color: 'var(--color-text-main)' }}>
+              <div className="settings-user-name">
                 {currentUser?.name || 'Budi Santoso'}
               </div>
-              <div style={{ fontSize: '12.5px', color: 'var(--color-text-muted)' }}>
-                {currentUser?.email || 'user.demo@financialtwin.id'} • <span style={{ color: '#064e3b', fontWeight: 600 }}>{currentUser?.role || 'Platinum Member'}</span>
+              <div className="settings-user-meta">
+                {currentUser?.email || 'user.demo@financialtwin.id'} • <span className="settings-user-role">{currentUser?.role || 'Platinum Member'}</span>
               </div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+          <div className="settings-action-buttons">
             <button
               type="button"
               className="btn-header-primary"
               onClick={() => onOpenAuth && onOpenAuth('login')}
-              style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
             >
               <LockIcon size={16} />
               <span>Buka Halaman Login / Registrasi</span>
@@ -76,7 +53,6 @@ export default function SettingsView({ currentUser, onOpenAuth, onLogout }) {
               type="button"
               className="btn-header-outline"
               onClick={() => onOpenAuth && onOpenAuth('register')}
-              style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
             >
               <UserIcon size={16} />
               <span>Daftar Akun Baru</span>
@@ -129,10 +105,10 @@ export default function SettingsView({ currentUser, onOpenAuth, onLogout }) {
             Pilih mesin kecerdasan buatan yang digunakan untuk menjalankan simulasi Monte Carlo.
           </p>
 
-          <div className="form-group" style={{ marginTop: '12px' }}>
-            <label className="form-label">Pilihan AI Engine</label>
+          <div className="settings-form-group">
+            <label className="settings-form-label">Pilihan AI Engine</label>
             <select
-              className="form-select"
+              className="settings-form-select"
               value={aiModel}
               onChange={(e) => setAiModel(e.target.value)}
             >
@@ -143,7 +119,7 @@ export default function SettingsView({ currentUser, onOpenAuth, onLogout }) {
           </div>
 
           <div className="settings-save-row">
-            <button className="btn-header-primary" style={{ marginTop: '16px' }}>
+            <button className="btn-header-primary">
               Simpan Perubahan
             </button>
           </div>

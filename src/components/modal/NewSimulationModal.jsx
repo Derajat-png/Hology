@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './NewSimulationModal.css';
-import { CloseIcon, PlusIcon } from './Icons';
+import { CloseIcon, PlusIcon } from '../Icons';
 
 export default function NewSimulationModal({ isOpen, onClose, onSaveSimulation }) {
   const [formData, setFormData] = useState({

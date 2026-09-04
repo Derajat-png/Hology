@@ -9,7 +9,7 @@ import {
   PlusIcon,
   CloseIcon,
   LogoutIcon,
-} from './Icons';
+} from '../Icons';
 
 export default function Sidebar({
   activeTab,
