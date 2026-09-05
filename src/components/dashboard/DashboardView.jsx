@@ -1,8 +1,7 @@
 import React from 'react';
 import './DashboardView.css';
-import { PlusIcon } from '../Icons';
 
-export default function DashboardView({ onNewSimulation, onNavigate }) {
+export default function DashboardView({ onNavigate }) {
   return (
     <div className="view-page">
       {/* Top Welcome Bar */}
@@ -12,12 +11,6 @@ export default function DashboardView({ onNewSimulation, onNavigate }) {
           <p className="view-subtitle">
             Ringkasan kembaran digital (Financial Twin) & proyeksi kekayaan bersih real-time.
           </p>
-        </div>
-        <div className="view-header-actions">
-          <button className="btn-header-primary" onClick={onNewSimulation}>
-            <PlusIcon size={16} />
-            <span>Simulasi Baru</span>
-          </button>
         </div>
       </div>
 
@@ -83,7 +76,7 @@ export default function DashboardView({ onNewSimulation, onNavigate }) {
             <div className="dashboard-quick-item" onClick={() => onNavigate('simulasi')}>
               <div className="dashboard-quick-icon">📊</div>
               <div>
-                <div className="dashboard-quick-title">Kalkulator Simulasi Finansial</div>
+                <div className="dashboard-quick-title">Kalkulator Finansial</div>
                 <div className="dashboard-quick-desc">Hitung compound interest & skenario inflasi</div>
               </div>
             </div>

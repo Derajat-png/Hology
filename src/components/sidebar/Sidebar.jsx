@@ -6,7 +6,6 @@ import {
   PortfolioIcon,
   StrategyIcon,
   SettingsIcon,
-  PlusIcon,
   CloseIcon,
   LogoutIcon,
 } from '../Icons';
@@ -14,7 +13,6 @@ import {
 export default function Sidebar({
   activeTab,
   onSelectTab,
-  onNewSimulation,
   isOpen,
   onClose,
   currentUser,
@@ -29,7 +27,7 @@ export default function Sidebar({
     },
     {
       id: 'simulasi',
-      label: 'Simulasi',
+      label: 'Kalkulator Finansial',
       icon: SimulationIcon,
     },
     {
@@ -77,19 +75,6 @@ export default function Sidebar({
             <span className="status-dot-pulse"></span>
             <span className="status-label">SINKRONISASI: AKTIF</span>
           </div>
-        </div>
-
-        {/* Action Button: + Simulasi Baru */}
-        <div className="sidebar-action-wrapper">
-          <button
-            type="button"
-            className="btn-new-simulation"
-            onClick={onNewSimulation}
-            id="btn-simulasi-baru"
-          >
-            <PlusIcon size={18} className="btn-icon-plus" />
-            <span>Simulasi Baru</span>
-          </button>
         </div>
 
         {/* Navigation Menu */}

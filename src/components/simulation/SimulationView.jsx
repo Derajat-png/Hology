@@ -34,6 +34,19 @@ export default function SimulationView() {
     alokasiTabungan: 3500000,
   };
 
+  const emptyValues = {
+    gajiPokok: 0,
+    pajakPPh21: 0,
+    hutangPinjaman: 0,
+    cicilanKPR: 0,
+    makanMinum: 0,
+    belanjaRumahTangga: 0,
+    namaTarget: '',
+    bebanDarurat: 0,
+    biayaTarget: 0,
+    alokasiTabungan: 0,
+  };
+
   const [formData, setFormData] = useState({ ...defaultValues });
   const [toastMessage, setToastMessage] = useState(null);
 
@@ -65,8 +78,8 @@ export default function SimulationView() {
   };
 
   const handleReset = () => {
-    setFormData({ ...defaultValues });
-    showToast('Data simulasi telah diatur ulang ke kondisi awal.');
+    setFormData({ ...emptyValues });
+    showToast('Semua data simulasi telah direset ke 0.');
   };
 
   const handleSaveScenario = () => {
@@ -86,7 +99,7 @@ export default function SimulationView() {
   // Sisa Kas Operasional sebelum tabungan target
   const sisaKasSebelumTarget = takeHomePay - totalKewajiban;
 
-  // Sisa Uang Bersih Akhir (Take Home Pay - Pengeluaran - Tabungan Target)
+  // Sisa Uang Akhir (Take Home Pay - Pengeluaran - Tabungan Target)
   const sisaUangAkhir = sisaKasSebelumTarget - formData.alokasiTabungan;
 
   // Surplus percentage based on Take Home Pay
@@ -98,19 +111,21 @@ export default function SimulationView() {
   const isSurplusPositive = sisaUangAkhir >= 0;
 
   // Dynamic Emergency Fund Allocation (30% of free cash, aiming for 4 months buffer)
-  const alokasiDanaDarurat = isSurplusPositive
-    ? Math.max(0, Math.round((sisaKasSebelumTarget * 0.3) / 10000) * 10000)
-    : 0;
-  const targetBufferDarurat = Math.max(20000000, totalKewajiban * 2.2);
+  const alokasiDanaDarurat =
+    isSurplusPositive && sisaKasSebelumTarget > 0
+      ? Math.max(0, Math.round((sisaKasSebelumTarget * 0.3) / 10000) * 10000)
+      : 0;
+  const targetBufferDarurat = totalKewajiban > 0 ? Math.max(20000000, totalKewajiban * 2.2) : 0;
   const durasiBulanDarurat =
     alokasiDanaDarurat > 0
       ? Math.round(targetBufferDarurat / alokasiDanaDarurat)
-      : 14;
+      : 0;
 
   // Dynamic Investment Allocation (~47% of free cash flow)
-  const targetInvestasi = isSurplusPositive
-    ? Math.max(0, Math.round((sisaKasSebelumTarget * 0.467) / 50000) * 50000)
-    : 0;
+  const targetInvestasi =
+    isSurplusPositive && sisaKasSebelumTarget > 0
+      ? Math.max(0, Math.round((sisaKasSebelumTarget * 0.467) / 50000) * 50000)
+      : 0;
 
   // Dynamic Target & Impian Calculations
   const akumulasiTahunan = formData.alokasiTabungan * 12;
@@ -125,14 +140,14 @@ export default function SimulationView() {
   const persenTahun1 =
     formData.biayaTarget > 0 && formData.alokasiTabungan > 0
       ? Math.min(100, Math.round(((formData.alokasiTabungan * 12) / formData.biayaTarget) * 100))
-      : 17;
+      : 0;
   const persenTahun3 =
     formData.biayaTarget > 0 && formData.alokasiTabungan > 0
       ? Math.min(100, Math.round(((formData.alokasiTabungan * 36) / formData.biayaTarget) * 100))
-      : 50;
+      : 0;
 
   // Accelerated Simulation (+Rp 1.000.000 / bln)
-  const tabunganCepat = formData.alokasiTabungan + 1000000;
+  const tabunganCepat = formData.alokasiTabungan > 0 ? formData.alokasiTabungan + 1000000 : 0;
   const bulanCepat =
     tabunganCepat > 0 && formData.biayaTarget > 0
       ? Math.round(formData.biayaTarget / tabunganCepat)
@@ -229,7 +244,7 @@ export default function SimulationView() {
                   id="input-gaji"
                   type="text"
                   className="sim-currency-input"
-                  value={formatNumber(formData.gajiPokok)}
+                  value={formData.gajiPokok ? formatNumber(formData.gajiPokok) : ''}
                   onChange={(e) => handleInputChange('gajiPokok', e.target.value)}
                   placeholder="0"
                 />
@@ -247,7 +262,7 @@ export default function SimulationView() {
                   id="input-pajak"
                   type="text"
                   className="sim-currency-input text-tax"
-                  value={formatNumber(formData.pajakPPh21)}
+                  value={formData.pajakPPh21 ? formatNumber(formData.pajakPPh21) : ''}
                   onChange={(e) => handleInputChange('pajakPPh21', e.target.value)}
                   placeholder="0"
                 />
@@ -273,7 +288,7 @@ export default function SimulationView() {
                   id="input-hutang"
                   type="text"
                   className="sim-currency-input"
-                  value={formatNumber(formData.hutangPinjaman)}
+                  value={formData.hutangPinjaman ? formatNumber(formData.hutangPinjaman) : ''}
                   onChange={(e) => handleInputChange('hutangPinjaman', e.target.value)}
                   placeholder="0"
                 />
@@ -291,7 +306,7 @@ export default function SimulationView() {
                   id="input-kpr"
                   type="text"
                   className="sim-currency-input"
-                  value={formatNumber(formData.cicilanKPR)}
+                  value={formData.cicilanKPR ? formatNumber(formData.cicilanKPR) : ''}
                   onChange={(e) => handleInputChange('cicilanKPR', e.target.value)}
                   placeholder="0"
                 />
@@ -319,7 +334,7 @@ export default function SimulationView() {
                   id="input-makan"
                   type="text"
                   className="sim-currency-input"
-                  value={formatNumber(formData.makanMinum)}
+                  value={formData.makanMinum ? formatNumber(formData.makanMinum) : ''}
                   onChange={(e) => handleInputChange('makanMinum', e.target.value)}
                   placeholder="0"
                 />
@@ -337,7 +352,7 @@ export default function SimulationView() {
                   id="input-belanja"
                   type="text"
                   className="sim-currency-input"
-                  value={formatNumber(formData.belanjaRumahTangga)}
+                  value={formData.belanjaRumahTangga ? formatNumber(formData.belanjaRumahTangga) : ''}
                   onChange={(e) => handleInputChange('belanjaRumahTangga', e.target.value)}
                   placeholder="0"
                 />
@@ -391,7 +406,7 @@ export default function SimulationView() {
                   id="input-beban-darurat"
                   type="text"
                   className="sim-currency-input"
-                  value={formatNumber(formData.bebanDarurat)}
+                  value={formData.bebanDarurat ? formatNumber(formData.bebanDarurat) : ''}
                   onChange={(e) => handleInputChange('bebanDarurat', e.target.value)}
                   placeholder="0"
                 />
@@ -410,7 +425,7 @@ export default function SimulationView() {
                   id="input-biaya-target"
                   type="text"
                   className="sim-currency-input"
-                  value={formatNumber(formData.biayaTarget)}
+                  value={formData.biayaTarget ? formatNumber(formData.biayaTarget) : ''}
                   onChange={(e) => handleInputChange('biayaTarget', e.target.value)}
                   placeholder="0"
                 />
@@ -429,7 +444,7 @@ export default function SimulationView() {
                   id="input-alokasi-tabungan"
                   type="text"
                   className="sim-currency-input text-saving"
-                  value={formatNumber(formData.alokasiTabungan)}
+                  value={formData.alokasiTabungan ? formatNumber(formData.alokasiTabungan) : ''}
                   onChange={(e) => handleInputChange('alokasiTabungan', e.target.value)}
                   placeholder="0"
                 />
@@ -471,7 +486,12 @@ export default function SimulationView() {
               </div>
 
               <div className="target-progress-bar-track">
-                <div className="target-progress-fill-initial"></div>
+                <div
+                  className="target-progress-fill-initial"
+                  style={{
+                    width: formData.biayaTarget > 0 && formData.alokasiTabungan > 0 ? '14%' : '0%',
+                  }}
+                ></div>
               </div>
 
               <div className="target-timeline-ticks">
@@ -485,12 +505,18 @@ export default function SimulationView() {
             {/* Acceleration Tip Alert */}
             <div className="target-acceleration-tip">
               <LightbulbIcon size={18} className="tip-bulb-icon" />
-              <p className="tip-text">
-                <strong>Simulasi Percepatan:</strong> Jika menambah tabungan target jadi{' '}
-                <span className="tip-highlight">Rp {formatNumber(tabunganCepat)}/bln</span>, target
-                impian Anda tercapai lebih cepat dalam{' '}
-                <span className="tip-highlight">~{tahunCepat} Tahun</span> (sekitar {bulanCepat} Bulan).
-              </p>
+              {formData.biayaTarget > 0 && formData.alokasiTabungan > 0 ? (
+                <p className="tip-text">
+                  <strong>Simulasi Percepatan:</strong> Jika menambah tabungan target jadi{' '}
+                  <span className="tip-highlight">Rp {formatNumber(tabunganCepat)}/bln</span>, target
+                  impian Anda tercapai lebih cepat dalam{' '}
+                  <span className="tip-highlight">~{tahunCepat} Tahun</span> (sekitar {bulanCepat} Bulan).
+                </p>
+              ) : (
+                <p className="tip-text">
+                  <strong>Simulasi Percepatan:</strong> Masukkan estimasi harga target dan alokasi tabungan untuk melihat proyeksi percepatan impian Anda.
+                </p>
+              )}
             </div>
           </div>
         </div>

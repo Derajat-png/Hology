@@ -40,6 +40,45 @@ export const SimulationIcon = ({ size = 20, className = '' }) => (
   </svg>
 );
 
+// Tabungan (Savings / Piggy Bank Icon)
+export const SavingsIcon = ({ size = 20, className = '' }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8.7 3.3 1.8 4.3L6 19h3l.7-1.5c1 .3 2.1.5 3.3.5 4 0 7-2 7-6 1.3-.5 2-1.7 2-3 0-2.2-1.8-4-3-4z" />
+    <path d="M2 9v1a2 2 0 0 0 2 2h1" />
+    <path d="M16 11h.01" />
+  </svg>
+);
+
+// Trash / Delete Icon
+export const TrashIcon = ({ size = 16, className = '' }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <polyline points="3 6 5 6 21 6" />
+    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+    <line x1="10" y1="11" x2="10" y2="17" />
+    <line x1="14" y1="11" x2="14" y2="17" />
+  </svg>
+);
+
 // Portofolio (Wallet / Card Icon)
 export const PortfolioIcon = ({ size = 20, className = '' }) => (
   <svg

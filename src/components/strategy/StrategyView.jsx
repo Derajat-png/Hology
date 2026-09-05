@@ -2,7 +2,7 @@ import React from 'react';
 import './StrategyView.css';
 import { PlusIcon } from '../Icons';
 
-export default function StrategyView({ onNewSimulation }) {
+export default function StrategyView() {
   const strategies = [
     {
       title: 'Strategi FIRE (Financial Independence, Retire Early)',
@@ -39,10 +39,6 @@ export default function StrategyView({ onNewSimulation }) {
             Rencana aksi terstruktur berbasis model digital twin untuk mencapai tujuan jangka pendek & panjang.
           </p>
         </div>
-        <button className="btn-header-primary" onClick={onNewSimulation}>
-          <PlusIcon size={16} />
-          <span>Tambah Strategi Baru</span>
-        </button>
       </div>
 
       <div className="strategy-cards-list">
