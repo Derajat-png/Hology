@@ -1,4 +1,7 @@
-/* Strategy Page Styles */
+/* ========================================================
+   STRATEGY & AI CONSULTATION VIEW STYLES
+   ======================================================== */
+
 .strategy-page {
   padding: 32px 40px 40px 40px;
   max-width: 1200px;
@@ -8,23 +11,34 @@
   animation: fadeIn 0.3s ease-out;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Toast Alert */
 .strategy-toast {
   position: fixed;
   top: 24px;
   right: 24px;
-  background-color: #064e3b;
+  background-color: #0b3d2e;
   color: #ffffff;
   padding: 12px 20px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 10px;
-  box-shadow: 0 10px 25px rgba(6, 78, 59, 0.28);
+  box-shadow: 0 10px 25px rgba(11, 61, 46, 0.28);
   font-size: 13.5px;
   font-weight: 500;
   z-index: 1000;
-  border: 1px solid rgba(163, 230, 53, 0.3);
+  border: 1px solid rgba(141, 198, 63, 0.3);
   animation: slideInDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -39,18 +53,26 @@
   }
 }
 
-/* Header */
+/* Header Section */
 .strategy-header {
   margin-bottom: 24px;
+}
+
+.strategy-header-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  flex-wrap: wrap;
 }
 
 .strategy-badge-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: #ecfccb;
-  color: #3f6212;
-  font-size: 11.5px;
+  background-color: #c9f2d1;
+  color: #0b3d2e;
+  font-size: 11px;
   font-weight: 700;
   padding: 4px 10px;
   border-radius: 9999px;
@@ -60,27 +82,379 @@
 }
 
 .strategy-badge-pill .badge-dot {
-  width: 7px;
-  height: 7px;
+  width: 6.5px;
+  height: 6.5px;
   border-radius: 50%;
-  background-color: #65a30d;
+  background-color: #3fbf5c;
 }
 
 .strategy-main-title {
-  font-family: var(--font-poppins);
-  font-size: 24px;
+  font-family: var(--font-poppins), 'Segoe UI', system-ui, sans-serif;
+  font-size: 22px;
   font-weight: 700;
-  color: var(--color-text-main);
+  color: #0b3d2e;
   margin: 0 0 6px 0;
   letter-spacing: -0.02em;
 }
 
 .strategy-main-subtitle {
   font-size: 14px;
-  color: var(--color-text-muted);
+  color: #6b756f;
   margin: 0;
-  max-width: 700px;
+  max-width: 680px;
   line-height: 1.5;
+}
+
+/* Subtab Switcher */
+.strategy-subtab-switcher {
+  display: flex;
+  gap: 8px;
+  background-color: #f1f2f0;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid #e3e6e1;
+}
+
+.strategy-subtab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a534d;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.strategy-subtab-btn:hover {
+  color: #0b3d2e;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.strategy-subtab-btn.active {
+  background-color: #ffffff;
+  color: #0b3d2e;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* ========================================================
+   VIEW 1: KONSULTASI AI (2-Column Suite)
+   ======================================================== */
+.strategy-ai-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Kolom Kiri: Panel Konteks (290px) */
+.strategy-context-column {
+  width: 290px;
+  min-width: 290px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.context-card {
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.card-white {
+  background-color: #ffffff;
+  border: 1px solid #e3e6e1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.context-card-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b756f;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.context-goals-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.context-goal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e3e6e1;
+  font-size: 13.5px;
+}
+
+.context-goal-row:last-child {
+  border-bottom: none;
+}
+
+.context-goal-title {
+  color: #1c2621;
+  font-weight: 500;
+}
+
+.context-goal-title.bold-title {
+  font-weight: 700;
+}
+
+.context-goal-percent {
+  font-weight: 700;
+  color: #5e8f26;
+  font-size: 13.5px;
+}
+
+.context-goal-percent.percent-lime {
+  color: #5e8f26;
+  font-size: 14px;
+}
+
+/* Card 2: Mulai Dari Sini (Card Forest) */
+.card-forest {
+  background-color: #0b3d2e;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(11, 61, 46, 0.16);
+}
+
+.label-mint {
+  color: #a7f3d0;
+}
+
+.prompt-chips-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.prompt-chip-btn {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  padding: 10px 12px;
+  text-align: left;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+}
+
+.prompt-chip-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Kolom Kanan: Panel Chat */
+.strategy-chat-panel {
+  flex: 1;
+  min-width: 0;
+  background-color: #ffffff;
+  border: 1px solid #e3e6e1;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.chat-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e3e6e1;
+  background-color: #ffffff;
+}
+
+.chat-ai-icon-box {
+  width: 34px;
+  height: 34px;
+  background-color: #c9f2d1;
+  color: #0b3d2e;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.chat-panel-title {
+  font-family: var(--font-poppins), 'Segoe UI', system-ui, sans-serif;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #0b3d2e;
+  margin: 0 0 2px 0;
+}
+
+.chat-panel-subtitle {
+  font-size: 12px;
+  color: #6b756f;
+  margin: 0;
+}
+
+/* Chat Messages Scroll Area */
+.chat-messages-scroll-area {
+  flex: 1;
+  min-height: 380px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #fafbfc;
+}
+
+.chat-bubble-row {
+  display: flex;
+  width: 100%;
+}
+
+.bubble-row-ai {
+  justify-content: flex-start;
+}
+
+.bubble-row-user {
+  justify-content: flex-end;
+}
+
+.chat-bubble {
+  padding: 14px 18px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  word-break: break-word;
+}
+
+.bubble-ai {
+  background-color: #f4f6f3;
+  border: 1px solid #e3e6e1;
+  border-radius: 14px 14px 14px 4px;
+  max-width: 82%;
+  color: #1c2621;
+}
+
+.bubble-user {
+  background-color: #0b3d2e;
+  color: #ffffff;
+  border-radius: 14px 14px 4px 14px;
+  max-width: 80%;
+  border: 1px solid rgba(141, 198, 63, 0.25);
+}
+
+.bubble-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bubble-paragraph {
+  margin: 0;
+}
+
+.bubble-timestamp {
+  font-size: 10.5px;
+  align-self: flex-end;
+  opacity: 0.65;
+  margin-top: 2px;
+}
+
+.chat-typing-indicator {
+  font-size: 13px;
+  font-style: italic;
+  color: #6b756f;
+  padding: 4px 8px;
+}
+
+/* Composer Area */
+.chat-composer-area {
+  border-top: 1px solid #e3e6e1;
+  padding: 14px 16px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.composer-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.composer-textarea {
+  flex: 1;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1.5px solid #cbd5e1;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: #1c2621;
+  outline: none;
+  resize: none;
+  min-height: 44px;
+  max-height: 120px;
+  line-height: 1.4;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.composer-textarea:focus {
+  border-color: #8dc63f;
+  box-shadow: 0 0 0 3px rgba(141, 198, 63, 0.2);
+}
+
+.btn-chat-send {
+  width: 44px;
+  height: 44px;
+  background-color: #8dc63f;
+  color: #0b3d2e !important;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(141, 198, 63, 0.35);
+  border: none;
+}
+
+.btn-chat-send:hover {
+  background-color: #7ab32f;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(141, 198, 63, 0.45);
+}
+
+.chat-disclaimer-text {
+  font-size: 11px;
+  color: #6b756f;
+  text-align: center;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ========================================================
+   VIEW 2: ROADMAP SASARAN & CRUD MANAGEMENT
+   ======================================================== */
+.strategy-roadmap-suite {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 /* Summary Hero Box */
@@ -88,15 +462,15 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-bottom: 28px;
+  margin-bottom: 4px;
 }
 
 .strategy-metric-box {
-  background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+  background: linear-gradient(135deg, #0b3d2e 0%, #0f4a38 100%);
   color: #ffffff;
   border-radius: 18px;
   padding: 22px 24px;
-  box-shadow: 0 4px 16px rgba(6, 78, 59, 0.14);
+  box-shadow: 0 4px 16px rgba(11, 61, 46, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
@@ -113,7 +487,7 @@
 }
 
 .strat-stat-val {
-  font-family: var(--font-poppins);
+  font-family: var(--font-poppins), 'Segoe UI', system-ui, sans-serif;
   font-size: 24px;
   font-weight: 700;
   color: #ffffff;
@@ -121,7 +495,7 @@
 }
 
 .strat-stat-val.val-lime {
-  color: #a3e635;
+  color: #8dc63f;
 }
 
 .strat-stat-sub {
@@ -141,7 +515,7 @@
 /* Left Form Card */
 .strategy-form-card {
   background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e3e6e1;
   border-radius: 18px;
   padding: 24px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -153,15 +527,15 @@
   gap: 12px;
   margin-bottom: 20px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f2f0;
 }
 
 .card-icon-circle {
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background-color: #ecfdf5;
-  color: #065f46;
+  background-color: #c9f2d1;
+  color: #0b3d2e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,16 +543,16 @@
 }
 
 .card-title-text {
-  font-family: var(--font-poppins);
+  font-family: var(--font-poppins), 'Segoe UI', system-ui, sans-serif;
   font-size: 16px;
   font-weight: 700;
-  color: var(--color-text-main);
+  color: #0b3d2e;
   margin: 0 0 2px 0;
 }
 
 .card-subtitle-text {
   font-size: 12px;
-  color: var(--color-text-muted);
+  color: #6b756f;
   margin: 0;
 }
 
@@ -204,10 +578,10 @@
   width: 100%;
   padding: 10px 14px;
   border-radius: 10px;
-  border: 1.5px solid #e2e8f0;
-  font-family: var(--font-inter);
+  border: 1.5px solid #cbd5e1;
+  font-family: inherit;
   font-size: 13.5px;
-  color: var(--color-text-main);
+  color: #1c2621;
   background-color: #f8fafc;
   outline: none;
   transition: all 0.2s ease;
@@ -216,19 +590,19 @@
 
 .form-input-custom:focus,
 .form-textarea-custom:focus {
-  border-color: #059669;
+  border-color: #8dc63f;
   background-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
+  box-shadow: 0 0 0 3px rgba(141, 198, 63, 0.18);
 }
 
 .form-textarea-custom {
   width: 100%;
   padding: 10px 14px;
   border-radius: 10px;
-  border: 1.5px solid #e2e8f0;
-  font-family: var(--font-inter);
+  border: 1.5px solid #cbd5e1;
+  font-family: inherit;
   font-size: 13.5px;
-  color: var(--color-text-main);
+  color: #1c2621;
   background-color: #f8fafc;
   outline: none;
   resize: vertical;
@@ -276,20 +650,19 @@
 }
 
 .slider-value-badge {
-  font-family: var(--font-poppins);
+  font-family: var(--font-poppins), 'Segoe UI', system-ui, sans-serif;
   font-size: 13px;
   font-weight: 700;
-  color: #064e3b;
-  background-color: #ecfdf5;
+  color: #0b3d2e;
+  background-color: #c9f2d1;
   padding: 2px 8px;
   border-radius: 6px;
-  border: 1px solid #a7f3d0;
 }
 
 .form-slider-custom {
   width: 100%;
   height: 6px;
-  accent-color: #059669;
+  accent-color: #5e8f26;
   cursor: pointer;
   margin: 8px 0 4px 0;
 }
@@ -312,7 +685,7 @@
 .btn-cancel-edit {
   padding: 12px 16px;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #cbd5e1;
   background-color: #f8fafc;
   color: #475569;
   font-size: 13.5px;
@@ -322,7 +695,7 @@
 }
 
 .btn-cancel-edit:hover {
-  background-color: #f1f5f9;
+  background-color: #f1f2f0;
   color: #1e293b;
 }
 
@@ -332,23 +705,23 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background-color: var(--color-primary);
-  color: #022c22 !important;
-  font-family: var(--font-poppins);
+  background-color: #8dc63f;
+  color: #0b3d2e !important;
+  font-family: var(--font-poppins), 'Segoe UI', system-ui, sans-serif;
   font-size: 14px;
   font-weight: 700;
   padding: 12px 18px;
   border-radius: 12px;
   border: none;
-  box-shadow: var(--shadow-primary-btn);
+  box-shadow: 0 4px 14px rgba(141, 198, 63, 0.35);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-submit-goal:hover {
-  background-color: var(--color-primary-hover);
+  background-color: #7ab32f;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(163, 230, 53, 0.45);
+  box-shadow: 0 6px 18px rgba(141, 198, 63, 0.45);
 }
 
 /* Right Column: Goal Cards */
@@ -365,10 +738,10 @@
 }
 
 .section-title {
-  font-family: var(--font-poppins);
+  font-family: var(--font-poppins), 'Segoe UI', system-ui, sans-serif;
   font-size: 17px;
   font-weight: 700;
-  color: var(--color-text-main);
+  color: #0b3d2e;
   margin: 0;
 }
 
@@ -388,7 +761,7 @@
 }
 
 .empty-goals-card h4 {
-  font-family: var(--font-poppins);
+  font-family: var(--font-poppins), 'Segoe UI', system-ui, sans-serif;
   font-size: 16px;
   font-weight: 700;
   color: #1e293b;
@@ -411,7 +784,7 @@
 
 .goal-card-item {
   background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e3e6e1;
   border-radius: 18px;
   padding: 22px 24px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
@@ -427,7 +800,6 @@
   transform: translateY(-2px);
 }
 
-/* Card Top */
 .goal-card-top {
   display: flex;
   justify-content: space-between;
@@ -442,7 +814,6 @@
   flex: 1;
 }
 
-/* Badges Otomatis */
 .goal-status-badge {
   font-size: 11px;
   font-weight: 700;
@@ -454,29 +825,29 @@
 }
 
 .badge-completed {
-  background-color: #064e3b;
-  color: #a3e635;
-  border: 1px solid #065f46;
+  background-color: #0b3d2e;
+  color: #8dc63f;
+  border: 1px solid #0f4a38;
 }
 
 .badge-in-progress {
-  background-color: #ecfccb;
-  color: #3f6212;
-  border: 1px solid #d9f99d;
+  background-color: #c9f2d1;
+  color: #0b3d2e;
+  border: 1px solid #b2ecc0;
 }
 
 .goal-title-text {
-  font-family: var(--font-poppins);
+  font-family: var(--font-poppins), 'Segoe UI', system-ui, sans-serif;
   font-size: 17px;
   font-weight: 700;
-  color: var(--color-text-main);
+  color: #0b3d2e;
   margin: 0;
   line-height: 1.35;
 }
 
 .goal-desc-text {
   font-size: 13.5px;
-  color: #64748b;
+  color: #6b756f;
   margin: 0;
   line-height: 1.5;
 }
@@ -484,7 +855,7 @@
 /* Meta Box Kanan */
 .goal-meta-box-right {
   background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e3e6e1;
   border-radius: 12px;
   padding: 12px 18px;
   text-align: right;
@@ -494,21 +865,21 @@
 
 .meta-target-label {
   font-size: 11.5px;
-  color: #64748b;
+  color: #6b756f;
   display: block;
   margin-bottom: 2px;
 }
 
 .meta-target-label strong {
-  color: #064e3b;
+  color: #0b3d2e;
   font-weight: 700;
 }
 
 .meta-target-nominal {
-  font-family: var(--font-poppins);
+  font-family: var(--font-poppins), 'Segoe UI', system-ui, sans-serif;
   font-size: 15px;
   font-weight: 700;
-  color: #065f46;
+  color: #0f4a38;
 }
 
 /* Progress Container */
@@ -526,7 +897,7 @@
 }
 
 .progress-left-text strong {
-  color: #064e3b;
+  color: #0b3d2e;
 }
 
 .progress-right-text {
@@ -537,7 +908,7 @@
 .goal-progress-track {
   width: 100%;
   height: 8px;
-  background-color: #f1f5f9;
+  background-color: #f1f2f0;
   border-radius: 9999px;
   overflow: hidden;
 }
@@ -549,11 +920,11 @@
 }
 
 .goal-progress-fill.fill-completed {
-  background: linear-gradient(90deg, #064e3b 0%, #059669 100%);
+  background: linear-gradient(90deg, #0b3d2e 0%, #3fbf5c 100%);
 }
 
 .goal-progress-fill.fill-active {
-  background: linear-gradient(90deg, #65a30d 0%, #84cc16 100%);
+  background: linear-gradient(90deg, #5e8f26 0%, #8dc63f 100%);
 }
 
 /* Footer Card Actions */
@@ -562,7 +933,7 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 12px;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid #f1f2f0;
   font-size: 12px;
 }
 
@@ -585,7 +956,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #cbd5e1;
   background-color: #ffffff;
 }
 
@@ -611,6 +982,15 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
+  .strategy-ai-layout {
+    flex-direction: column;
+  }
+
+  .strategy-context-column {
+    width: 100%;
+    min-width: 0;
+  }
+
   .strategy-grid-layout {
     grid-template-columns: 1fr;
   }
@@ -621,6 +1001,10 @@
 }
 
 @media (max-width: 640px) {
+  .strategy-page {
+    padding: 20px 16px;
+  }
+
   .goal-card-top {
     flex-direction: column;
     gap: 14px;
@@ -649,7 +1033,7 @@
 }
 
 /* ========================================================
-   DARK MODE OVERRIDES (Strategy View)
+   DARK MODE OVERRIDES (Strategy & AI Consultation View)
    ======================================================== */
 [data-theme="dark"] .strategy-main-title {
   color: #ecfdf5;
@@ -659,7 +1043,124 @@
   color: #94a3b8;
 }
 
-[data-theme="dark"] .strategy-summary-hero .strategy-metric-box {
+[data-theme="dark"] .strategy-subtab-switcher {
+  background-color: #0e1a1b;
+  border-color: #1e3538;
+}
+
+[data-theme="dark"] .strategy-subtab-btn {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .strategy-subtab-btn:hover {
+  color: #bef264;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .strategy-subtab-btn.active {
+  background-color: #16282a;
+  color: #bef264;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* AI Consultation Dark Mode */
+[data-theme="dark"] .card-white {
+  background-color: #132223;
+  border-color: #1e3538;
+}
+
+[data-theme="dark"] .context-card-label {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .context-goal-row {
+  border-color: #1a3032;
+}
+
+[data-theme="dark"] .context-goal-title {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .context-goal-percent,
+[data-theme="dark"] .context-goal-percent.percent-lime {
+  color: #bef264;
+}
+
+[data-theme="dark"] .card-forest {
+  background-color: #102122;
+  border: 1px solid #1f3b3e;
+}
+
+[data-theme="dark"] .strategy-chat-panel {
+  background-color: #132223;
+  border-color: #1e3538;
+}
+
+[data-theme="dark"] .chat-panel-header {
+  background-color: #132223;
+  border-color: #1a3032;
+}
+
+[data-theme="dark"] .chat-ai-icon-box {
+  background-color: rgba(163, 230, 53, 0.15);
+  color: #bef264;
+}
+
+[data-theme="dark"] .chat-panel-title {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .chat-panel-subtitle {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .chat-messages-scroll-area {
+  background-color: #0b1315;
+}
+
+[data-theme="dark"] .bubble-ai {
+  background-color: #16282a;
+  border-color: #243f42;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .bubble-user {
+  background-color: #064e3b;
+  border-color: rgba(163, 230, 53, 0.3);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .chat-typing-indicator {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .chat-composer-area {
+  background-color: #132223;
+  border-color: #1a3032;
+}
+
+[data-theme="dark"] .composer-textarea {
+  background-color: #0e1a1b;
+  border-color: #243f42;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .composer-textarea:focus {
+  border-color: #84cc16;
+  box-shadow: 0 0 0 3px rgba(163, 230, 53, 0.25);
+}
+
+[data-theme="dark"] .btn-chat-send {
+  background-color: var(--color-primary);
+  color: #022c22 !important;
+}
+
+[data-theme="dark"] .chat-disclaimer-text {
+  color: #94a3b8;
+}
+
+/* Roadmap Suite Dark Mode */
+[data-theme="dark"] .strategy-metric-box {
   background: linear-gradient(135deg, #152b2c 0%, #102122 100%);
   border-color: #1f3b3e;
 }
@@ -838,5 +1339,3 @@
 [data-theme="dark"] .empty-icon {
   color: #64748b;
 }
-
-
