@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* CSS Tokens & Global Scoping */
+/* CSS Tokens & Symmetrical Centered Layout */
 .ft-landing {
   --ink: #0b2e22;
   --ink2: #123f2f;
@@ -31,6 +31,9 @@
   overflow-x: hidden;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .ft-landing * {
@@ -39,8 +42,7 @@
 
 .ft-landing h1,
 .ft-landing h2,
-.ft-landing h3,
-.ft-font-heading {
+.ft-landing h3 {
   font-family: 'Fraunces', Georgia, serif;
   font-weight: 500;
   color: var(--text);
@@ -49,17 +51,27 @@
 
 /* SECTION 1: HERO */
 .ft-hero-section {
-  padding: 72px 24px 84px 24px;
+  padding: 72px 40px 84px 40px;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .ft-hero-container {
-  max-width: 1180px;
+  max-width: 1140px;
+  width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 55% 45%;
-  gap: 48px;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 44px;
   align-items: center;
+}
+
+.ft-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 560px;
 }
 
 .ft-hero-badge {
@@ -96,8 +108,8 @@
 }
 
 .ft-hero-title {
-  font-size: 52px;
-  line-height: 1.14;
+  font-size: 50px;
+  line-height: 1.15;
   letter-spacing: -0.02em;
   margin-bottom: 20px;
 }
@@ -111,7 +123,7 @@
   font-size: 16px;
   line-height: 1.65;
   color: var(--muted);
-  max-width: 460px;
+  max-width: 480px;
   margin: 0 0 32px 0;
 }
 
@@ -169,13 +181,16 @@
 /* Mockup Chat Card */
 .ft-mockup-wrapper {
   position: relative;
-  padding: 18px;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 14px 16px;
 }
 
 .ft-mockup-card {
   background-color: var(--ink);
   border-radius: 22px;
-  padding: 24px 24px 22px 24px;
+  padding: 24px 22px 22px 22px;
   box-shadow: 0 24px 48px -10px rgba(11, 46, 34, 0.35);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -270,12 +285,36 @@
 }
 
 .ft-stat-box-val {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: 16px;
-  font-weight: 500;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
   color: #ffffff;
-  margin-top: 3px;
-  display: block;
+  margin-top: 4px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.ft-stat-curr {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.04em;
+  user-select: none;
+}
+
+.ft-stat-num {
+  font-weight: 700;
+}
+
+.ft-stat-subtag {
+  font-size: 11.5px;
+  font-weight: 600;
+  opacity: 0.85;
+  letter-spacing: 0.02em;
 }
 
 .ft-stat-box-val.accent-lime {
@@ -296,13 +335,13 @@
 }
 
 .ft-chip-top-right {
-  top: -6px;
-  right: -8px;
+  top: -2px;
+  right: -2px;
 }
 
 .ft-chip-bottom-left {
-  bottom: -6px;
-  left: -8px;
+  bottom: -2px;
+  left: -2px;
 }
 
 .ft-chip-text {
@@ -317,16 +356,19 @@
   background-color: var(--paper);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  padding: 34px 24px;
+  padding: 34px 40px;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .ft-stats-strip-container {
-  max-width: 1180px;
+  max-width: 1140px;
+  width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 28px;
 }
 
 .ft-strip-item {
@@ -351,12 +393,15 @@
 
 /* SECTION 3: FITUR UTAMA */
 .ft-features-section {
-  padding: 88px 24px;
+  padding: 88px 40px;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .ft-features-container {
-  max-width: 1180px;
+  max-width: 1140px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -401,11 +446,11 @@
 }
 
 .ft-row-visual-left {
-  grid-template-columns: 58% 42%;
+  grid-template-columns: 1.25fr 1fr;
 }
 
 .ft-row-visual-right {
-  grid-template-columns: 42% 58%;
+  grid-template-columns: 1fr 1.25fr;
 }
 
 .ft-feature-text {
@@ -516,12 +561,15 @@
   background-color: var(--paper);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  padding: 88px 24px;
+  padding: 88px 40px;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .ft-how-container {
-  max-width: 1180px;
+  max-width: 1140px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -537,7 +585,7 @@
 .ft-steps-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
+  gap: 40px;
   position: relative;
 }
 
@@ -590,7 +638,20 @@
   margin: 0;
 }
 
-/* RESPONSIVE (<820px) */
+/* RESPONSIVE (<960px & <820px) */
+@media (max-width: 960px) {
+  .ft-hero-section,
+  .ft-features-section,
+  .ft-how-section,
+  .ft-stats-strip {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .ft-hero-container {
+    gap: 32px;
+  }
+}
+
 @media (max-width: 820px) {
   .ft-hero-section {
     padding: 48px 20px 60px 20px;
@@ -608,13 +669,14 @@
   }
   .ft-mockup-wrapper {
     padding: 12px 6px;
+    max-width: 100%;
   }
   .ft-chip-top-right {
-    top: -12px;
+    top: -10px;
     right: 4px;
   }
   .ft-chip-bottom-left {
-    bottom: -12px;
+    bottom: -10px;
     left: 4px;
   }
   .ft-stats-strip {
@@ -674,7 +736,7 @@
 
         <!-- Subteks -->
         <p class="ft-hero-desc">
-          Financial Twin memantau keuanganmu secara real-time dan menyajikan asisten AI interaktif untuk mendiskusikan strategi menabung, alokasi portofolio, hingga simulasi keputusan finansial berikutnya secara presisi.
+          Financial Twin menyelaraskan kalkulator slip gaji, portofolio aset, dan 3 sasaran roadmap Anda ke dalam asisten AI untuk memvalidasi setiap keputusan menabung, investasi, dan proyeksi masa depan.
         </p>
 
         <!-- 2 Tombol Action -->
@@ -715,13 +777,13 @@
           <!-- 3 Chat Bubbles -->
           <div class="ft-chat-stream">
             <div class="ft-bubble ft-bubble-ai">
-              Progres target FIRE kamu mencapai 71%. Ada sisa surplus Rp 2.500.000 bulan ini yang belum dialokasikan ke roadmap.
+              Progres target FIRE 2035 Anda mencapai 68% dan Dana Darurat 100% aman. Ada sisa surplus Rp 1.850.000 bulan ini yang siap dialokasikan.
             </div>
             <div class="ft-bubble ft-bubble-user">
-              Bagusnya dialokasikan ke SBN atau tambah porsi dividen saham?
+              Bagusnya surplus dialokasikan ke SBN ORI024 atau tambah porsi saham BBCA & BBRI?
             </div>
             <div class="ft-bubble ft-bubble-ai">
-              Untuk amankan target cashflow 2027, alokasi 60% ke SBN (yield 6.6%) dan 40% re-investasi dividen adalah opsi paling optimal.
+              Untuk amankan target FIRE 2035 dan yield kupon 6.6%, alokasi 60% ke saham ekuitas dan 40% ke SBN ORI024 adalah opsi paling optimal bulan ini.
             </div>
           </div>
 
@@ -729,11 +791,17 @@
           <div class="ft-mockup-stats-row">
             <div class="ft-stat-box">
               <span class="ft-stat-box-label">Net Worth Twin</span>
-              <span class="ft-stat-box-val">Rp 148.500.000</span>
+              <span class="ft-stat-box-val">
+                <span class="ft-stat-curr">Rp</span>
+                <span class="ft-stat-num">842.500.000</span>
+              </span>
             </div>
             <div class="ft-stat-box">
-              <span class="ft-stat-box-label">Progres Target</span>
-              <span class="ft-stat-box-val accent-lime">71.4% On-Track</span>
+              <span class="ft-stat-box-label">Rata-rata Roadmap</span>
+              <span class="ft-stat-box-val accent-lime">
+                <span class="ft-stat-num">71.0%</span>
+                <span class="ft-stat-subtag">On-Track</span>
+              </span>
             </div>
           </div>
         </div>
@@ -757,19 +825,19 @@
     <div class="ft-stats-strip-container">
       <div class="ft-strip-item">
         <span class="ft-strip-num">3 goal</span>
-        <span class="ft-strip-label">Dipantau dalam satu roadmap</span>
+        <span class="ft-strip-label">Dipantau dalam satu roadmap (FIRE, Darurat, Pendidikan)</span>
       </div>
       <div class="ft-strip-item">
         <span class="ft-strip-num">Rp 3,87M</span>
-        <span class="ft-strip-label">Total akumulasi target</span>
+        <span class="ft-strip-label">Total akumulasi target sasaran finansial</span>
       </div>
       <div class="ft-strip-item">
         <span class="ft-strip-num">71%</span>
-        <span class="ft-strip-label">Rata-rata pencapaian</span>
+        <span class="ft-strip-label">Rata-rata pencapaian roadmap aktif</span>
       </div>
       <div class="ft-strip-item">
         <span class="ft-strip-num">24/7</span>
-        <span class="ft-strip-label">Diskusi strategi dengan AI</span>
+        <span class="ft-strip-label">Diskusi strategi dengan asisten AI terpadu</span>
       </div>
     </div>
   </section>
@@ -781,7 +849,7 @@
         <span class="ft-eyebrow">FITUR UTAMA</span>
         <h2 class="ft-section-title">Bukan sekadar pencatat, tapi teman diskusi keuangan.</h2>
         <p class="ft-section-subtext">
-          Kombinasi model proyeksi komprehensif dan penalaran AI untuk membantumu mengambil keputusan dengan percaya diri di setiap fase.
+          Menghubungkan kalkulator slip gaji, alokasi aset portofolio, dan penalaran asisten AI untuk memandu setiap keputusan finansial Anda.
         </p>
       </div>
 
@@ -789,35 +857,35 @@
       <div class="ft-feature-row ft-row-visual-left">
         <div class="ft-visual-card">
           <div class="ft-visual-card-header">
-            <span class="ft-visual-card-title">Simulasi Rekomendasi Alokasi Investasi</span>
+            <span class="ft-visual-card-title">Rekomendasi Alokasi Surplus Bulanan</span>
             <span class="ft-visual-tag">AI Optimal</span>
           </div>
           <div class="ft-progress-list">
             <div class="ft-progress-item">
               <div class="ft-progress-info">
-                <span class="ft-progress-label">Saham Indeks & ETF</span>
-                <span class="ft-progress-val">45% (Rp 67.500.000)</span>
+                <span class="ft-progress-label">Saham Bluechip & Ekuitas (FIRE)</span>
+                <span class="ft-progress-val">60% (Rp 1.110.000)</span>
               </div>
               <div class="ft-progress-track">
-                <div class="ft-progress-fill" style="width: 45%;"></div>
+                <div class="ft-progress-fill" style="width: 60%;"></div>
               </div>
             </div>
             <div class="ft-progress-item">
               <div class="ft-progress-info">
-                <span class="ft-progress-label">SBN & Sukuk Ritel</span>
-                <span class="ft-progress-val">35% (Rp 52.500.000)</span>
+                <span class="ft-progress-label">Surat Berharga Negara / SBN ORI024</span>
+                <span class="ft-progress-val">40% (Rp 740.000)</span>
               </div>
               <div class="ft-progress-track">
-                <div class="ft-progress-fill" style="width: 35%;"></div>
+                <div class="ft-progress-fill" style="width: 40%;"></div>
               </div>
             </div>
             <div class="ft-progress-item">
               <div class="ft-progress-info">
-                <span class="ft-progress-label">Kas Siaga & RDPU</span>
-                <span class="ft-progress-val">20% (Rp 30.000.000)</span>
+                <span class="ft-progress-label">Dana Darurat Siaga (Likuid)</span>
+                <span class="ft-progress-val">100% Aman (Rp 120 Jt)</span>
               </div>
               <div class="ft-progress-track">
-                <div class="ft-progress-fill" style="width: 20%;"></div>
+                <div class="ft-progress-fill" style="width: 100%;"></div>
               </div>
             </div>
           </div>
@@ -827,7 +895,7 @@
           <span class="ft-feature-num">01</span>
           <h3 class="ft-feature-title">Strategi & konsultasi AI</h3>
           <p class="ft-feature-desc">
-            Konsultasikan setiap rencana finansial secara interaktif. AI Financial Twin menganalisis profil risiko, arus kas bulanan, dan memberikan rekomendasi alokasi yang adaptif terhadap targetmu.
+            Konsultasikan setiap rencana finansial langsung bersama AI yang membaca konteks 3 sasaran roadmap Anda: Strategi FIRE 2035 (68%), Dana Darurat Siaga (100%), dan Dana Pendidikan (45%). AI memberikan rekomendasi alokasi surplus secara adaptif.
           </p>
         </div>
       </div>
@@ -838,41 +906,41 @@
           <span class="ft-feature-num">02</span>
           <h3 class="ft-feature-title">Kalkulator finansial</h3>
           <p class="ft-feature-desc">
-            Hitung proyeksi akumulasi dana, bunga majemuk, dan skenario pensiun dengan parameter dinamis. Uji dampak inflasi dan perubahan kontribusi bulanan secara instan.
+            Simulasikan slip gaji pokok Rp 16,5 Jt, potongan pajak PPh21, cicilan KPR, pinjaman, dan beban hidup. Hitung surplus bersih Rp 1,85 Jt/bulan dan uji skenario percepatan target secara instan.
           </p>
         </div>
 
         <div class="ft-visual-card">
           <div class="ft-visual-card-header">
-            <span class="ft-visual-card-title">Proyeksi Akumulasi Horizon Dana</span>
-            <span class="ft-visual-tag">Compounding</span>
+            <span class="ft-visual-card-title">Kalkulator Slip Gaji & Alokasi Kas</span>
+            <span class="ft-visual-tag">Auto-Kalkulasi</span>
           </div>
           <div class="ft-progress-list">
             <div class="ft-progress-item">
               <div class="ft-progress-info">
-                <span class="ft-progress-label">Tahun 1 (Akumulasi Awal)</span>
-                <span class="ft-progress-val">Rp 45.000.000 (35%)</span>
-              </div>
-              <div class="ft-progress-track">
-                <div class="ft-progress-fill" style="width: 35%;"></div>
-              </div>
-            </div>
-            <div class="ft-progress-item">
-              <div class="ft-progress-info">
-                <span class="ft-progress-label">Tahun 5 (Fase Pertumbuhan)</span>
-                <span class="ft-progress-val">Rp 185.000.000 (70%)</span>
-              </div>
-              <div class="ft-progress-track">
-                <div class="ft-progress-fill" style="width: 70%;"></div>
-              </div>
-            </div>
-            <div class="ft-progress-item">
-              <div class="ft-progress-info">
-                <span class="ft-progress-label">Tahun 10 (Target Mandiri)</span>
-                <span class="ft-progress-val">Rp 420.000.000 (100%)</span>
+                <span class="ft-progress-label">Take Home Pay (Gaji Bersih)</span>
+                <span class="ft-progress-val">Rp 15.550.000 (100%)</span>
               </div>
               <div class="ft-progress-track">
                 <div class="ft-progress-fill" style="width: 100%;"></div>
+              </div>
+            </div>
+            <div class="ft-progress-item">
+              <div class="ft-progress-info">
+                <span class="ft-progress-label">Kewajiban & Biaya Hidup</span>
+                <span class="ft-progress-val">Rp 10.200.000 (65.6%)</span>
+              </div>
+              <div class="ft-progress-track">
+                <div class="ft-progress-fill" style="width: 65.6%;"></div>
+              </div>
+            </div>
+            <div class="ft-progress-item">
+              <div class="ft-progress-info">
+                <span class="ft-progress-label">Alokasi Tabungan & Surplus</span>
+                <span class="ft-progress-val">Rp 5.350.000 (34.4%)</span>
+              </div>
+              <div class="ft-progress-track">
+                <div class="ft-progress-fill" style="width: 34.4%;"></div>
               </div>
             </div>
           </div>
@@ -883,35 +951,35 @@
       <div class="ft-feature-row ft-row-visual-left">
         <div class="ft-visual-card">
           <div class="ft-visual-card-header">
-            <span class="ft-visual-card-title">Alokasi Portofolio & Toleransi Rebalancing</span>
-            <span class="ft-visual-tag">Seimbang</span>
+            <span class="ft-visual-card-title">Struktur Portofolio Aset (Rp 842.500.000)</span>
+            <span class="ft-visual-tag">Untung +10.56%</span>
           </div>
           <div class="ft-progress-list">
             <div class="ft-progress-item">
               <div class="ft-progress-info">
-                <span class="ft-progress-label">Saham Bluechip & Ekuitas</span>
-                <span class="ft-progress-val">50%</span>
+                <span class="ft-progress-label">Ekuitas (Saham BBCA & BBRI)</span>
+                <span class="ft-progress-val">45% (Rp 380.000.000)</span>
               </div>
               <div class="ft-progress-track">
-                <div class="ft-progress-fill" style="width: 50%;"></div>
+                <div class="ft-progress-fill" style="width: 45%;"></div>
               </div>
             </div>
             <div class="ft-progress-item">
               <div class="ft-progress-info">
-                <span class="ft-progress-label">Obligasi Negara / SBN</span>
-                <span class="ft-progress-val">30%</span>
+                <span class="ft-progress-label">Pendapatan Tetap (SBN ORI024)</span>
+                <span class="ft-progress-val">25% (Rp 210.000.000)</span>
+              </div>
+              <div class="ft-progress-track">
+                <div class="ft-progress-fill" style="width: 25%;"></div>
+              </div>
+            </div>
+            <div class="ft-progress-item">
+              <div class="ft-progress-info">
+                <span class="ft-progress-label">Emas, Deposito Likuid & Kripto</span>
+                <span class="ft-progress-val">30% (Rp 252.500.000)</span>
               </div>
               <div class="ft-progress-track">
                 <div class="ft-progress-fill" style="width: 30%;"></div>
-              </div>
-            </div>
-            <div class="ft-progress-item">
-              <div class="ft-progress-info">
-                <span class="ft-progress-label">Kas Siaga & Deposito</span>
-                <span class="ft-progress-val">20%</span>
-              </div>
-              <div class="ft-progress-track">
-                <div class="ft-progress-fill" style="width: 20%;"></div>
               </div>
             </div>
           </div>
@@ -921,7 +989,7 @@
           <span class="ft-feature-num">03</span>
           <h3 class="ft-feature-title">Portofolio & rebalancing</h3>
           <p class="ft-feature-desc">
-            Pantau pergeseran bobot aset secara otomatis. Dapatkan sinyal rebalancing berkala agar tingkat risiko investasimu tetap selaras dengan roadmap jangka panjang.
+            Pantau akumulasi modal awal Rp 762 Jt yang telah bertumbuh menjadi Rp 842,5 Jt (+10,56%). Dapatkan rekomendasi rebalancing otomatis ketika pergeseran bobot aset melewati batas toleransi risiko.
           </p>
         </div>
       </div>
@@ -942,7 +1010,7 @@
           <div class="ft-step-number-circle">1</div>
           <h3 class="ft-step-title">Hubungkan datamu</h3>
           <p class="ft-step-desc">
-            Sinkronisasi target keuangan, rekening tabungan, dan instrumen investasimu ke dalam sistem twin digital yang aman dan terenkripsi.
+            Masukkan rincian slip gaji, aset portofolio, dan target roadmap ke dalam kembaran digital Financial Twin yang terenkripsi aman.
           </p>
         </div>
 
@@ -951,7 +1019,7 @@
           <div class="ft-step-number-circle">2</div>
           <h3 class="ft-step-title">Diskusikan pilihan</h3>
           <p class="ft-step-desc">
-            Ajukan pertanyaan dan eksplorasi skenario keputusan bersama asisten AI yang memahami konteks profil serta data finansialmu.
+            Tanyakan strategi penempatan surplus, evaluasi dividen vs SBN, atau skenario percepatan FIRE bersama asisten AI yang memahami seluruh data Anda.
           </p>
         </div>
 
@@ -960,7 +1028,7 @@
           <div class="ft-step-number-circle">3</div>
           <h3 class="ft-step-title">Ambil langkah</h3>
           <p class="ft-step-desc">
-            Uji dampak strategi di kalkulator simulasi, lalu eksekusi langkah terbaik dan pantau progres pencapaiannya secara terukur.
+            Uji simulasi di kalkulator finansial, terapkan rekomendasi terbaik, dan pantau kenaikan net worth serta progres roadmap secara real-time.
           </p>
         </div>
       </div>

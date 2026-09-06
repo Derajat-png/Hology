@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analisis Kecocokan Aset - Financial Twin</title>
+  <style>
+    /* ==========================================================================
+       Financial Twin - Analisis Kecocokan Aset
+       CSS Design Tokens (Light & Dark Mode)
+       ========================================================================== */
+    :root {
+      /* Light Mode Palette */
+      --hijau-tua: #0b3d2e;
+      --hijau-tua2: #0f4a38;
+      --lime: #8dc63f;
+      --lime-dark: #5e8f26;
+      --lime-mint: #c9f2d1;
+      --pill-text: #0b3d2e;
+      --bg: #f1f2f0;
+      --card: #ffffff;
+      --teks: #1c2621;
+      --teks-mute: #6b756f;
+      --border: #e3e6e1;
+      --input-bg: #fafbfa;
+      --input-focus-bg: #ffffff;
+      --reason-bg: #f7f9f7;
+      --reason-border: #e7ede8;
+      --count-badge-bg: #e8eae6;
+      --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --card-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.07);
+
+      /* Verdict Colors (Light) */
+      --merah: #c1453b;
+      --merah-bg: #fbe9e7;
+      --kuning: #b8860b;
+      --kuning-bg: #fdf3d9;
+      --hijau-ok: #2f8f4e;
+      --hijau-ok-bg: #e4f5e8;
+
+      --font-base: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    }
+
+    [data-theme="dark"],
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --hijau-tua: #ecfdf5;
+        --hijau-tua2: #a7f3d0;
+        --lime: #8dc63f;
+        --lime-dark: #bef264;
+        --lime-mint: rgba(141, 198, 63, 0.2);
+        --pill-text: #bef264;
+        --bg: #0b1315;
+        --card: #132223;
+        --teks: #f1f5f9;
+        --teks-mute: #94a3b8;
+        --border: #1e3538;
+        --input-bg: #0b1719;
+        --input-focus-bg: #0f2224;
+        --reason-bg: #0c1a1b;
+        --reason-border: #1a2f32;
+        --count-badge-bg: #1a2e31;
+        --card-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
+        --card-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.6);
+
+        --merah: #f87171;
+        --merah-bg: rgba(248, 113, 113, 0.15);
+        --kuning: #fbbf24;
+        --kuning-bg: rgba(251, 191, 36, 0.15);
+        --hijau-ok: #4ade80;
+        --hijau-ok-bg: rgba(74, 222, 128, 0.15);
+      }
+    }
+
+    [data-theme="dark"] {
+      --hijau-tua: #ecfdf5;
+      --hijau-tua2: #a7f3d0;
+      --lime: #8dc63f;
+      --lime-dark: #bef264;
+      --lime-mint: rgba(141, 198, 63, 0.2);
+      --pill-text: #bef264;
+      --bg: #0b1315;
+      --card: #132223;
+      --teks: #f1f5f9;
+      --teks-mute: #94a3b8;
+      --border: #1e3538;
+      --input-bg: #0b1719;
+      --input-focus-bg: #0f2224;
+      --reason-bg: #0c1a1b;
+      --reason-border: #1a2f32;
+      --count-badge-bg: #1a2e31;
+      --card-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
+      --card-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.6);
+
+      --merah: #f87171;
+      --merah-bg: rgba(248, 113, 113, 0.15);
+      --kuning: #fbbf24;
+      --kuning-bg: rgba(251, 191, 36, 0.15);
+      --hijau-ok: #4ade80;
+      --hijau-ok-bg: rgba(74, 222, 128, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      font-family: var(--font-base);
+      color: var(--teks);
+      padding: 32px 20px 60px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Container Konten Utama */
+    .suitability-main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ==========================================================================
+       1. Header Halaman
+       ========================================================================== */
+    .suitability-header {
+      margin-bottom: 24px;
+    }
+
+    .suitability-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--lime-mint);
+      color: var(--pill-text);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      border: 1px solid rgba(141, 198, 63, 0.25);
+    }
+
+    .pill-dot {
+      font-size: 0.65rem;
+      color: var(--pill-text);
+    }
+
+    .suitability-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--hijau-tua);
+      line-height: 1.25;
+      margin: 0 0 10px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .suitability-subtitle {
+      font-size: 0.94rem;
+      color: var(--teks-mute);
+      line-height: 1.55;
+      max-width: 880px;
+      margin: 0;
+    }
+
+    .suitability-subtitle strong {
+      color: var(--teks);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       2. Strip Ringkasan (3 Kotak Sejajar)
+       ========================================================================== */
+    .suitability-summary-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .summary-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .summary-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .summary-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .summary-indicator {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    .indicator-sesuai {
+      background-color: var(--hijau-ok);
+      box-shadow: 0 0 0 3px var(--hijau-ok-bg);
+    }
+
+    .indicator-review {
+      background-color: var(--kuning);
+      box-shadow: 0 0 0 3px var(--kuning-bg);
+    }
+
+    .indicator-kurang {
+      background-color: var(--merah);
+      box-shadow: 0 0 0 3px var(--merah-bg);
+    }
+
+    .summary-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--teks);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .summary-count {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .count-sesuai {
+      color: var(--hijau-ok);
+    }
+
+    .count-review {
+      color: var(--kuning);
+    }
+
+    .count-kurang {
+      color: var(--merah);
+    }
+
+    .summary-caption {
+      font-size: 0.78rem;
+      color: var(--teks-mute);
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       3. Grid Layout Utama (360px - 1fr)
+       ========================================================================== */
+    .suitability-grid-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* ==========================================================================
+       4. Kolom Kiri: Form Card
+       ========================================================================== */
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 20px;
+      box-shadow: var(--card-shadow);
+      position: sticky;
+      top: 24px;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .form-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .icon-mint-box {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 10px;
+      background-color: var(--lime-mint);
+      color: var(--pill-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(141, 198, 63, 0.2);
+    }
+
+    .form-header-text {
+      flex: 1;
+    }
+
+    .form-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--hijau-tua);
+      margin: 0 0 3px 0;
+      line-height: 1.3;
+    }
+
+    .form-desc {
+      font-size: 0.8rem;
+      color: var(--teks-mute);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .suitability-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--teks);
+    }
+
+    .label-required {
+      color: var(--merah);
+    }
+
+    .label-note {
+      font-size: 0.75rem;
+      color: var(--teks-mute);
+      font-weight: normal;
+    }
+
+    .form-input {
+      width: 100%;
+      box-sizing: border-box;
+      font-family: var(--font-base);
+      font-size: 0.88rem;
+      color: var(--teks);
+      background-color: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    }
+
+    .form-input::placeholder {
+      color: var(--teks-mute);
+      opacity: 0.75;
+    }
+
+    .form-input:focus {
+      background-color: var(--input-focus-bg);
+      border-color: var(--lime);
+      box-shadow: 0 0 0 3px rgba(141, 198, 63, 0.25);
+    }
+
+    .select-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .form-select {
+      width: 100%;
+      box-sizing: border-box;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      font-family: var(--font-base);
+      font-size: 0.88rem;
+      color: var(--teks);
+      background-color: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 32px 10px 12px;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    }
+
+    .form-select option {
+      background-color: var(--card);
+      color: var(--teks);
+    }
+
+    .form-select:focus {
+      background-color: var(--input-focus-bg);
+      border-color: var(--lime);
+      box-shadow: 0 0 0 3px rgba(141, 198, 63, 0.25);
+    }
+
+    .select-arrow {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--teks-mute);
+      pointer-events: none;
+      font-size: 0.85rem;
+    }
+
+    .suitability-input-prefix-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .suitability-currency-prefix {
+      position: absolute;
+      left: 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--teks-mute);
+      pointer-events: none;
+    }
+
+    .suitability-input-with-prefix {
+      padding-left: 38px;
+    }
+
+    .btn-submit-analyze {
+      width: 100%;
+      background-color: var(--lime);
+      color: #0b3d2e;
+      font-family: var(--font-base);
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 9999px;
+      padding: 12px 18px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(141, 198, 63, 0.35);
+      margin-top: 4px;
+    }
+
+    .btn-submit-analyze:hover {
+      background-color: #9ae62e;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(141, 198, 63, 0.45);
+    }
+
+    .btn-submit-analyze:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(141, 198, 63, 0.3);
+    }
+
+    /* ==========================================================================
+       5. Kolom Kanan: Hasil Analisis Kecocokan
+       ========================================================================== */
+    .suitability-results-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .results-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2px;
+    }
+
+    .results-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--hijau-tua);
+      margin: 0;
+    }
+
+    .results-badge-count {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--teks-mute);
+      background-color: var(--count-badge-bg);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 9999px;
+    }
+
+    .results-cards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Kartu Aset Hasil Analisis */
+    .asset-result-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      animation: slideDownIn 0.3s ease-out forwards;
+    }
+
+    @keyframes slideDownIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .asset-result-card:hover {
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .asset-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .asset-card-name {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--hijau-tua);
+      margin: 0;
+      line-height: 1.3;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .asset-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    /* Verdict Badge Pill */
+    .verdict-pill-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .verdict-badge-sesuai {
+      background-color: var(--hijau-ok-bg);
+      color: var(--hijau-ok);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+    }
+
+    .verdict-badge-review {
+      background-color: var(--kuning-bg);
+      color: var(--kuning);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+    }
+
+    .verdict-badge-kurang {
+      background-color: var(--merah-bg);
+      color: var(--merah);
+      border: 1px solid rgba(248, 113, 113, 0.35);
+    }
+
+    .btn-delete-asset {
+      background: transparent;
+      border: none;
+      color: var(--teks-mute);
+      font-size: 0.95rem;
+      font-weight: 700;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: color 0.15s, background-color 0.15s;
+    }
+
+    .btn-delete-asset:hover {
+      color: var(--merah);
+      background-color: var(--merah-bg);
+    }
+
+    /* Metadata Row */
+    .asset-card-metadata {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--teks-mute);
+      margin-bottom: 10px;
+    }
+
+    .meta-separator {
+      color: var(--teks-mute);
+      opacity: 0.5;
+      font-weight: bold;
+    }
+
+    .meta-amount {
+      font-weight: 600;
+      color: var(--hijau-tua2);
+    }
+
+    /* Box Alasan */
+    .asset-card-reason-box {
+      background-color: var(--reason-bg);
+      border: 1px solid var(--reason-border);
+      border-radius: 8px;
+      padding: 10px 14px;
+    }
+
+    .reason-text {
+      font-size: 0.84rem;
+      color: var(--teks);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .reason-text strong {
+      font-weight: 700;
+    }
+
+    [data-theme="dark"] .reason-text strong {
+      color: #bef264;
+    }
+
+    :root:not([data-theme="dark"]) .reason-text strong {
+      color: var(--hijau-tua);
+    }
+
+    /* Empty State */
+    .results-empty-state {
+      background: var(--card);
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .empty-icon-circle {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .empty-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--hijau-tua);
+      margin: 0 0 6px 0;
+    }
+
+    .empty-desc {
+      font-size: 0.85rem;
+      color: var(--teks-mute);
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       6. Disclaimer Footer
+       ========================================================================== */
+    .suitability-disclaimer {
+      margin-top: 32px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .suitability-disclaimer p {
+      font-size: 0.78rem;
+      color: var(--teks-mute);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .suitability-disclaimer strong {
+      color: var(--teks);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 900px) {
+      .suitability-grid-layout {
+        grid-template-columns: 1fr;
+      }
+      .form-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .suitability-summary-strip {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .suitability-title {
+        font-size: 1.35rem;
+      }
+      .asset-card-top {
+        flex-wrap: wrap;
+      }
+      .asset-card-name {
+        width: 100%;
+        margin-bottom: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="suitability-main-container">
+    <!-- Header Halaman -->
+    <header class="suitability-header">
+      <div class="suitability-pill-badge">
+        <span class="pill-dot">●</span>
+        <span>ANALISIS KECOCOKAN ASET</span>
+      </div>
+      <h1 class="suitability-title">
+        Apakah Aset Anda Ditempatkan di Tempat yang Tepat?
+      </h1>
+      <p class="suitability-subtitle">
+        Fokus evaluasi ini bukan menampilkan untung-rugi harga pasar, melainkan memastikan instrumen investasi
+        yang Anda pakai <strong>sudah sesuai dengan tujuan dan fungsi dana tersebut</strong> (contoh: Dana Darurat
+        wajib likuid & minim risiko di RDPU, sedangkan Dana Pensiun butuh pertumbuhan saham).
+      </p>
+    </header>
+
+    <!-- Strip Ringkasan (3 Kotak Sejajar) -->
+    <section class="suitability-summary-strip" aria-label="Ringkasan Hasil Analisis">
+      <!-- Kotak Sesuai -->
+      <div class="summary-card card-sesuai">
+        <div class="summary-card-header">
+          <span class="summary-indicator indicator-sesuai"></span>
+          <span class="summary-label">Sesuai</span>
+        </div>
+        <div class="summary-count count-sesuai" id="count-sesuai">1</div>
+        <div class="summary-caption">Penempatan instrumen sudah optimal</div>
+      </div>
+
+      <!-- Kotak Perlu Ditinjau -->
+      <div class="summary-card card-review">
+        <div class="summary-card-header">
+          <span class="summary-indicator indicator-review"></span>
+          <span class="summary-label">Perlu Ditinjau</span>
+        </div>
+        <div class="summary-count count-review" id="count-review">0</div>
+        <div class="summary-caption">Pertimbangkan risiko atau likuiditas</div>
+      </div>
+
+      <!-- Kotak Kurang Tepat -->
+      <div class="summary-card card-kurang">
+        <div class="summary-card-header">
+          <span class="summary-indicator indicator-kurang"></span>
+          <span class="summary-label">Kurang Tepat</span>
+        </div>
+        <div class="summary-count count-kurang" id="count-kurang">0</div>
+        <div class="summary-caption">Potensi mismatch fungsi & risiko dana</div>
+      </div>
+    </section>
+
+    <!-- Layout Utama Grid 2 Kolom (360px - 1fr) -->
+    <div class="suitability-grid-layout">
+      <!-- KOLOM KIRI: Form Tambah Aset -->
+      <aside class="suitability-form-panel">
+        <div class="form-card">
+          <div class="form-card-header">
+            <div class="icon-mint-box" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <div class="form-header-text">
+              <h2 class="form-title">Tambah Aset untuk Dianalisis</h2>
+              <p class="form-desc">Evaluasi kesesuaian instrumen terhadap tujuan alokasi</p>
+            </div>
+          </div>
+
+          <form id="form-asset" class="suitability-form">
+            <!-- Input Nama Aset -->
+            <div class="form-group">
+              <label for="input-asset-name" class="form-label">
+                Nama Aset / Instrumen
+              </label>
+              <input
+                type="text"
+                id="input-asset-name"
+                class="form-input"
+                placeholder="Contoh: Tabungan Mandiri, BBCA, RDPU Syariah"
+              >
+            </div>
+
+            <!-- Select Jenis Instrumen -->
+            <div class="form-group">
+              <label for="select-asset-instrument" class="form-label">
+                Jenis Instrumen <span class="label-required">*</span>
+              </label>
+              <div class="select-wrapper">
+                <select id="select-asset-instrument" class="form-select">
+                  <option value="Reksa Dana Pasar Uang">Reksa Dana Pasar Uang</option>
+                  <option value="Deposito Berjangka">Deposito Berjangka</option>
+                  <option value="SBN/Obligasi Negara">SBN/Obligasi Negara</option>
+                  <option value="Reksa Dana Pendapatan Tetap">Reksa Dana Pendapatan Tetap</option>
+                  <option value="Reksa Dana Campuran">Reksa Dana Campuran</option>
+                  <option value="Reksa Dana Saham">Reksa Dana Saham</option>
+                  <option value="Saham Langsung">Saham Langsung</option>
+                  <option value="Emas/Logam Mulia">Emas/Logam Mulia</option>
+                  <option value="P2P Lending">P2P Lending</option>
+                </select>
+                <span class="select-arrow">▾</span>
+              </div>
+            </div>
+
+            <!-- Select Tujuan Dana -->
+            <div class="form-group">
+              <label for="select-asset-goal" class="form-label">
+                Tujuan Dana Ini <span class="label-required">*</span>
+              </label>
+              <div class="select-wrapper">
+                <select id="select-asset-goal" class="form-select">
+                  <option value="Dana Darurat">Dana Darurat</option>
+                  <option value="Dana Pensiun/FIRE (jangka panjang)">Dana Pensiun/FIRE (jangka panjang)</option>
+                  <option value="Dana Pendidikan Anak (jangka menengah)">Dana Pendidikan Anak (jangka menengah)</option>
+                  <option value="Tabungan Jangka Pendek/Liburan (<2 tahun)">Tabungan Jangka Pendek/Liburan (&lt;2 tahun)</option>
+                  <option value="Investasi Jangka Panjang Umum">Investasi Jangka Panjang Umum</option>
+                </select>
+                <span class="select-arrow">▾</span>
+              </div>
+            </div>
+
+            <!-- Input Nominal (Prefix Rp) -->
+            <div class="form-group">
+              <label for="input-asset-amount" class="form-label">
+                Nominal Dialokasikan <span class="label-note">(opsional)</span>
+              </label>
+              <div class="suitability-input-prefix-wrapper">
+                <span class="suitability-currency-prefix">Rp</span>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  id="input-asset-amount"
+                  class="form-input suitability-input-with-prefix"
+                  placeholder="120.000.000"
+                >
+              </div>
+            </div>
+
+            <!-- Tombol Full-Width -->
+            <button
+              type="submit"
+              class="btn-submit-analyze"
+              id="btn-analyze-asset"
+            >
+              + Analisis Kecocokan
+            </button>
+          </form>
+        </div>
+      </aside>
+
+      <!-- KOLOM KANAN: Hasil Analisis Kecocokan -->
+      <section class="suitability-results-panel" aria-label="Daftar Kartu Hasil Analisis">
+        <div class="results-header-row">
+          <h2 class="results-title">Hasil Analisis Kecocokan</h2>
+          <span class="results-badge-count" id="total-count-badge">1 Aset Terdaftar</span>
+        </div>
+
+        <div class="results-cards-list" id="results-cards-container">
+          <!-- Kartu-kartu hasil analisis akan di-render dan di-prepend di sini -->
+        </div>
+      </section>
+    </div>
+
+    <!-- Catatan Kaki / Disclaimer Finansial -->
+    <footer class="suitability-disclaimer">
+      <p>
+        ℹ️ <strong>Catatan Edukasi:</strong> Analisis ini merupakan rule-of-thumb dan pedoman umum alokasi aset berdasarkan karakteristik instrumen & horizon waktu, bukan pengganti nasihat keuangan berlisensi.
+      </p>
+    </footer>
+  </div>
+
+  <!-- JAVASCRIPT LOGIKA PENILAIAN & INTERAKSI -->
+  <script>
+    // Matrix Penilaian Logika Kecocokan Aset (JS Object)
+    const SUITABILITY_MATRIX = {
+      'Dana Darurat': {
+        'Reksa Dana Pasar Uang': {
+          verdict: 'Sesuai',
+          tone: 'ok',
+          reason: '<strong>Sangat Ideal.</strong> Likuiditas tinggi dengan pencairan cepat (T+1), fluktuasi nilai sangat rendah, dan tidak ada penalti pencairan sewaktu-waktu dibutuhkan.'
+        },
+        'Deposito Berjangka': {
+          verdict: 'Sesuai',
+          tone: 'ok',
+          reason: '<strong>Cukup Sesuai & Terjamin LPS.</strong> Pokok investasi aman, namun <strong>likuiditas terbatas tenor</strong> dan berpotensi terkena penalti bunga jika dicairkan mendadak sebelum jatuh tempo.'
+        },
+        'SBN/Obligasi Negara': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Kurang Likuid untuk Kondisi Genting.</strong> Sangat aman karena dijamin negara, tetapi memiliki minimum holding period atau jadwal early redemption tertentu sehingga <strong>sulit dicairkan seketika</strong>.'
+        },
+        'Reksa Dana Pendapatan Tetap': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Masih Memiliki Fluktuasi NAB.</strong> Terpengaruh oleh pergerakan suku bunga pasar obligasi. Ada potensi <strong>penurunan nilai sesaat</strong> ketika dana darurat mendesak ditarik.'
+        },
+        'Emas/Logam Mulia': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Spread Jual-Beli Lebar.</strong> Emas aman sebagai safe haven, tetapi ada selisih harga beli & buyback (3-10%) serta <strong>membutuhkan waktu/proses fisik</strong> untuk dicairkan.'
+        },
+        'Reksa Dana Campuran': {
+          verdict: 'Kurang Tepat',
+          tone: 'bad',
+          reason: '<strong>Terlalu Fluktuatif.</strong> Mengandung porsi saham yang rentan terkoreksi tajam. Dana darurat <strong>tidak boleh ditaruh pada aset dengan risiko penurunan modal</strong>.'
+        },
+        'Reksa Dana Saham': {
+          verdict: 'Kurang Tepat',
+          tone: 'bad',
+          reason: '<strong>Risiko Volatilitas Tinggi.</strong> Nilai aset bisa turun signifikan saat pasar jatuh. Berbahaya jika terpaksa dicairkan dalam posisi <strong>floating loss</strong> saat darurat.'
+        },
+        'Saham Langsung': {
+          verdict: 'Kurang Tepat',
+          tone: 'bad',
+          reason: '<strong>Sangat Berisiko & Tidak Tepat.</strong> Fluktuasi harga harian sangat tajam. Anda berisiko <strong>kehilangan modal saat butuh uang cepat</strong>.'
+        },
+        'P2P Lending': {
+          verdict: 'Kurang Tepat',
+          tone: 'bad',
+          reason: '<strong>Risiko Gagal Bayar & Dana Terkunci.</strong> Dana terkunci hingga peminjam melunasi dengan adanya risiko <strong>kredit macet (default)</strong>. Bertolak belakang dengan syarat dana darurat.'
+        }
+      },
+      'Dana Pensiun/FIRE (jangka panjang)': {
+        'Saham Langsung': {
+          verdict: 'Sesuai',
+          tone: 'ok',
+          reason: '<strong>Sangat Sesuai untuk Horizon Panjang.</strong> Saham berfundamental kuat memiliki <strong>potensi pertumbuhan kapital & dividen tertinggi</strong> untuk mengalahkan inflasi dalam 10-20+ tahun.'
+        },
+        'Reksa Dana Saham': {
+          verdict: 'Sesuai',
+          tone: 'ok',
+          reason: '<strong>Pilihan Utama Akumulasi.</strong> Memberikan diversifikasi ke puluhan emiten dengan manajemen profesional untuk <strong>memaksimalkan efek compounding jangka panjang</strong>.'
+        },
+        'Reksa Dana Campuran': {
+          verdict: 'Sesuai',
+          tone: 'ok',
+          reason: '<strong>Pertumbuhan Terdiversifikasi.</strong> Fleksibilitas alokasi saham dan obligasi membantu pertumbuhan modal dengan <strong>volatilitas yang lebih terukur</strong> menuju masa pensiun.'
+        },
+        'SBN/Obligasi Negara': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Aman tapi Kurang Optimal.</strong> Kupon stabil, namun jika dijadikan komponen tunggal pensiun, <strong>daya beli berisiko tergerus inflasi jangka panjang</strong>.'
+        },
+        'Reksa Dana Pendapatan Tetap': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Bagus sebagai Penyeimbang.</strong> Menjaga stabilitas portofolio, namun perlu dipadukan dengan aset ekuitas agar <strong>target nilai pensiun tercapai optimal</strong>.'
+        },
+        'Emas/Logam Mulia': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Pelindung Nilai Riil (Hedging).</strong> Emas menjaga daya beli terhadap inflasi, namun <strong>tidak menghasilkan arus kas produktif (dividen/bunga)</strong>.'
+        },
+        'P2P Lending': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Imbal Hasil Tinggi namun Risiko Kredit.</strong> Hanya cocok untuk porsi kecil (satelit) karena adanya <strong>risiko gagal bayar berkepanjangan</strong>.'
+        },
+        'Deposito Berjangka': {
+          verdict: 'Kurang Tepat',
+          tone: 'bad',
+          reason: '<strong>Tergilas Inflasi Jangka Panjang.</strong> Bunga deposito setelah pajak 20% sering kali <strong>di bawah inflasi riil</strong>, membuat nilai riil dana pensiun menyusut dalam horizon puluhan tahun.'
+        },
+        'Reksa Dana Pasar Uang': {
+          verdict: 'Kurang Tepat',
+          tone: 'bad',
+          reason: '<strong>Terlalu Konservatif.</strong> Imbal hasil rendah hanya cocok memarkir dana sementara, bukan untuk <strong>mengakumulasi dana pensiun</strong> yang membutuhkan pertumbuhan modal signifikan.'
+        }
+      },
+      'Dana Pendidikan Anak (jangka menengah)': {
+        'Reksa Dana Campuran': {
+          verdict: 'Sesuai',
+          tone: 'ok',
+          reason: '<strong>Paling Seimbang.</strong> Memadukan potensi pertumbuhan saham dengan stabilitas obligasi, sangat cocok untuk <strong>horizon menengah 3-7 tahun</strong>.'
+        },
+        'Reksa Dana Pendapatan Tetap': {
+          verdict: 'Sesuai',
+          tone: 'ok',
+          reason: '<strong>Stabil & Imbal Hasil Menarik.</strong> Volatilitas terukur dengan yield obligasi memberikan <strong>kepastian pertumbuhan modal</strong> menjelang waktu pembayaran sekolah/kuliah.'
+        },
+        'SBN/Obligasi Negara': {
+          verdict: 'Sesuai',
+          tone: 'ok',
+          reason: '<strong>Pasti & Terjamin 100%.</strong> Tenor 3-5 tahun (ORI/SR/FR) sangat pas disinkronkan dengan <strong>jadwal pembayaran uang pangkal sekolah</strong>.'
+        },
+        'Reksa Dana Saham': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Tergantung Sisa Waktu.</strong> Masih layak jika kebutuhan >7 tahun lagi, namun <strong>wajib dipindahkan (de-risk)</strong> ke instrumen stabil saat mendekati 2-3 tahun sebelum dana dipakai.'
+        },
+        'Saham Langsung': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Butuh Pengawasan Ketat.</strong> Potensi hasil tinggi, tetapi risiko drawdown pasar modal mendekati tahun masuk sekolah dapat <strong>mengganggu rencana pembayaran</strong>.'
+        },
+        'Reksa Dana Pasar Uang': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Aman tapi Kurang Optimal.</strong> Imbal hasil sulit mengejar <strong>inflasi biaya pendidikan 10-15%/tahun</strong> jika waktu pakai masih lebih dari 3 tahun.'
+        },
+        'Deposito Berjangka': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Aman namun Pertumbuhan Rendah.</strong> Tepat jika sisa waktu tinggal <1 tahun, tetapi kurang efektif untuk <strong>mengejar kenaikan uang pangkal jangka menengah</strong>.'
+        },
+        'Emas/Logam Mulia': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Bagus untuk Hedging Biaya Kuliah.</strong> Cukup efektif menahan inflasi pendidikan, namun <strong>fluktuasi harga emas jangka 3-5 tahun</strong> perlu diperhitungkan saat pencairan.'
+        },
+        'P2P Lending': {
+          verdict: 'Kurang Tepat',
+          tone: 'bad',
+          reason: '<strong>Risiko Gagal Bayar Berbahaya.</strong> Dana pendidikan memiliki <strong>tenggat waktu pasti yang tidak bisa ditunda</strong>; risiko macet sangat berisiko mengorbankan sekolah anak.'
+        }
+      },
+      'Tabungan Jangka Pendek/Liburan (<2 tahun)': {
+        'Reksa Dana Pasar Uang': {
+          verdict: 'Sesuai',
+          tone: 'ok',
+          reason: '<strong>Sangat Sesuai.</strong> Imbal hasil di atas tabungan biasa, bebas pajak, dan <strong>likuid tanpa risiko fluktuasi modal</strong> saat target liburan tiba.'
+        },
+        'Deposito Berjangka': {
+          verdict: 'Sesuai',
+          tone: 'ok',
+          reason: '<strong>Disiplin & Terjamin.</strong> Mengunci dana dengan tenor terencana sehingga <strong>tidak terpakai untuk konsumsi harian</strong> dan pokok terlindungi penuh.'
+        },
+        'SBN/Obligasi Negara': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Perhatikan Tenor & Likuiditas.</strong> Hanya sesuai jika memilih seri SBN yang <strong>jatuh tempo tepat sebelum dana dibutuhkan</strong> agar tidak terpaksa menjual saat harga diskon.'
+        },
+        'Reksa Dana Pendapatan Tetap': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Masih Ada Fluktuasi Yield.</strong> Pergerakan suku bunga jangka pendek dapat membuat <strong>nilai dana sedikit terpotong saat butuh ditarik</strong>.'
+        },
+        'Emas/Logam Mulia': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Kurang Efektif Akibat Selisih Harga.</strong> Horizon <2 tahun berisiko <strong>rugi spread beli-jual</strong> meskipun harga emas global cenderung stabil.'
+        },
+        'Reksa Dana Campuran': {
+          verdict: 'Kurang Tepat',
+          tone: 'bad',
+          reason: '<strong>Terlalu Berisiko.</strong> Dalam horizon <2 tahun, pasar saham di dalamnya bisa turun dan <strong>tidak memiliki cukup waktu untuk recovery</strong>.'
+        },
+        'Reksa Dana Saham': {
+          verdict: 'Kurang Tepat',
+          tone: 'bad',
+          reason: '<strong>Sangat Berbahaya.</strong> Volatilitas saham terlalu tinggi untuk horizon pendek. Anda berisiko <strong>gagal liburan karena portofolio sedang merah</strong>.'
+        },
+        'Saham Langsung': {
+          verdict: 'Kurang Tepat',
+          tone: 'bad',
+          reason: '<strong>Spekulatif untuk Kebutuhan Dekat.</strong> Fluktuasi harga saham harian sangat tajam. <strong>Sangat rentan kehilangan modal</strong> dalam jangka pendek.'
+        },
+        'P2P Lending': {
+          verdict: 'Kurang Tepat',
+          tone: 'bad',
+          reason: '<strong>Dana Terkunci & Risiko Macet.</strong> Dana tidak bisa ditarik mendadak dan ada <strong>risiko dana tidak kembali tepat waktu</strong> saat liburan.'
+        }
+      },
+      'Investasi Jangka Panjang Umum': {
+        'Reksa Dana Saham': {
+          verdict: 'Sesuai',
+          tone: 'ok',
+          reason: '<strong>Optimal untuk Pertumbuhan Kekayaan.</strong> Horizon panjang mampu meredam volatilitas jangka pendek dan <strong>memaksimalkan hasil investasi di atas inflasi</strong>.'
+        },
+        'Saham Langsung': {
+          verdict: 'Sesuai',
+          tone: 'ok',
+          reason: '<strong>Peluang Capital Gain & Dividen Maksimal.</strong> Kepemilikan langsung pada bisnis unggulan adalah pilar utama <strong>akumulasi kekayaan jangka panjang</strong>.'
+        },
+        'Reksa Dana Campuran': {
+          verdict: 'Sesuai',
+          tone: 'ok',
+          reason: '<strong>Pertumbuhan dengan Risiko Terkelola.</strong> Kombinasi dinamis saham dan surat utang memberikan <strong>pertumbuhan aset stabil dengan volatilitas moderat</strong>.'
+        },
+        'SBN/Obligasi Negara': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Bagus untuk Arus Kas Pasif.</strong> Sangat aman dan terprediksi, namun untuk pertumbuhan kekayaan jangka panjang sebaiknya <strong>didampingi instrumen saham</strong>.'
+        },
+        'Reksa Dana Pendapatan Tetap': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Penjaga Stabilitas Portofolio.</strong> Sangat baik sebagai jangkar risiko, tetapi <strong>potensi imbal hasil jangka panjangnya di bawah ekuitas</strong>.'
+        },
+        'Emas/Logam Mulia': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Penyimpan Nilai yang Tangguh.</strong> Bagus sebagai aset safe haven (5-15%), namun emas <strong>tidak menghasilkan produktivitas bisnis atau laba kas</strong>.'
+        },
+        'P2P Lending': {
+          verdict: 'Perlu Ditinjau',
+          tone: 'review',
+          reason: '<strong>Diversifikasi Alternatif.</strong> Menghasilkan imbal hasil tinggi namun memiliki risiko kredit unik; <strong>batasi alokasi maksimal 5-10%</strong> dari total aset.'
+        },
+        'Reksa Dana Pasar Uang': {
+          verdict: 'Kurang Tepat',
+          tone: 'bad',
+          reason: '<strong>Terlalu Konservatif.</strong> Imbal hasil hanya setara inflasi dasar. Menaruh dana investasi panjang di RDPU membuat Anda <strong>kehilangan potensi pertumbuhan modal</strong>.'
+        },
+        'Deposito Berjangka': {
+          verdict: 'Kurang Tepat',
+          tone: 'bad',
+          reason: '<strong>Tidak Efisien untuk Jangka Panjang.</strong> Terkena pajak 20% dan tingkat bunga riil rendah membuat dana <strong>sulit bertumbuh signifikan</strong> dalam waktu lama.'
+        }
+      }
+    };
+
+    // State array untuk menyimpan daftar aset yang dianalisis
+    let assetsData = [
+      {
+        id: 'default-1',
+        name: 'Dana Darurat Siaga',
+        instrument: 'Reksa Dana Pasar Uang',
+        goal: 'Dana Darurat',
+        amount: 120000000,
+        verdict: 'Sesuai',
+        tone: 'ok',
+        reason: '<strong>Sangat Ideal.</strong> Likuiditas tinggi dengan pencairan cepat (T+1), fluktuasi nilai sangat rendah, dan tidak ada penalti pencairan sewaktu-waktu dibutuhkan.'
+      }
+    ];
+
+    // Helper Format Rupiah
+    function formatRupiah(num) {
+      if (!num && num !== 0) return 'Rp 0';
+      return 'Rp ' + Number(num).toLocaleString('id-ID');
+    }
+
+    // Evaluasi Kecocokan Menggunakan Matrix
+    function evaluateSuitability(goal, instrument) {
+      if (SUITABILITY_MATRIX[goal] && SUITABILITY_MATRIX[goal][instrument]) {
+        return SUITABILITY_MATRIX[goal][instrument];
+      }
+      return {
+        verdict: 'Perlu Ditinjau',
+        tone: 'review',
+        reason: '<strong>Perlu Analisis Lebih Lanjut.</strong> Kombinasi instrumen dan tujuan dana ini belum umum dianalisis secara standar. Sebaiknya diskusikan profil risiko dan horizon waktu Anda lebih mendalam.'
+      };
+    }
+
+    // Update Summary Strip Numbers
+    function updateSummary() {
+      const sesuai = assetsData.filter(a => a.verdict === 'Sesuai').length;
+      const review = assetsData.filter(a => a.verdict === 'Perlu Ditinjau').length;
+      const kurang = assetsData.filter(a => a.verdict === 'Kurang Tepat').length;
+
+      document.getElementById('count-sesuai').textContent = sesuai;
+      document.getElementById('count-review').textContent = review;
+      document.getElementById('count-kurang').textContent = kurang;
+      document.getElementById('total-count-badge').textContent = `${assetsData.length} Aset Terdaftar`;
+    }
+
+    // Render Cards List
+    function renderCards() {
+      const container = document.getElementById('results-cards-container');
+      container.innerHTML = '';
+
+      if (assetsData.length === 0) {
+        container.innerHTML = `
+          <div class="results-empty-state">
+            <div class="empty-icon-circle">📋</div>
+            <h3 class="empty-title">Belum Ada Aset yang Dianalisis</h3>
+            <p class="empty-desc">
+              Gunakan formulir di sebelah kiri untuk memasukkan aset Anda dan melihat evaluasi kecocokannya.
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      assetsData.forEach(asset => {
+        const badgeClass = asset.tone === 'ok' 
+          ? 'verdict-badge-sesuai' 
+          : asset.tone === 'review' 
+            ? 'verdict-badge-review' 
+            : 'verdict-badge-kurang';
+
+        const card = document.createElement('article');
+        card.className = 'asset-result-card';
+        card.id = `card-${asset.id}`;
+
+        let amountHtml = '';
+        if (asset.amount > 0) {
+          amountHtml = `
+            <span class="meta-separator">·</span>
+            <span class="meta-amount">${formatRupiah(asset.amount)}</span>
+          `;
+        }
+
+        card.innerHTML = `
+          <div class="asset-card-top">
+            <h3 class="asset-card-name" title="${asset.name}">${asset.name}</h3>
+            <div class="asset-card-actions">
+              <span class="verdict-pill-badge ${badgeClass}">${asset.verdict}</span>
+              <button
+                type="button"
+                class="btn-delete-asset"
+                onclick="deleteAsset('${asset.id}')"
+                title="Hapus aset ini"
+                aria-label="Hapus ${asset.name}"
+              >✕</button>
+            </div>
+          </div>
+          <div class="asset-card-metadata">
+            <span>${asset.instrument}</span>
+            <span class="meta-separator">·</span>
+            <span>${asset.goal}</span>
+            ${amountHtml}
+          </div>
+          <div class="asset-card-reason-box">
+            <p class="reason-text">${asset.reason}</p>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    // Delete Card Function
+    window.deleteAsset = function(id) {
+      assetsData = assetsData.filter(a => a.id !== id);
+      renderCards();
+      updateSummary();
+    };
+
+    // Initialize Form & Events
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('form-asset');
+      const inputName = document.getElementById('input-asset-name');
+      const selectInst = document.getElementById('select-asset-instrument');
+      const selectGoal = document.getElementById('select-asset-goal');
+      const inputAmount = document.getElementById('input-asset-amount');
+
+      // Format input rupiah secara live
+      inputAmount.addEventListener('input', (e) => {
+        let val = e.target.value.replace(/\D/g, '');
+        if (val) {
+          e.target.value = parseInt(val, 10).toLocaleString('id-ID');
+        } else {
+          e.target.value = '';
+        }
+      });
+
+      // Submit Form
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const instrument = selectInst.value;
+        const goal = selectGoal.value;
+        const nameVal = inputName.value.trim() || `${instrument} (${goal.split(' ')[0]})`;
+        const rawAmount = inputAmount.value.replace(/\D/g, '');
+        const amount = rawAmount ? parseInt(rawAmount, 10) : 0;
+
+        const evalResult = evaluateSuitability(goal, instrument);
+
+        const newAsset = {
+          id: 'asset-' + Date.now() + '-' + Math.random().toString(36).substring(2, 6),
+          name: nameVal,
+          instrument: instrument,
+          goal: goal,
+          amount: amount,
+          verdict: evalResult.verdict,
+          tone: evalResult.tone,
+          reason: evalResult.reason
+        };
+
+        // Prepend (terbaru di atas)
+        assetsData.unshift(newAsset);
+
+        // Reset input form
+        inputName.value = '';
+        inputAmount.value = '';
+
+        // Render & Update UI
+        renderCards();
+        updateSummary();
+      });
+
+      // Initial Render
+      renderCards();
+      updateSummary();
+    });
+  </script>
+</body>
+</html>

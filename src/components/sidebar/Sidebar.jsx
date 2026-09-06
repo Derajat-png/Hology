@@ -35,7 +35,7 @@ export default function Sidebar({
     },
     {
       id: 'portofolio',
-      label: 'Portofolio',
+      label: 'Analisis',
       icon: PortfolioIcon,
     },
     {

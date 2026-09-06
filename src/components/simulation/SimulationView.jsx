@@ -194,7 +194,7 @@ export default function SimulationView() {
                 Masukkan Slip Gaji / Gaji Pokok
               </label>
               <div className="sim-input-wrapper">
-                <span className="currency-prefix">Rp</span>
+                <span className="sim-currency-prefix">Rp</span>
                 <input
                   id="input-gaji"
                   type="text"
@@ -212,7 +212,7 @@ export default function SimulationView() {
                 Pajak Penghasilan (PPh 21)
               </label>
               <div className="sim-input-wrapper">
-                <span className="currency-prefix text-tax">Rp</span>
+                <span className="sim-currency-prefix text-tax">Rp</span>
                 <input
                   id="input-pajak"
                   type="text"
@@ -238,7 +238,7 @@ export default function SimulationView() {
                 Hutang / Cicilan Pinjaman
               </label>
               <div className="sim-input-wrapper">
-                <span className="currency-prefix">Rp</span>
+                <span className="sim-currency-prefix">Rp</span>
                 <input
                   id="input-hutang"
                   type="text"
@@ -256,7 +256,7 @@ export default function SimulationView() {
                 Cicilan KPR Rumah
               </label>
               <div className="sim-input-wrapper">
-                <span className="currency-prefix">Rp</span>
+                <span className="sim-currency-prefix">Rp</span>
                 <input
                   id="input-kpr"
                   type="text"
@@ -284,7 +284,7 @@ export default function SimulationView() {
                 Keseharian Makan & Minum
               </label>
               <div className="sim-input-wrapper">
-                <span className="currency-prefix">Rp</span>
+                <span className="sim-currency-prefix">Rp</span>
                 <input
                   id="input-makan"
                   type="text"
@@ -302,7 +302,7 @@ export default function SimulationView() {
                 Belanja & Kebutuhan Rumah Tangga
               </label>
               <div className="sim-input-wrapper">
-                <span className="currency-prefix">Rp</span>
+                <span className="sim-currency-prefix">Rp</span>
                 <input
                   id="input-belanja"
                   type="text"
@@ -356,7 +356,7 @@ export default function SimulationView() {
                 Beban Darurat / Tak Terduga
               </label>
               <div className="sim-input-wrapper">
-                <span className="currency-prefix">Rp</span>
+                <span className="sim-currency-prefix">Rp</span>
                 <input
                   id="input-beban-darurat"
                   type="text"
@@ -375,7 +375,7 @@ export default function SimulationView() {
                 Estimasi Harga / Biaya Target
               </label>
               <div className="sim-input-wrapper">
-                <span className="currency-prefix">Rp</span>
+                <span className="sim-currency-prefix">Rp</span>
                 <input
                   id="input-biaya-target"
                   type="text"
@@ -394,7 +394,7 @@ export default function SimulationView() {
                 Alokasi Tabungan Bulanan
               </label>
               <div className="sim-input-wrapper">
-                <span className="currency-prefix">Rp</span>
+                <span className="sim-currency-prefix">Rp</span>
                 <input
                   id="input-alokasi-tabungan"
                   type="text"

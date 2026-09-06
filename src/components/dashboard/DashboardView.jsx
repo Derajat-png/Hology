@@ -80,10 +80,10 @@ export default function DashboardView({ onNavigate }) {
               </div>
             </div>
             <div className="dashboard-quick-item" onClick={() => onNavigate('portofolio')}>
-              <div className="dashboard-quick-icon">💼</div>
+              <div className="dashboard-quick-icon">⚖️</div>
               <div>
-                <div className="dashboard-quick-title">Alokasi Portofolio</div>
-                <div className="dashboard-quick-desc">Cek diversifikasi aset & rebalancing otomatis</div>
+                <div className="dashboard-quick-title">Analisis Kecocokan Aset</div>
+                <div className="dashboard-quick-desc">Evaluasi kesesuaian instrumen investasi dengan tujuan dana</div>
               </div>
             </div>
             <div className="dashboard-quick-item" onClick={() => onNavigate('strategi')}>

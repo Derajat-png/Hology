@@ -35,9 +35,9 @@ export default function LandingContent({ onNavigateToAI }) {
 
             {/* Subteks */}
             <p className="ft-hero-desc">
-              Financial Twin memantau dinamika keuanganmu secara real-time dan
-              mengajak diskusi AI untuk memvalidasi setiap keputusan menabung,
-              alokasi portofolio, hingga simulasi masa depan.
+              Financial Twin menyelaraskan kalkulator slip gaji, portofolio aset,
+              dan 3 sasaran roadmap Anda ke dalam asisten AI untuk memvalidasi
+              setiap keputusan menabung, investasi, dan proyeksi masa depan.
             </p>
 
             {/* Action Buttons */}
@@ -111,19 +111,21 @@ export default function LandingContent({ onNavigateToAI }) {
               <div className="ft-chat-stream">
                 {/* 1. Bubble AI */}
                 <div className="ft-bubble ft-bubble-ai">
-                  Progres target FIRE kamu mencapai 71%. Ada sisa surplus Rp
-                  2.500.000 bulan ini yang belum dialokasikan ke roadmap.
+                  Progres target FIRE 2035 Anda mencapai 68% dan Dana Darurat
+                  100% aman. Ada sisa surplus Rp 1.850.000 bulan ini yang siap
+                  dialokasikan.
                 </div>
 
                 {/* 2. Bubble User */}
                 <div className="ft-bubble ft-bubble-user">
-                  Bagusnya dialokasikan ke SBN atau tambah porsi dividen saham?
+                  Bagusnya surplus dialokasikan ke SBN ORI024 atau tambah porsi saham BBCA & BBRI?
                 </div>
 
                 {/* 3. Bubble AI */}
                 <div className="ft-bubble ft-bubble-ai">
-                  Untuk amankan target cashflow 2027, alokasi 60% ke SBN (yield
-                  6.6%) dan 40% re-investasi dividen adalah opsi paling optimal.
+                  Untuk amankan target FIRE 2035 dan yield kupon 6.6%, alokasi 60%
+                  ke saham ekuitas dan 40% ke SBN ORI024 adalah opsi paling
+                  optimal bulan ini.
                 </div>
               </div>
 
@@ -131,11 +133,17 @@ export default function LandingContent({ onNavigateToAI }) {
               <div className="ft-mockup-stats-row">
                 <div className="ft-stat-box">
                   <span className="ft-stat-box-label">Net Worth Twin</span>
-                  <span className="ft-stat-box-val">Rp 148.500.000</span>
+                  <span className="ft-stat-box-val">
+                    <span className="ft-stat-curr">Rp</span>
+                    <span className="ft-stat-num">842.500.000</span>
+                  </span>
                 </div>
                 <div className="ft-stat-box">
-                  <span className="ft-stat-box-label">Progres Target</span>
-                  <span className="ft-stat-box-val accent-lime">71.4% On-Track</span>
+                  <span className="ft-stat-box-label">Rata-rata Roadmap</span>
+                  <span className="ft-stat-box-val accent-lime">
+                    <span className="ft-stat-num">71.0%</span>
+                    <span className="ft-stat-subtag">On-Track</span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -171,22 +179,30 @@ export default function LandingContent({ onNavigateToAI }) {
         <div className="ft-stats-strip-container">
           <div className="ft-strip-item">
             <span className="ft-strip-num">3 goal</span>
-            <span className="ft-strip-label">Dipantau dalam satu roadmap</span>
+            <span className="ft-strip-label">
+              Dipantau dalam satu roadmap (FIRE, Darurat, Pendidikan)
+            </span>
           </div>
 
           <div className="ft-strip-item">
             <span className="ft-strip-num">Rp 3,87M</span>
-            <span className="ft-strip-label">Total akumulasi target</span>
+            <span className="ft-strip-label">
+              Total akumulasi target sasaran finansial
+            </span>
           </div>
 
           <div className="ft-strip-item">
             <span className="ft-strip-num">71%</span>
-            <span className="ft-strip-label">Rata-rata pencapaian</span>
+            <span className="ft-strip-label">
+              Rata-rata pencapaian roadmap aktif
+            </span>
           </div>
 
           <div className="ft-strip-item">
             <span className="ft-strip-num">24/7</span>
-            <span className="ft-strip-label">Diskusi strategi dengan AI</span>
+            <span className="ft-strip-label">
+              Diskusi strategi dengan asisten AI terpadu
+            </span>
           </div>
         </div>
       </section>
@@ -203,8 +219,8 @@ export default function LandingContent({ onNavigateToAI }) {
               Bukan sekadar pencatat, tapi teman diskusi keuangan.
             </h2>
             <p className="ft-section-subtext">
-              Kombinasi model proyeksi komprehensif dan penalaran AI untuk
-              membantumu mengambil keputusan dengan percaya diri di setiap fase.
+              Menghubungkan kalkulator slip gaji, alokasi aset portofolio, dan
+              penalaran asisten AI untuk memandu setiap keputusan finansial Anda.
             </p>
           </div>
 
@@ -213,38 +229,44 @@ export default function LandingContent({ onNavigateToAI }) {
             <div className="ft-visual-card">
               <div className="ft-visual-card-header">
                 <span className="ft-visual-card-title">
-                  Simulasi Rekomendasi Alokasi Investasi
+                  Rekomendasi Alokasi Surplus Bulanan
                 </span>
                 <span className="ft-visual-tag">AI Optimal</span>
               </div>
               <div className="ft-progress-list">
                 <div className="ft-progress-item">
                   <div className="ft-progress-info">
-                    <span className="ft-progress-label">Saham Indeks & ETF</span>
-                    <span className="ft-progress-val">45% (Rp 67.500.000)</span>
+                    <span className="ft-progress-label">
+                      Saham Bluechip & Ekuitas (FIRE)
+                    </span>
+                    <span className="ft-progress-val">60% (Rp 1.110.000)</span>
                   </div>
                   <div className="ft-progress-track">
-                    <div className="ft-progress-fill" style={{ width: '45%' }}></div>
+                    <div className="ft-progress-fill" style={{ width: '60%' }}></div>
                   </div>
                 </div>
 
                 <div className="ft-progress-item">
                   <div className="ft-progress-info">
-                    <span className="ft-progress-label">SBN & Sukuk Ritel</span>
-                    <span className="ft-progress-val">35% (Rp 52.500.000)</span>
+                    <span className="ft-progress-label">
+                      Surat Berharga Negara / SBN ORI024
+                    </span>
+                    <span className="ft-progress-val">40% (Rp 740.000)</span>
                   </div>
                   <div className="ft-progress-track">
-                    <div className="ft-progress-fill" style={{ width: '35%' }}></div>
+                    <div className="ft-progress-fill" style={{ width: '40%' }}></div>
                   </div>
                 </div>
 
                 <div className="ft-progress-item">
                   <div className="ft-progress-info">
-                    <span className="ft-progress-label">Kas Siaga & RDPU</span>
-                    <span className="ft-progress-val">20% (Rp 30.000.000)</span>
+                    <span className="ft-progress-label">
+                      Dana Darurat Siaga (Likuid)
+                    </span>
+                    <span className="ft-progress-val">100% Aman (Rp 120 Jt)</span>
                   </div>
                   <div className="ft-progress-track">
-                    <div className="ft-progress-fill" style={{ width: '20%' }}></div>
+                    <div className="ft-progress-fill" style={{ width: '100%' }}></div>
                   </div>
                 </div>
               </div>
@@ -254,9 +276,10 @@ export default function LandingContent({ onNavigateToAI }) {
               <span className="ft-feature-num">01</span>
               <h3 className="ft-feature-title">Strategi & konsultasi AI</h3>
               <p className="ft-feature-desc">
-                Konsultasikan setiap rencana finansial secara interaktif. AI
-                Financial Twin menganalisis profil risiko, arus kas bulanan, dan
-                memberikan rekomendasi alokasi yang adaptif terhadap targetmu.
+                Konsultasikan setiap rencana finansial langsung bersama AI yang
+                membaca konteks 3 sasaran roadmap Anda: Strategi FIRE 2035 (68%),
+                Dana Darurat Siaga (100%), dan Dana Pendidikan (45%). AI
+                memberikan rekomendasi alokasi surplus secara adaptif.
               </p>
             </div>
           </div>
@@ -267,47 +290,47 @@ export default function LandingContent({ onNavigateToAI }) {
               <span className="ft-feature-num">02</span>
               <h3 className="ft-feature-title">Kalkulator finansial</h3>
               <p className="ft-feature-desc">
-                Hitung proyeksi akumulasi dana, bunga majemuk, dan skenario
-                pensiun dengan parameter dinamis. Uji dampak inflasi dan
-                perubahan kontribusi bulanan secara instan.
+                Simulasikan slip gaji pokok Rp 16,5 Jt, potongan pajak PPh21,
+                cicilan KPR, pinjaman, dan beban hidup. Hitung surplus bersih Rp
+                1,85 Jt/bulan dan uji skenario percepatan target secara instan.
               </p>
             </div>
 
             <div className="ft-visual-card">
               <div className="ft-visual-card-header">
                 <span className="ft-visual-card-title">
-                  Proyeksi Akumulasi Horizon Dana
+                  Kalkulator Slip Gaji & Alokasi Kas
                 </span>
-                <span className="ft-visual-tag">Compounding</span>
+                <span className="ft-visual-tag">Auto-Kalkulasi</span>
               </div>
               <div className="ft-progress-list">
                 <div className="ft-progress-item">
                   <div className="ft-progress-info">
-                    <span className="ft-progress-label">Tahun 1 (Akumulasi Awal)</span>
-                    <span className="ft-progress-val">Rp 45.000.000 (35%)</span>
-                  </div>
-                  <div className="ft-progress-track">
-                    <div className="ft-progress-fill" style={{ width: '35%' }}></div>
-                  </div>
-                </div>
-
-                <div className="ft-progress-item">
-                  <div className="ft-progress-info">
-                    <span className="ft-progress-label">Tahun 5 (Fase Pertumbuhan)</span>
-                    <span className="ft-progress-val">Rp 185.000.000 (70%)</span>
-                  </div>
-                  <div className="ft-progress-track">
-                    <div className="ft-progress-fill" style={{ width: '70%' }}></div>
-                  </div>
-                </div>
-
-                <div className="ft-progress-item">
-                  <div className="ft-progress-info">
-                    <span className="ft-progress-label">Tahun 10 (Target Mandiri)</span>
-                    <span className="ft-progress-val">Rp 420.000.000 (100%)</span>
+                    <span className="ft-progress-label">Take Home Pay (Gaji Bersih)</span>
+                    <span className="ft-progress-val">Rp 15.550.000 (100%)</span>
                   </div>
                   <div className="ft-progress-track">
                     <div className="ft-progress-fill" style={{ width: '100%' }}></div>
+                  </div>
+                </div>
+
+                <div className="ft-progress-item">
+                  <div className="ft-progress-info">
+                    <span className="ft-progress-label">Kewajiban & Biaya Hidup</span>
+                    <span className="ft-progress-val">Rp 10.200.000 (65.6%)</span>
+                  </div>
+                  <div className="ft-progress-track">
+                    <div className="ft-progress-fill" style={{ width: '65.6%' }}></div>
+                  </div>
+                </div>
+
+                <div className="ft-progress-item">
+                  <div className="ft-progress-info">
+                    <span className="ft-progress-label">Alokasi Tabungan & Surplus</span>
+                    <span className="ft-progress-val">Rp 5.350.000 (34.4%)</span>
+                  </div>
+                  <div className="ft-progress-track">
+                    <div className="ft-progress-fill" style={{ width: '34.4%' }}></div>
                   </div>
                 </div>
               </div>
@@ -319,38 +342,38 @@ export default function LandingContent({ onNavigateToAI }) {
             <div className="ft-visual-card">
               <div className="ft-visual-card-header">
                 <span className="ft-visual-card-title">
-                  Alokasi Portofolio & Toleransi Rebalancing
+                  Struktur Portofolio Aset (Rp 842.500.000)
                 </span>
-                <span className="ft-visual-tag">Seimbang</span>
+                <span className="ft-visual-tag">Untung +10.56%</span>
               </div>
               <div className="ft-progress-list">
                 <div className="ft-progress-item">
                   <div className="ft-progress-info">
-                    <span className="ft-progress-label">Saham Bluechip & Ekuitas</span>
-                    <span className="ft-progress-val">50%</span>
+                    <span className="ft-progress-label">Ekuitas (Saham BBCA & BBRI)</span>
+                    <span className="ft-progress-val">45% (Rp 380.000.000)</span>
                   </div>
                   <div className="ft-progress-track">
-                    <div className="ft-progress-fill" style={{ width: '50%' }}></div>
+                    <div className="ft-progress-fill" style={{ width: '45%' }}></div>
                   </div>
                 </div>
 
                 <div className="ft-progress-item">
                   <div className="ft-progress-info">
-                    <span className="ft-progress-label">Obligasi Negara / SBN</span>
-                    <span className="ft-progress-val">30%</span>
+                    <span className="ft-progress-label">Pendapatan Tetap (SBN ORI024)</span>
+                    <span className="ft-progress-val">25% (Rp 210.000.000)</span>
+                  </div>
+                  <div className="ft-progress-track">
+                    <div className="ft-progress-fill" style={{ width: '25%' }}></div>
+                  </div>
+                </div>
+
+                <div className="ft-progress-item">
+                  <div className="ft-progress-info">
+                    <span className="ft-progress-label">Emas, Deposito Likuid & Kripto</span>
+                    <span className="ft-progress-val">30% (Rp 252.500.000)</span>
                   </div>
                   <div className="ft-progress-track">
                     <div className="ft-progress-fill" style={{ width: '30%' }}></div>
-                  </div>
-                </div>
-
-                <div className="ft-progress-item">
-                  <div className="ft-progress-info">
-                    <span className="ft-progress-label">Kas Siaga & Deposito</span>
-                    <span className="ft-progress-val">20%</span>
-                  </div>
-                  <div className="ft-progress-track">
-                    <div className="ft-progress-fill" style={{ width: '20%' }}></div>
                   </div>
                 </div>
               </div>
@@ -360,9 +383,10 @@ export default function LandingContent({ onNavigateToAI }) {
               <span className="ft-feature-num">03</span>
               <h3 className="ft-feature-title">Portofolio & rebalancing</h3>
               <p className="ft-feature-desc">
-                Pantau pergeseran bobot aset secara otomatis. Dapatkan sinyal
-                rebalancing berkala agar tingkat risiko investasimu tetap selaras
-                dengan roadmap jangka panjang.
+                Pantau akumulasi modal awal Rp 762 Jt yang telah bertumbuh
+                menjadi Rp 842,5 Jt (+10,56%). Dapatkan rekomendasi rebalancing
+                otomatis ketika pergeseran bobot aset melewati batas toleransi
+                risiko.
               </p>
             </div>
           </div>
@@ -387,9 +411,8 @@ export default function LandingContent({ onNavigateToAI }) {
               <div className="ft-step-number-circle">1</div>
               <h3 className="ft-step-title">Hubungkan datamu</h3>
               <p className="ft-step-desc">
-                Sinkronisasi target keuangan, rekening tabungan, dan instrumen
-                investasimu ke dalam sistem twin digital yang aman dan
-                terenkripsi.
+                Masukkan rincian slip gaji, aset portofolio, dan target roadmap
+                ke dalam kembaran digital Financial Twin yang terenkripsi aman.
               </p>
             </div>
 
@@ -398,8 +421,9 @@ export default function LandingContent({ onNavigateToAI }) {
               <div className="ft-step-number-circle">2</div>
               <h3 className="ft-step-title">Diskusikan pilihan</h3>
               <p className="ft-step-desc">
-                Ajukan pertanyaan dan eksplorasi skenario keputusan bersama
-                asisten AI yang memahami konteks profil serta data finansialmu.
+                Tanyakan strategi penempatan surplus, evaluasi dividen vs SBN,
+                atau skenario percepatan FIRE bersama asisten AI yang memahami
+                seluruh data Anda.
               </p>
             </div>
 
@@ -408,8 +432,9 @@ export default function LandingContent({ onNavigateToAI }) {
               <div className="ft-step-number-circle">3</div>
               <h3 className="ft-step-title">Ambil langkah</h3>
               <p className="ft-step-desc">
-                Uji dampak strategi di kalkulator simulasi, lalu eksekusi
-                langkah terbaik dan pantau progres pencapaiannya secara terukur.
+                Uji simulasi di kalkulator finansial, terapkan rekomendasi
+                terbaik, dan pantau kenaikan net worth serta progres roadmap
+                secara real-time.
               </p>
             </div>
           </div>

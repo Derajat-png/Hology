@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import './PortfolioView.css';
+import './AssetSuitabilityView.css';
 
-// Matrix Penilaian Logika Kecocokan Aset (JS Object)
+// Matrix Penilaian Logika Kecocokan Aset
 const SUITABILITY_MATRIX = {
   'Dana Darurat': {
     'Reksa Dana Pasar Uang': {
@@ -260,15 +260,15 @@ const GOAL_OPTIONS = [
   'Investasi Jangka Panjang Umum',
 ];
 
-// Helper Format Rupiah
+// Helper untuk format Rupiah
 const formatRupiahDisplay = (val) => {
   if (!val && val !== 0) return 'Rp 0';
   const num = typeof val === 'number' ? val : parseInt(String(val).replace(/\D/g, ''), 10) || 0;
   return 'Rp ' + num.toLocaleString('id-ID');
 };
 
-export default function PortfolioView() {
-  // Initial default item:
+export default function AssetSuitabilityView() {
+  // Initial default item specified in requirements:
   // "Dana Darurat Siaga" — Reksa Dana Pasar Uang — tujuan Dana Darurat — Rp120.000.000 (verdict "Sesuai")
   const [analyzedAssets, setAnalyzedAssets] = useState([
     {
@@ -290,7 +290,7 @@ export default function PortfolioView() {
   const [goal, setGoal] = useState(GOAL_OPTIONS[0]);
   const [amountRaw, setAmountRaw] = useState('');
 
-  // Handle Input Rupiah
+  // Handle format Rupiah input
   const handleAmountChange = (e) => {
     const rawVal = e.target.value.replace(/\D/g, '');
     if (!rawVal) {
@@ -301,12 +301,13 @@ export default function PortfolioView() {
     setAmountRaw(num.toLocaleString('id-ID'));
   };
 
-  // Evaluasi Kecocokan Menggunakan Matrix
+  // Evaluate suitability based on Matrix
   const evaluateSuitability = (selectedGoal, selectedInstrument) => {
     const goalData = SUITABILITY_MATRIX[selectedGoal];
     if (goalData && goalData[selectedInstrument]) {
       return goalData[selectedInstrument];
     }
+    // Default fallback
     return {
       verdict: 'Perlu Ditinjau',
       tone: 'review',
@@ -314,7 +315,7 @@ export default function PortfolioView() {
     };
   };
 
-  // Submit Handler: prepend to list & reset form
+  // Submit Handler: prepend to list & reset name/amount
   const handleAnalyze = (e) => {
     e.preventDefault();
 
@@ -337,7 +338,7 @@ export default function PortfolioView() {
     // Prepend (terbaru di atas)
     setAnalyzedAssets((prev) => [newAsset, ...prev]);
 
-    // Reset input
+    // Reset input nama dan nominal
     setAssetName('');
     setAmountRaw('');
   };
@@ -353,7 +354,7 @@ export default function PortfolioView() {
   const countKurang = analyzedAssets.filter((a) => a.verdict === 'Kurang Tepat').length;
 
   return (
-    <div className="portfolio-page suitability-container" id="portfolio-main-content">
+    <div className="suitability-container" id="suitability-main-content">
       {/* Header Halaman */}
       <header className="suitability-header">
         <div className="suitability-pill-badge" id="badge-pill-header">
@@ -364,8 +365,8 @@ export default function PortfolioView() {
           Apakah Aset Anda Ditempatkan di Tempat yang Tepat?
         </h1>
         <p className="suitability-subtitle">
-          Fokus evaluasi ini bukan menampilkan untung-rugi harga pasar, melainkan memastikan instrumen investasi
-          yang Anda pakai <strong>sudah sesuai dengan tujuan dan fungsi dana tersebut</strong> (contoh: Dana Darurat
+          Fokus evaluasi ini bukan untung-rugi harga pasar, melainkan memastikan instrumen investasi
+          yang Anda pilih <strong>sesuai dengan fungsi dan horizon waktu dana</strong> (contoh: Dana Darurat
           wajib likuid & minim risiko di RDPU, sedangkan Dana Pensiun butuh pertumbuhan saham).
         </p>
       </header>

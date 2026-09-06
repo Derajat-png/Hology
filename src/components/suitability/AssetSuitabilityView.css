@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Financial Twin - Portfolio View: Analisis Kecocokan Aset
+   Financial Twin - Asset Suitability View
    Theme Variables & Layout Styles (Full Light & Dark Mode Support)
    ========================================================================== */
 
@@ -67,8 +67,8 @@
   --hijau-ok-bg: rgba(74, 222, 128, 0.15);
 }
 
-/* Container Utama Portofolio */
-.portfolio-page.suitability-container {
+/* Container Utama */
+.suitability-container {
   font-family: var(--font-base);
   color: var(--teks);
   max-width: 1200px;
@@ -419,7 +419,7 @@
 .btn-submit-analyze {
   width: 100%;
   background-color: var(--lime);
-  color: #0b3d2e; /* Dark Forest Green for crisp bold contrast on lime */
+  color: #0b3d2e;
   font-family: var(--font-base);
   font-size: 0.95rem;
   font-weight: 700;
@@ -629,7 +629,6 @@
 }
 
 .reason-text strong {
-  color: var(--lime);
   font-weight: 700;
   transition: color 0.25s ease;
 }
