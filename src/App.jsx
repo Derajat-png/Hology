@@ -3,11 +3,11 @@ import './App.css';
 import Sidebar from './components/sidebar/Sidebar';
 import LoginPage from './components/login/LoginPage';
 import RegisterPage from './components/register/RegisterPage';
-import DashboardView from './components/dashboard/DashboardView';
 import SimulationView from './components/simulation/SimulationView';
 import PortfolioView from './components/portfolio/PortfolioView';
 import StrategyView from './components/strategy/StrategyView';
 import SettingsView from './components/settings/SettingsView';
+import LandingContent from './components/landing/LandingContent';
 import { MenuIcon, SunIcon, MoonIcon } from './components/Icons';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
     role: 'Twin Platinum Member',
   });
 
-  const [activeTab, setActiveTab] = useState('simulasi');
+  const [activeTab, setActiveTab] = useState('dasbor');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [authMode, setAuthMode] = useState('login'); // 'login' | 'register'
@@ -87,8 +87,8 @@ function App() {
     switch (activeTab) {
       case 'dasbor':
         return (
-          <DashboardView
-            onNavigate={(tab) => setActiveTab(tab)}
+          <LandingContent
+            onNavigateToAI={() => setActiveTab('strategi')}
           />
         );
       case 'simulasi':
@@ -106,7 +106,11 @@ function App() {
           />
         );
       default:
-        return <SimulationView />;
+        return (
+          <LandingContent
+            onNavigateToAI={() => setActiveTab('strategi')}
+          />
+        );
     }
   };
 
