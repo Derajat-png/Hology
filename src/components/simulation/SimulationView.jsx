@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './SimulationView.css';
 import {
   RefreshIcon,
@@ -7,7 +7,6 @@ import {
   LiabilityIcon,
   ExpenseIcon,
   SummaryIcon,
-  ShieldIcon,
   TrendUpIcon,
   ReceiptIcon,
   CheckCircleIcon,
@@ -109,23 +108,6 @@ export default function SimulationView() {
       : '0';
 
   const isSurplusPositive = sisaUangAkhir >= 0;
-
-  // Dynamic Emergency Fund Allocation (30% of free cash, aiming for 4 months buffer)
-  const alokasiDanaDarurat =
-    isSurplusPositive && sisaKasSebelumTarget > 0
-      ? Math.max(0, Math.round((sisaKasSebelumTarget * 0.3) / 10000) * 10000)
-      : 0;
-  const targetBufferDarurat = totalKewajiban > 0 ? Math.max(20000000, totalKewajiban * 2.2) : 0;
-  const durasiBulanDarurat =
-    alokasiDanaDarurat > 0
-      ? Math.round(targetBufferDarurat / alokasiDanaDarurat)
-      : 0;
-
-  // Dynamic Investment Allocation (~47% of free cash flow)
-  const targetInvestasi =
-    isSurplusPositive && sisaKasSebelumTarget > 0
-      ? Math.max(0, Math.round((sisaKasSebelumTarget * 0.467) / 50000) * 50000)
-      : 0;
 
   // Dynamic Target & Impian Calculations
   const akumulasiTahunan = formData.alokasiTabungan * 12;

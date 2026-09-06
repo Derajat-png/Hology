@@ -867,3 +867,237 @@
     justify-content: center;
   }
 }
+
+/* ========================================================
+   DARK MODE OVERRIDES (Kalkulator Finansial / Simulation)
+   ======================================================== */
+[data-theme="dark"] .sim-main-title {
+  color: #ecfdf5;
+}
+
+[data-theme="dark"] .sim-main-subtitle {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .btn-sim-reset-top,
+[data-theme="dark"] .btn-sim-reset-bottom {
+  background-color: #16282a;
+  border-color: #243f42;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .btn-sim-reset-top:hover,
+[data-theme="dark"] .btn-sim-reset-bottom:hover {
+  background-color: #1f373a;
+  border-color: #33595d;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .sim-main-card {
+  background-color: #132223;
+  border-color: #1e3538;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] .sim-card-header,
+[data-theme="dark"] .sim-card-footer,
+[data-theme="dark"] .target-acceleration-tip {
+  border-color: #1a3032;
+}
+
+[data-theme="dark"] .sim-wallet-icon-box {
+  background-color: rgba(163, 230, 53, 0.15);
+  border-color: rgba(163, 230, 53, 0.3);
+}
+
+[data-theme="dark"] .sim-wallet-icon {
+  color: #bef264;
+}
+
+[data-theme="dark"] .sim-card-title {
+  color: #ecfdf5;
+}
+
+[data-theme="dark"] .sim-card-desc {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .sim-auto-calc-badge {
+  background-color: rgba(34, 197, 94, 0.18);
+  border-color: rgba(34, 197, 94, 0.35);
+  color: #86efac;
+}
+
+[data-theme="dark"] .sim-section-box {
+  background-color: #16282a;
+  border-color: #243f42;
+}
+
+[data-theme="dark"] .section-title-icon,
+[data-theme="dark"] .section-title-icon-flag {
+  color: #a7f3d0;
+}
+
+[data-theme="dark"] .sim-section-heading {
+  color: #a7f3d0;
+}
+
+[data-theme="dark"] .sim-input-label {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .sim-input-wrapper {
+  background-color: #0e1a1b;
+  border-color: #243f42;
+}
+
+[data-theme="dark"] .sim-input-wrapper:focus-within {
+  border-color: #84cc16;
+}
+
+[data-theme="dark"] .currency-prefix {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .currency-prefix.text-saving {
+  color: #bef264;
+}
+
+[data-theme="dark"] .currency-suffix-unit {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .sim-currency-input {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .sim-currency-input.text-saving {
+  color: #bef264;
+}
+
+[data-theme="dark"] .sim-currency-input.text-target-name {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .sim-input-helper {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .target-impian-container {
+  background-color: #16282a;
+  border-color: #243f42;
+}
+
+[data-theme="dark"] .target-projection-subcard {
+  background-color: #132223;
+  border-color: #243f42;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .target-time-title,
+[data-theme="dark"] .target-range-header {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .target-years-bold {
+  color: #bef264;
+}
+
+[data-theme="dark"] .target-accum-lbl {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .target-accum-val {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .target-progress-bar-track {
+  background-color: #1a3033;
+}
+
+[data-theme="dark"] .target-progress-fill-initial {
+  background-color: #84cc16;
+}
+
+[data-theme="dark"] .tip-bulb-icon {
+  color: #a3e635;
+}
+
+[data-theme="dark"] .tip-text {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .tip-highlight {
+  color: #bef264;
+}
+
+[data-theme="dark"] .summary-stat-card {
+  background-color: #16282a;
+  border-color: #243f42;
+}
+
+[data-theme="dark"] .stat-card-lbl {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .stat-card-val {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .stat-unit,
+[data-theme="dark"] .stat-card-sub {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .card-investment-highlight {
+  background: linear-gradient(145deg, #152b2c 0%, #16362d 100%);
+  border-color: #235c45;
+}
+
+[data-theme="dark"] .card-investment-highlight .stat-card-val {
+  color: #bef264;
+}
+
+[data-theme="dark"] .card-investment-highlight .stat-card-sub {
+  color: #a7f3d0;
+}
+
+[data-theme="dark"] .card-obligations {
+  background-color: #16282a;
+  border-color: #243f42;
+}
+
+[data-theme="dark"] .card-surplus {
+  background-color: #132b26;
+  border-color: #1d4d3e;
+}
+
+[data-theme="dark"] .text-surplus-green {
+  color: #86efac;
+}
+
+[data-theme="dark"] .target-badge-active {
+  background-color: rgba(163, 230, 53, 0.15);
+  border-color: rgba(163, 230, 53, 0.3);
+  color: #bef264;
+}
+
+[data-theme="dark"] .target-months-pill {
+  background-color: rgba(163, 230, 53, 0.15);
+  border-color: rgba(163, 230, 53, 0.3);
+  color: #bef264;
+}
+
+[data-theme="dark"] .sim-ratio-badge.status-healthy {
+  background-color: rgba(34, 197, 94, 0.18);
+  border-color: rgba(34, 197, 94, 0.35);
+  color: #86efac;
+}
+
+[data-theme="dark"] .sim-ratio-badge.status-deficit {
+  background-color: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+}
+
+

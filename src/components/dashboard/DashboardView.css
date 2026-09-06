@@ -226,3 +226,51 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Dark Mode Overrides for Dashboard */
+[data-theme="dark"] .dashboard-metric-card {
+  background-color: var(--color-bg-card);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .dashboard-metric-highlight {
+  background: linear-gradient(180deg, #132223 0%, #16282a 100%);
+  border-color: var(--color-border);
+  border-left: 4px solid var(--color-primary);
+}
+
+[data-theme="dark"] .dashboard-metric-title {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .dashboard-metric-value {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .dashboard-metric-subtext {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .dashboard-quick-item {
+  background-color: #16282a;
+  border-color: #243f42;
+}
+
+[data-theme="dark"] .dashboard-quick-item:hover {
+  background-color: #1c3235;
+  border-color: #386064;
+}
+
+[data-theme="dark"] .dashboard-quick-icon {
+  background-color: #0e1a1b;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .dashboard-quick-title {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .dashboard-quick-desc {
+  color: #94a3b8;
+}
+

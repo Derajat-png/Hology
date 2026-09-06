@@ -759,3 +759,83 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ========================================================
+   DARK MODE OVERRIDES (Savings View)
+   ======================================================== */
+[data-theme="dark"] .savings-title {
+  color: #ecfdf5;
+}
+
+[data-theme="dark"] .savings-subtitle {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .savings-metric-box {
+  background: linear-gradient(135deg, #152b2c 0%, #102122 100%);
+  border-color: #1f3b3e;
+}
+
+[data-theme="dark"] .savings-form-card,
+[data-theme="dark"] .savings-list-section {
+  background-color: #132223;
+  border-color: #1e3538;
+}
+
+[data-theme="dark"] .pocket-card-item {
+  background-color: #16282a;
+  border-color: #243f42;
+}
+
+[data-theme="dark"] .pocket-name-text {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .pocket-desc-text {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .pocket-progress-track {
+  background-color: #1a3033;
+}
+
+[data-theme="dark"] .chip-btn {
+  background-color: #16282a;
+  border-color: #243f42;
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .chip-btn:hover {
+  background-color: #1f373a;
+  color: #bef264;
+  border-color: #386064;
+}
+
+[data-theme="dark"] .savings-badge-top {
+  background-color: rgba(163, 230, 53, 0.15);
+  border: 1px solid rgba(163, 230, 53, 0.3);
+  color: #bef264;
+}
+
+[data-theme="dark"] .pocket-badge-pill {
+  background-color: rgba(163, 230, 53, 0.15);
+  border-color: rgba(163, 230, 53, 0.3);
+  color: #bef264;
+}
+
+[data-theme="dark"] .badge-growth {
+  background-color: rgba(163, 230, 53, 0.15);
+  color: #bef264;
+}
+
+[data-theme="dark"] .badge-status-healthy {
+  background-color: rgba(34, 197, 94, 0.18);
+  color: #86efac;
+}
+
+[data-theme="dark"] .history-status-badge {
+  background-color: rgba(34, 197, 94, 0.18);
+  color: #86efac;
+}
+
+

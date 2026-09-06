@@ -69,6 +69,25 @@
   box-shadow: 0 2px 8px rgba(163, 230, 53, 0.35);
 }
 
+.btn-mobile-theme {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background-color: #f8fafc;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s;
+}
+
+[data-theme="dark"] .btn-mobile-theme {
+  background-color: #16282a;
+  border-color: #243f42;
+  color: #bef264;
+}
+
 @media (max-width: 900px) {
   .mobile-topbar {
     display: flex;

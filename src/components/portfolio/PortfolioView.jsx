@@ -1,19 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './PortfolioView.css';
 import {
   PortfolioIcon,
   PlusIcon,
   TrashIcon,
   CheckCircleIcon,
-  TrendUpIcon,
-  ShieldIcon,
-  ReceiptIcon,
   FlagIcon,
 } from '../Icons';
 
 export default function PortfolioView() {
   // Target akumulasi dari Kalkulator Finansial (default Rp 1.000.000.000)
-  const [financialGoalTarget, setFinancialGoalTarget] = useState(1000000000);
+  const [financialGoalTarget] = useState(1000000000);
 
   // State daftar aset investasi user
   const [assets, setAssets] = useState([

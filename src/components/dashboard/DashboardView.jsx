@@ -1,4 +1,3 @@
-import React from 'react';
 import './DashboardView.css';
 
 export default function DashboardView({ onNavigate }) {

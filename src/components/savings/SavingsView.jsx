@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './SavingsView.css';
 import {
   SavingsIcon,
@@ -10,7 +10,6 @@ import {
   SparklesIcon,
   ReceiptIcon,
   CloseIcon,
-  TimerIcon,
 } from '../Icons';
 
 export default function SavingsView({ onNavigate }) {

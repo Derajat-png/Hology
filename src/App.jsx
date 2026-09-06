@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Sidebar from './components/sidebar/Sidebar';
 import LoginPage from './components/login/LoginPage';
@@ -8,7 +8,7 @@ import SimulationView from './components/simulation/SimulationView';
 import PortfolioView from './components/portfolio/PortfolioView';
 import StrategyView from './components/strategy/StrategyView';
 import SettingsView from './components/settings/SettingsView';
-import { MenuIcon } from './components/Icons';
+import { MenuIcon, SunIcon, MoonIcon } from './components/Icons';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({
@@ -21,6 +21,34 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [authMode, setAuthMode] = useState('login'); // 'login' | 'register'
+
+  // Dark Mode State dengan persistensi LocalStorage & System Theme Detection
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    try {
+      const saved = localStorage.getItem('financial_twin_theme');
+      if (saved !== null) {
+        return saved === 'dark';
+      }
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    } catch {
+      return false;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      const mode = isDarkMode ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', mode);
+      document.body.setAttribute('data-theme', mode);
+      localStorage.setItem('financial_twin_theme', mode);
+    } catch {
+      // Ignore localStorage errors if restricted
+    }
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode((prev) => !prev);
+  };
 
   const handleOpenAuth = (mode = 'login') => {
     setAuthMode(mode);
@@ -75,6 +103,8 @@ function App() {
             currentUser={currentUser}
             onOpenAuth={handleOpenAuth}
             onLogout={handleLogout}
+            isDarkMode={isDarkMode}
+            onToggleDarkMode={(val) => setIsDarkMode(typeof val === 'boolean' ? val : !isDarkMode)}
           />
         );
       default:
@@ -93,6 +123,8 @@ function App() {
         currentUser={currentUser}
         onOpenAuth={handleOpenAuth}
         onLogout={handleLogout}
+        isDarkMode={isDarkMode}
+        onToggleDarkMode={toggleDarkMode}
       />
 
       {/* Main Content Area */}
@@ -108,6 +140,15 @@ function App() {
             <MenuIcon size={22} />
           </button>
           <div className="mobile-brand-title">Financial Twin</div>
+          <button
+            type="button"
+            className="btn-mobile-theme"
+            onClick={toggleDarkMode}
+            aria-label={isDarkMode ? 'Beralih ke Mode Terang' : 'Beralih ke Mode Gelap'}
+            title={isDarkMode ? 'Beralih ke Mode Terang' : 'Beralih ke Mode Gelap'}
+          >
+            {isDarkMode ? <SunIcon size={18} /> : <MoonIcon size={18} />}
+          </button>
         </header>
 
         {/* Dynamic Content View */}
@@ -120,3 +161,4 @@ function App() {
 }
 
 export default App;
+

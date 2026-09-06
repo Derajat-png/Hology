@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './SettingsView.css';
-import { UserIcon, LockIcon } from '../Icons';
+import { UserIcon, LockIcon, LogoutIcon } from '../Icons';
 
-export default function SettingsView({ currentUser, onOpenAuth, onLogout }) {
+export default function SettingsView({
+  currentUser,
+  onOpenAuth,
+  onLogout,
+  isDarkMode,
+  onToggleDarkMode,
+}) {
   const [syncEnabled, setSyncEnabled] = useState(true);
   const [emailAlerts, setEmailAlerts] = useState(true);
   const [aiModel, setAiModel] = useState('Twin-Neural-Engine-v2');
@@ -13,12 +19,41 @@ export default function SettingsView({ currentUser, onOpenAuth, onLogout }) {
         <div>
           <h1 className="view-title">Pengaturan Sistem & Twin</h1>
           <p className="view-subtitle">
-            Kelola preferensi sinkronisasi, model AI Financial Twin, dan akun Anda.
+            Kelola preferensi tema tampilan, sinkronisasi, model AI Financial Twin, dan akun Anda.
           </p>
         </div>
       </div>
 
       <div className="settings-grid">
+        {/* Theme & Display Settings */}
+        <div className="content-card">
+          <h3 className="card-title">Tampilan & Tema Layar</h3>
+          <p className="settings-section-desc">
+            Sesuaikan pencahayaan layar agar mata terasa nyaman saat digunakan di ruangan redup maupun malam hari.
+          </p>
+
+          <div className="setting-toggle-row">
+            <div>
+              <strong>Mode Gelap (Dark Mode)</strong>
+              <div className="setting-subtext">
+                {isDarkMode
+                  ? 'Mode gelap aktif: Latar belakang redup/gelap, tidak membuat mata lelah.'
+                  : 'Mode terang aktif: Tampilan cerah dan kontras standar.'}
+              </div>
+            </div>
+            <label className="switch" htmlFor="toggle-dark-mode-switch">
+              <input
+                id="toggle-dark-mode-switch"
+                type="checkbox"
+                checked={isDarkMode || false}
+                onChange={(e) => onToggleDarkMode && onToggleDarkMode(e.target.checked)}
+                aria-label="Toggle Mode Gelap"
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+        </div>
+
         {/* Account Profile & Auth Section */}
         <div className="content-card">
           <h3 className="card-title">Profil & Akun Pengguna</h3>
@@ -57,6 +92,17 @@ export default function SettingsView({ currentUser, onOpenAuth, onLogout }) {
               <UserIcon size={16} />
               <span>Daftar Akun Baru</span>
             </button>
+            {onLogout && (
+              <button
+                type="button"
+                className="btn-header-outline"
+                style={{ color: '#ef4444', borderColor: '#fca5a5' }}
+                onClick={onLogout}
+              >
+                <LogoutIcon size={16} />
+                <span>Keluar Akun</span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -72,11 +118,13 @@ export default function SettingsView({ currentUser, onOpenAuth, onLogout }) {
               <strong>Status Sinkronisasi Background</strong>
               <div className="setting-subtext">Perbarui data aset dan portofolio setiap 15 menit.</div>
             </div>
-            <label className="switch">
+            <label className="switch" htmlFor="toggle-sync-bg">
               <input
+                id="toggle-sync-bg"
                 type="checkbox"
                 checked={syncEnabled}
                 onChange={(e) => setSyncEnabled(e.target.checked)}
+                aria-label="Toggle Sinkronisasi Background"
               />
               <span className="slider round"></span>
             </label>
@@ -87,11 +135,13 @@ export default function SettingsView({ currentUser, onOpenAuth, onLogout }) {
               <strong>Notifikasi Deviasi Portofolio</strong>
               <div className="setting-subtext">Kirim peringatan jika alokasi menyimpang &gt;5% dari target.</div>
             </div>
-            <label className="switch">
+            <label className="switch" htmlFor="toggle-alerts">
               <input
+                id="toggle-alerts"
                 type="checkbox"
                 checked={emailAlerts}
                 onChange={(e) => setEmailAlerts(e.target.checked)}
+                aria-label="Toggle Notifikasi Deviasi"
               />
               <span className="slider round"></span>
             </label>
@@ -106,8 +156,9 @@ export default function SettingsView({ currentUser, onOpenAuth, onLogout }) {
           </p>
 
           <div className="settings-form-group">
-            <label className="settings-form-label">Pilihan AI Engine</label>
+            <label htmlFor="select-ai-engine" className="settings-form-label">Pilihan AI Engine</label>
             <select
+              id="select-ai-engine"
               className="settings-form-select"
               value={aiModel}
               onChange={(e) => setAiModel(e.target.value)}

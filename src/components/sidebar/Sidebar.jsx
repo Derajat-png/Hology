@@ -1,4 +1,3 @@
-import React from 'react';
 import './Sidebar.css';
 import {
   DashboardIcon,
@@ -8,6 +7,8 @@ import {
   SettingsIcon,
   CloseIcon,
   LogoutIcon,
+  SunIcon,
+  MoonIcon,
 } from '../Icons';
 
 export default function Sidebar({
@@ -18,6 +19,8 @@ export default function Sidebar({
   currentUser,
   onOpenAuth,
   onLogout,
+  isDarkMode,
+  onToggleDarkMode,
 }) {
   const menuItems = [
     {
@@ -108,6 +111,22 @@ export default function Sidebar({
 
         {/* Sidebar Footer / User Twin Badge */}
         <div className="sidebar-footer">
+          {/* Quick Theme Toggle Button */}
+          {onToggleDarkMode && (
+            <div className="sidebar-theme-toggle-row">
+              <button
+                type="button"
+                className="btn-sidebar-theme-toggle"
+                onClick={onToggleDarkMode}
+                aria-label={isDarkMode ? 'Beralih ke Mode Terang' : 'Beralih ke Mode Gelap'}
+                id="btn-sidebar-theme-toggle"
+              >
+                {isDarkMode ? <SunIcon size={17} /> : <MoonIcon size={17} />}
+                <span>{isDarkMode ? 'Mode Terang' : 'Mode Gelap'}</span>
+              </button>
+            </div>
+          )}
+
           <div
             className="twin-badge-card"
             onClick={() => onOpenAuth && onOpenAuth('login')}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './NewSimulationModal.css';
 import { CloseIcon, PlusIcon } from '../Icons';
 
