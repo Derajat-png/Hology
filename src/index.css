@@ -196,7 +196,7 @@ button {
   align-items: center;
   gap: 8px;
   background-color: var(--color-primary);
-  color: #022c22;
+  color: #022c22 !important;
   font-family: var(--font-poppins);
   font-size: 14px;
   font-weight: 700;
@@ -211,6 +211,34 @@ button {
   transform: translateY(-1px);
   box-shadow: 0 6px 18px rgba(163, 230, 53, 0.45);
 }
+
+/* Universal High Contrast Primary Button Rules */
+.btn-header-primary,
+.btn-sim-finish,
+.btn-submit-asset,
+.btn-submit-goal,
+.btn-add-pocket,
+.btn-submit,
+.btn-login-primary,
+.btn-register-primary,
+.btn-new-simulation,
+.btn-mobile-action {
+  color: #022c22 !important;
+}
+
+[data-theme="dark"] .btn-header-primary,
+[data-theme="dark"] .btn-sim-finish,
+[data-theme="dark"] .btn-submit-asset,
+[data-theme="dark"] .btn-submit-goal,
+[data-theme="dark"] .btn-add-pocket,
+[data-theme="dark"] .btn-submit,
+[data-theme="dark"] .btn-login-primary,
+[data-theme="dark"] .btn-register-primary,
+[data-theme="dark"] .btn-new-simulation,
+[data-theme="dark"] .btn-mobile-action {
+  color: #022c22 !important;
+}
+
 
 .btn-header-outline {
   display: inline-flex;
@@ -312,12 +340,6 @@ button {
 }
 
 /* Form Inputs & Selects & Textareas in Dark Mode */
-[data-theme="dark"] input[type="text"],
-[data-theme="dark"] input[type="number"],
-[data-theme="dark"] input[type="email"],
-[data-theme="dark"] input[type="password"],
-[data-theme="dark"] select,
-[data-theme="dark"] textarea,
 [data-theme="dark"] .form-input-custom,
 [data-theme="dark"] .form-select-custom,
 [data-theme="dark"] .form-textarea-custom,
@@ -325,7 +347,7 @@ button {
 [data-theme="dark"] .form-input,
 [data-theme="dark"] .form-select {
   background-color: #0e1a1b !important;
-  border-color: #243f42 !important;
+  border: 1.5px solid #243f42 !important;
   color: #f1f5f9 !important;
 }
 
@@ -334,11 +356,65 @@ button {
   color: #64748b !important;
 }
 
-[data-theme="dark"] input:focus,
-[data-theme="dark"] select:focus,
-[data-theme="dark"] textarea:focus {
+[data-theme="dark"] .form-input-custom:focus,
+[data-theme="dark"] .form-select-custom:focus,
+[data-theme="dark"] .form-textarea-custom:focus,
+[data-theme="dark"] .settings-form-select:focus,
+[data-theme="dark"] .form-input:focus,
+[data-theme="dark"] .form-select:focus {
   border-color: #84cc16 !important;
   box-shadow: 0 0 0 3px rgba(163, 230, 53, 0.25) !important;
+  outline: none !important;
+}
+
+/* Universal Reset for Inputs Nested Inside Styled Wrappers */
+.sim-currency-input,
+.input-with-prefix,
+.calc-input-box input,
+.target-input-box input,
+.login-input-box input,
+.register-input-box input {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.sim-currency-input:focus,
+.input-with-prefix:focus,
+.calc-input-box input:focus,
+.target-input-box input:focus,
+.login-input-box input:focus,
+.register-input-box input:focus {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+[data-theme="dark"] .sim-currency-input,
+[data-theme="dark"] .input-with-prefix,
+[data-theme="dark"] .calc-input-box input,
+[data-theme="dark"] .target-input-box input,
+[data-theme="dark"] .login-input-box input,
+[data-theme="dark"] .register-input-box input {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .sim-currency-input:focus,
+[data-theme="dark"] .input-with-prefix:focus,
+[data-theme="dark"] .calc-input-box input:focus,
+[data-theme="dark"] .target-input-box input:focus,
+[data-theme="dark"] .login-input-box input:focus,
+[data-theme="dark"] .register-input-box input:focus {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
 /* Badges & Pills */
@@ -533,10 +609,8 @@ button {
   background-color: rgba(255, 255, 255, 0.03);
 }
 
-/* Portfolio & Strategy & Savings View in Dark Mode */
-[data-theme="dark"] .portfolio-summary-hero,
-[data-theme="dark"] .strategy-summary-hero,
-[data-theme="dark"] .savings-summary-hero {
+/* Portfolio View in Dark Mode */
+[data-theme="dark"] .portfolio-summary-hero {
   background: linear-gradient(135deg, #152b2c 0%, #102122 100%);
   border-color: #1f3b3e;
 }
@@ -547,24 +621,21 @@ button {
 
 [data-theme="dark"] .portfolio-form-card,
 [data-theme="dark"] .strategy-form-card,
-[data-theme="dark"] .savings-form-card,
-[data-theme="dark"] .asset-list-card,
-[data-theme="dark"] .strategy-list-section,
-[data-theme="dark"] .savings-list-section {
+[data-theme="dark"] .savings-form-card {
   background-color: var(--color-bg-card);
   border-color: var(--color-border);
 }
 
 [data-theme="dark"] .asset-item-card,
 [data-theme="dark"] .goal-card-item,
-[data-theme="dark"] .pocket-card-item {
-  background-color: #16282a;
-  border-color: #243f42;
+[data-theme="dark"] .pocket-card {
+  background-color: #132223;
+  border-color: #1e3538;
 }
 
 [data-theme="dark"] .goal-title-text,
-[data-theme="dark"] .asset-name-text,
-[data-theme="dark"] .pocket-name-text {
+[data-theme="dark"] .asset-title-text,
+[data-theme="dark"] .pocket-name {
   color: #f1f5f9;
 }
 
@@ -579,18 +650,6 @@ button {
   background-color: #1a3033;
 }
 
-[data-theme="dark"] .strategy-metric-box {
-  background-color: #16282a;
-  border-color: #243f42;
-}
-
-[data-theme="dark"] .strat-stat-lbl {
-  color: #94a3b8;
-}
-
-[data-theme="dark"] .strat-stat-val {
-  color: #ffffff;
-}
 
 [data-theme="dark"] .input-currency-wrapper {
   background-color: #0e1a1b;

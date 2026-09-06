@@ -2,7 +2,6 @@ import { useState } from 'react';
 import './SimulationView.css';
 import {
   RefreshIcon,
-  SaveIcon,
   IncomeIcon,
   LiabilityIcon,
   ExpenseIcon,
@@ -81,10 +80,6 @@ export default function SimulationView() {
     showToast('Semua data simulasi telah direset ke 0.');
   };
 
-  const handleSaveScenario = () => {
-    showToast('Skenario simulasi berhasil disimpan ke Kembaran Finansial!');
-  };
-
   const handleFinishAnalysis = () => {
     showToast('Analisis Finansial Terpadu Selesai! Rekomendasi siap dieksekusi.');
   };
@@ -161,28 +156,6 @@ export default function SimulationView() {
           <p className="sim-main-subtitle">
             Simulasikan slip gaji, pengeluaran gaya hidup, serta uji skenario pengeluaran modal atau cicilan secara real-time.
           </p>
-        </div>
-
-        {/* Header Action Buttons */}
-        <div className="sim-header-actions">
-          <button
-            type="button"
-            className="btn-sim-reset-top"
-            onClick={handleReset}
-            id="btn-atur-ulang-top"
-          >
-            <RefreshIcon size={16} />
-            <span>Atur Ulang</span>
-          </button>
-          <button
-            type="button"
-            className="btn-sim-save-top"
-            onClick={handleSaveScenario}
-            id="btn-simpan-skenario"
-          >
-            <SaveIcon size={16} />
-            <span>Simpan Skenario</span>
-          </button>
         </div>
       </div>
 
@@ -420,19 +393,19 @@ export default function SimulationView() {
               <label className="sim-input-label" htmlFor="input-alokasi-tabungan">
                 Alokasi Tabungan Bulanan
               </label>
-              <div className="sim-input-wrapper wrapper-saving-highlight">
-                <span className="currency-prefix text-saving">Rp</span>
+              <div className="sim-input-wrapper">
+                <span className="currency-prefix">Rp</span>
                 <input
                   id="input-alokasi-tabungan"
                   type="text"
-                  className="sim-currency-input text-saving"
+                  className="sim-currency-input"
                   value={formData.alokasiTabungan ? formatNumber(formData.alokasiTabungan) : ''}
                   onChange={(e) => handleInputChange('alokasiTabungan', e.target.value)}
                   placeholder="0"
                 />
                 <span className="currency-suffix-unit">/ bln</span>
               </div>
-              <span className="sim-input-helper text-saving-helper">
+              <span className="sim-input-helper">
                 Dari sisa kas operasional Rp {formatNumber(sisaKasSebelumTarget)}/bln
               </span>
             </div>

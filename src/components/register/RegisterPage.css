@@ -416,7 +416,7 @@
   justify-content: center;
   gap: 8px;
   background-color: var(--color-primary);
-  color: var(--color-secondary);
+  color: #022c22 !important;
   font-family: var(--font-poppins);
   font-size: 15px;
   font-weight: 700;

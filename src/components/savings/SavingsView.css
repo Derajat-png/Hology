@@ -91,7 +91,7 @@
   align-items: center;
   gap: 8px;
   background-color: var(--color-primary);
-  color: var(--color-secondary);
+  color: #022c22 !important;
   font-family: var(--font-poppins);
   font-size: 14px;
   font-weight: 700;
@@ -771,32 +771,235 @@
   color: #94a3b8;
 }
 
-[data-theme="dark"] .savings-metric-box {
-  background: linear-gradient(135deg, #152b2c 0%, #102122 100%);
-  border-color: #1f3b3e;
+[data-theme="dark"] .savings-badge-top {
+  background-color: rgba(163, 230, 53, 0.15);
+  border: 1px solid rgba(163, 230, 53, 0.3);
+  color: #bef264;
 }
 
-[data-theme="dark"] .savings-form-card,
-[data-theme="dark"] .savings-list-section {
+[data-theme="dark"] .section-heading {
+  color: #ecfdf5;
+}
+
+[data-theme="dark"] .section-count {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .savings-metric-card {
   background-color: #132223;
   border-color: #1e3538;
 }
 
-[data-theme="dark"] .pocket-card-item {
-  background-color: #16282a;
-  border-color: #243f42;
+[data-theme="dark"] .savings-metric-card:hover {
+  border-color: #386064;
 }
 
-[data-theme="dark"] .pocket-name-text {
+[data-theme="dark"] .savings-metric-card.highlight-card {
+  background: linear-gradient(135deg, #152b2c 0%, #102122 100%);
+  border-color: #1f3b3e;
+}
+
+[data-theme="dark"] .savings-metric-card .metric-label {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .savings-metric-card .metric-value {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .savings-metric-card .metric-unit {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .savings-metric-card .metric-sub {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .savings-metric-card.highlight-card .metric-label {
+  color: #a7f3d0;
+}
+
+[data-theme="dark"] .savings-metric-card.highlight-card .metric-sub {
+  color: #d1fae5;
+}
+
+[data-theme="dark"] .bg-lime {
+  background-color: rgba(163, 230, 53, 0.2);
+  color: #bef264;
+}
+
+[data-theme="dark"] .bg-green {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #86efac;
+}
+
+[data-theme="dark"] .bg-teal {
+  background-color: rgba(20, 184, 166, 0.2);
+  color: #5eead4;
+}
+
+[data-theme="dark"] .bg-amber {
+  background-color: rgba(234, 179, 8, 0.2);
+  color: #fde047;
+}
+
+[data-theme="dark"] .pocket-card {
+  background-color: #132223;
+  border-color: #1e3538;
+}
+
+[data-theme="dark"] .pocket-card:hover {
+  border-color: #386064;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .pocket-name {
   color: #f1f5f9;
 }
 
-[data-theme="dark"] .pocket-desc-text {
+[data-theme="dark"] .pocket-category-tag {
+  background-color: rgba(16, 185, 129, 0.18);
+  color: #6ee7b7;
+}
+
+[data-theme="dark"] .pocket-badge-pill {
+  background-color: rgba(163, 230, 53, 0.15);
+  border-color: rgba(163, 230, 53, 0.3);
+  color: #bef264;
+}
+
+[data-theme="dark"] .pocket-lbl {
+  color: #64748b;
+}
+
+[data-theme="dark"] .pocket-current-val {
+  color: #bef264;
+}
+
+[data-theme="dark"] .pocket-target-val {
   color: #94a3b8;
 }
 
 [data-theme="dark"] .pocket-progress-track {
   background-color: #1a3033;
+}
+
+[data-theme="dark"] .pocket-details-row {
+  border-color: #1a3032;
+}
+
+[data-theme="dark"] .detail-lbl {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .detail-val {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .detail-val-bold {
+  color: #86efac;
+}
+
+[data-theme="dark"] .pocket-notes {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .btn-pocket-deposit {
+  background-color: #16282a;
+  border-color: #243f42;
+  color: #5eead4;
+}
+
+[data-theme="dark"] .btn-pocket-deposit:hover {
+  background-color: #1e3836;
+  border-color: #2dd4bf;
+  color: #99f6e4;
+}
+
+[data-theme="dark"] .btn-pocket-sim {
+  background-color: #16282a;
+  border-color: #243f42;
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .btn-pocket-sim:hover {
+  background-color: #1f373a;
+  border-color: #386064;
+  color: #f1f5f9;
+}
+
+/* AI Intelligence Card */
+[data-theme="dark"] .savings-ai-card {
+  background: linear-gradient(135deg, #152b2c 0%, #102122 100%);
+  border-color: #235c45;
+}
+
+[data-theme="dark"] .ai-title {
+  color: #bef264;
+}
+
+[data-theme="dark"] .ai-desc {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .ai-desc strong {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .ai-split-bar-box {
+  background-color: #0e1a1b;
+  border-color: #243f42;
+}
+
+[data-theme="dark"] .split-label-row {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .split-percent-sum {
+  color: #bef264;
+}
+
+[data-theme="dark"] .split-legend {
+  color: #94a3b8;
+}
+
+/* History Card */
+[data-theme="dark"] .savings-history-card {
+  background-color: #132223;
+  border-color: #1e3538;
+}
+
+[data-theme="dark"] .history-header {
+  border-color: #1a3032;
+}
+
+[data-theme="dark"] .history-title-box {
+  color: #bef264;
+}
+
+[data-theme="dark"] .history-title-box .card-title {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .history-item {
+  border-color: #1a3032;
+}
+
+[data-theme="dark"] .history-icon-circle {
+  background-color: #16282a;
+  color: #bef264;
+}
+
+[data-theme="dark"] .history-name {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .history-sub {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .history-amount {
+  color: #86efac;
 }
 
 [data-theme="dark"] .chip-btn {
@@ -809,18 +1012,6 @@
   background-color: #1f373a;
   color: #bef264;
   border-color: #386064;
-}
-
-[data-theme="dark"] .savings-badge-top {
-  background-color: rgba(163, 230, 53, 0.15);
-  border: 1px solid rgba(163, 230, 53, 0.3);
-  color: #bef264;
-}
-
-[data-theme="dark"] .pocket-badge-pill {
-  background-color: rgba(163, 230, 53, 0.15);
-  border-color: rgba(163, 230, 53, 0.3);
-  color: #bef264;
 }
 
 [data-theme="dark"] .badge-growth {

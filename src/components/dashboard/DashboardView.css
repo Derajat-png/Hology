@@ -128,7 +128,7 @@
 
 .dashboard-badge-ai {
   background-color: var(--color-primary);
-  color: var(--color-secondary);
+  color: #022c22 !important;
   font-family: var(--font-poppins);
   font-size: 11px;
   font-weight: 800;
@@ -136,6 +136,7 @@
   border-radius: 9999px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 .dashboard-ai-timestamp {
@@ -169,7 +170,7 @@
 
 .btn-dashboard-ai-action:hover {
   background-color: var(--color-primary);
-  color: var(--color-secondary);
+  color: #022c22 !important;
 }
 
 /* Quick Access List */
@@ -272,5 +273,38 @@
 
 [data-theme="dark"] .dashboard-quick-desc {
   color: #94a3b8;
+}
+
+[data-theme="dark"] .dashboard-ai-card {
+  background: linear-gradient(135deg, #152b2c 0%, #102122 100%);
+  border: 1px solid #1f3b3e;
+}
+
+[data-theme="dark"] .dashboard-badge-ai {
+  background-color: var(--color-primary);
+  color: #022c22 !important;
+}
+
+[data-theme="dark"] .dashboard-ai-title {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .dashboard-ai-desc {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .dashboard-ai-timestamp {
+  color: #a7f3d0;
+}
+
+[data-theme="dark"] .btn-dashboard-ai-action {
+  background-color: rgba(163, 230, 53, 0.12);
+  border-color: rgba(163, 230, 53, 0.35);
+  color: #bef264;
+}
+
+[data-theme="dark"] .btn-dashboard-ai-action:hover {
+  background-color: var(--color-primary);
+  color: #022c22 !important;
 }
 

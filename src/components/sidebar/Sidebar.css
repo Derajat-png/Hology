@@ -96,7 +96,7 @@
   justify-content: center;
   gap: 8px;
   background-color: var(--color-primary);
-  color: var(--color-secondary);
+  color: #022c22 !important;
   font-family: var(--font-poppins);
   font-size: 14.5px;
   font-weight: 700;
@@ -308,6 +308,10 @@
 .btn-sidebar-theme-toggle:hover {
   background-color: #e2e8f0;
   color: #0f172a;
+}
+
+[data-theme="dark"] .status-label {
+  color: #bef264;
 }
 
 [data-theme="dark"] .btn-sidebar-theme-toggle {

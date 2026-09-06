@@ -331,7 +331,7 @@
   justify-content: center;
   gap: 8px;
   background-color: var(--color-primary);
-  color: var(--color-secondary);
+  color: #022c22 !important;
   font-family: var(--font-poppins);
   font-size: 14px;
   font-weight: 700;
@@ -662,8 +662,19 @@
   border-color: #1f3b3e;
 }
 
-[data-theme="dark"] .strategy-form-card,
-[data-theme="dark"] .strategy-list-section {
+[data-theme="dark"] .strat-stat-lbl {
+  color: #a7f3d0;
+}
+
+[data-theme="dark"] .strat-stat-val {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .strat-stat-sub {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .strategy-form-card {
   background-color: #132223;
   border-color: #1e3538;
 }
@@ -715,21 +726,42 @@
 }
 
 [data-theme="dark"] .goal-card-item {
-  background-color: #16282a;
-  border-color: #243f42;
+  background-color: #132223;
+  border-color: #1e3538;
+}
+
+[data-theme="dark"] .goal-card-item:hover {
+  border-color: #386064;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
 [data-theme="dark"] .goal-meta-box-right {
-  background-color: #122021;
-  border-color: #1e3538;
+  background-color: #0e1a1b;
+  border-color: #243f42;
 }
 
 [data-theme="dark"] .meta-target-label {
   color: #94a3b8;
 }
 
+[data-theme="dark"] .meta-target-label strong {
+  color: #bef264;
+}
+
 [data-theme="dark"] .meta-target-nominal {
   color: #bef264;
+}
+
+[data-theme="dark"] .goal-progress-label-row {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .progress-left-text strong {
+  color: #bef264;
+}
+
+[data-theme="dark"] .progress-right-text {
+  color: #94a3b8;
 }
 
 [data-theme="dark"] .goal-progress-track {
@@ -740,8 +772,12 @@
   border-color: #1a3032;
 }
 
-[data-theme="dark"] .btn-action-small {
-  background-color: #122021;
+[data-theme="dark"] .goal-created-sub {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .btn-goal-action {
+  background-color: #16282a;
   border-color: #243f42;
 }
 
@@ -778,9 +814,27 @@
 }
 
 [data-theme="dark"] .goal-status-badge.badge-in-progress {
-  background-color: rgba(59, 130, 246, 0.18);
-  border-color: rgba(59, 130, 246, 0.35);
-  color: #93c5fd;
+  background-color: rgba(163, 230, 53, 0.15);
+  border-color: rgba(163, 230, 53, 0.3);
+  color: #bef264;
+}
+
+[data-theme="dark"] .empty-goals-card {
+  background-color: #132223;
+  border-color: #243f42;
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .empty-goals-card h4 {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .empty-goals-card p {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .empty-icon {
+  color: #64748b;
 }
 
 

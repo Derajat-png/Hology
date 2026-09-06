@@ -210,7 +210,7 @@
   font-weight: 700;
   font-size: 14px;
   background-color: var(--color-primary);
-  color: var(--color-secondary);
+  color: #022c22 !important;
   box-shadow: var(--shadow-primary-btn);
   transition: all 0.2s;
 }

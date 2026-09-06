@@ -346,10 +346,6 @@
   color: #ef4444;
 }
 
-.currency-prefix.text-saving {
-  color: #3f6212;
-}
-
 .currency-suffix-unit {
   font-family: var(--font-inter);
   font-size: 13px;
@@ -378,10 +374,6 @@
 
 .sim-currency-input.text-tax {
   color: #dc2626;
-}
-
-.sim-currency-input.text-saving {
-  color: #3f6212;
 }
 
 .sim-currency-input.text-target-name {
@@ -785,7 +777,7 @@
   align-items: center;
   gap: 8px;
   background-color: var(--color-primary);
-  color: var(--color-secondary);
+  color: #022c22 !important;
   font-family: var(--font-poppins);
   font-size: 14.5px;
   font-weight: 700;
@@ -959,20 +951,23 @@
   color: #94a3b8;
 }
 
-[data-theme="dark"] .currency-prefix.text-saving {
-  color: #bef264;
-}
-
 [data-theme="dark"] .currency-suffix-unit {
   color: #94a3b8;
 }
 
 [data-theme="dark"] .sim-currency-input {
   color: #f1f5f9;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
-[data-theme="dark"] .sim-currency-input.text-saving {
-  color: #bef264;
+[data-theme="dark"] .sim-currency-input:focus {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
 [data-theme="dark"] .sim-currency-input.text-target-name {
