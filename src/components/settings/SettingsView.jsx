@@ -6,8 +6,6 @@ export default function SettingsView({
   currentUser,
   onOpenAuth,
   onLogout,
-  isDarkMode,
-  onToggleDarkMode,
 }) {
   const [syncEnabled, setSyncEnabled] = useState(true);
   const [emailAlerts, setEmailAlerts] = useState(true);
@@ -19,41 +17,12 @@ export default function SettingsView({
         <div>
           <h1 className="view-title">Pengaturan Sistem & Twin</h1>
           <p className="view-subtitle">
-            Kelola preferensi tema tampilan, sinkronisasi, model AI Financial Twin, dan akun Anda.
+            Kelola preferensi sinkronisasi, model AI Financial Twin, dan profil akun Anda.
           </p>
         </div>
       </div>
 
       <div className="settings-grid">
-        {/* Theme & Display Settings */}
-        <div className="content-card">
-          <h3 className="card-title">Tampilan & Tema Layar</h3>
-          <p className="settings-section-desc">
-            Sesuaikan pencahayaan layar agar mata terasa nyaman saat digunakan di ruangan redup maupun malam hari.
-          </p>
-
-          <div className="setting-toggle-row">
-            <div>
-              <strong>Mode Gelap (Dark Mode)</strong>
-              <div className="setting-subtext">
-                {isDarkMode
-                  ? 'Mode gelap aktif: Latar belakang redup/gelap, tidak membuat mata lelah.'
-                  : 'Mode terang aktif: Tampilan cerah dan kontras standar.'}
-              </div>
-            </div>
-            <label className="switch" htmlFor="toggle-dark-mode-switch">
-              <input
-                id="toggle-dark-mode-switch"
-                type="checkbox"
-                checked={isDarkMode || false}
-                onChange={(e) => onToggleDarkMode && onToggleDarkMode(e.target.checked)}
-                aria-label="Toggle Mode Gelap"
-              />
-              <span className="slider round"></span>
-            </label>
-          </div>
-        </div>
-
         {/* Account Profile & Auth Section */}
         <div className="content-card">
           <h3 className="card-title">Profil & Akun Pengguna</h3>

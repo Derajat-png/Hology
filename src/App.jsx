@@ -103,8 +103,6 @@ function App() {
             currentUser={currentUser}
             onOpenAuth={handleOpenAuth}
             onLogout={handleLogout}
-            isDarkMode={isDarkMode}
-            onToggleDarkMode={(val) => setIsDarkMode(typeof val === 'boolean' ? val : !isDarkMode)}
           />
         );
       default:
