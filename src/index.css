@@ -414,6 +414,10 @@ button {
   color: #f1f5f9 !important;
 }
 
+[data-theme="dark"] .sim-currency-input.text-tax {
+  color: #f87171 !important;
+}
+
 [data-theme="dark"] .sim-currency-input:focus,
 [data-theme="dark"] .input-with-prefix:focus,
 [data-theme="dark"] .calc-input-box input:focus,

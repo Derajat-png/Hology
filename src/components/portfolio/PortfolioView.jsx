@@ -267,10 +267,12 @@ const formatRupiahDisplay = (val) => {
   return 'Rp ' + num.toLocaleString('id-ID');
 };
 
-export default function PortfolioView() {
+export default function PortfolioView({
+  analyzedAssets: externalAssets,
+  onUpdateAnalyzedAssets,
+}) {
   // Initial default item:
-  // "Dana Darurat Siaga" — Reksa Dana Pasar Uang — tujuan Dana Darurat — Rp120.000.000 (verdict "Sesuai")
-  const [analyzedAssets, setAnalyzedAssets] = useState([
+  const defaultInitialAssets = [
     {
       id: 'default-1',
       name: 'Dana Darurat Siaga',
@@ -282,7 +284,21 @@ export default function PortfolioView() {
       reason: '<strong>Sangat Ideal.</strong> Likuiditas tinggi dengan pencairan cepat (T+1), fluktuasi nilai sangat rendah, dan tidak ada penalti pencairan sewaktu-waktu dibutuhkan.',
       timestamp: Date.now(),
     },
-  ]);
+  ];
+
+  const [internalAssets, setInternalAssets] = useState(defaultInitialAssets);
+  const analyzedAssets = externalAssets || internalAssets;
+  const setAnalyzedAssets = (updater) => {
+    if (onUpdateAnalyzedAssets) {
+      if (typeof updater === 'function') {
+        onUpdateAnalyzedAssets(updater);
+      } else {
+        onUpdateAnalyzedAssets(updater);
+      }
+    } else {
+      setInternalAssets(updater);
+    }
+  };
 
   // Form State
   const [assetName, setAssetName] = useState('');

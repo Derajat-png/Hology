@@ -6,7 +6,7 @@ export default function DashboardView({ onNavigate }) {
       {/* Top Welcome Bar */}
       <div className="view-header">
         <div>
-          <h1 className="view-title">Dasbor Keuangan</h1>
+          <h1 className="view-title">Dashboard Keuangan</h1>
           <p className="view-subtitle">
             Ringkasan keuangan dan rencana tabungan masa depanmu.
           </p>

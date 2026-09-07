@@ -389,7 +389,7 @@
 }
 
 .sim-currency-input.text-tax {
-  color: #dc2626;
+  color: #ef4444 !important;
 }
 
 .sim-currency-input.text-target-name {
@@ -971,6 +971,10 @@
 [data-theme="dark"] .sim-currency-prefix.text-tax,
 [data-theme="dark"] .currency-prefix.text-tax {
   color: #f87171;
+}
+
+[data-theme="dark"] .sim-currency-input.text-tax {
+  color: #f87171 !important;
 }
 
 [data-theme="dark"] .currency-suffix-unit {

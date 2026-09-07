@@ -16,7 +16,11 @@ import {
   LightbulbIcon,
 } from '../Icons';
 
-export default function SimulationView() {
+export default function SimulationView({
+  onNavigateToAI,
+  formData: externalFormData,
+  onUpdateFormData,
+}) {
   // Default values matching the design (Gambar 2 & Target Impian)
   const defaultValues = {
     gajiPokok: 16500000,
@@ -45,7 +49,20 @@ export default function SimulationView() {
     alokasiTabungan: 0,
   };
 
-  const [formData, setFormData] = useState({ ...defaultValues });
+  const [internalFormData, setInternalFormData] = useState({ ...defaultValues });
+  const formData = externalFormData || internalFormData;
+  const setFormData = (updater) => {
+    if (onUpdateFormData) {
+      if (typeof updater === 'function') {
+        onUpdateFormData(updater);
+      } else {
+        onUpdateFormData(updater);
+      }
+    } else {
+      setInternalFormData(updater);
+    }
+  };
+
   const [toastMessage, setToastMessage] = useState(null);
 
   const showToast = (msg) => {
@@ -81,7 +98,12 @@ export default function SimulationView() {
   };
 
   const handleFinishAnalysis = () => {
-    showToast('Analisis Finansial Terpadu Selesai! Rekomendasi siap dieksekusi.');
+    showToast('Membuka Analisis Strategi AI...');
+    if (onNavigateToAI) {
+      setTimeout(() => {
+        onNavigateToAI();
+      }, 300);
+    }
   };
 
   // Real-time Comprehensive Calculations
@@ -561,7 +583,7 @@ export default function SimulationView() {
             id="btn-selesai-analisis"
           >
             <SparklesIcon size={18} className="btn-sparkle-icon" />
-            <span>Selesai & Analisis Finansial</span>
+            <span>Analisis AI</span>
           </button>
         </div>
       </div>

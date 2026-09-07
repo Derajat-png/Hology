@@ -28,6 +28,60 @@ function App() {
   const [authMode, setAuthMode] = useState('login'); // 'login' | 'register'
   const mainWrapperRef = useRef(null);
 
+  // Global Simulation State (Shared with Kalkulator Finansial & AI Strategy)
+  const [simulationData, setSimulationData] = useState(() => {
+    try {
+      const saved = localStorage.getItem('financial_twin_sim_data');
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return {
+      gajiPokok: 16500000,
+      pajakPPh21: 950000,
+      hutangPinjaman: 1500000,
+      cicilanKPR: 3500000,
+      makanMinum: 3200000,
+      belanjaRumahTangga: 2000000,
+      namaTarget: 'Beli Mobil Impian',
+      bebanDarurat: 4500000,
+      biayaTarget: 250000000,
+      alokasiTabungan: 3500000,
+    };
+  });
+
+  // Global Portfolio Analyzed Assets State (Shared with Analisis & AI Strategy)
+  const [portfolioAssets, setPortfolioAssets] = useState(() => {
+    try {
+      const saved = localStorage.getItem('financial_twin_assets');
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return [
+      {
+        id: 'default-1',
+        name: 'Dana Darurat Siaga',
+        instrument: 'Reksa Dana Pasar Uang',
+        goal: 'Dana Darurat',
+        amount: 120000000,
+        verdict: 'Sesuai',
+        tone: 'ok',
+        reason: '<strong>Sangat Ideal.</strong> Likuiditas tinggi dengan pencairan cepat (T+1), fluktuasi nilai sangat rendah, dan tidak ada penalti pencairan sewaktu-waktu dibutuhkan.',
+        timestamp: Date.now(),
+      },
+    ];
+  });
+
+  // Sync simulation and assets to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem('financial_twin_sim_data', JSON.stringify(simulationData));
+    } catch {}
+  }, [simulationData]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('financial_twin_assets', JSON.stringify(portfolioAssets));
+    } catch {}
+  }, [portfolioAssets]);
+
   // Dark Mode State dengan persistensi LocalStorage & System Theme Detection
   const [isDarkMode, setIsDarkMode] = useState(() => {
     try {
@@ -130,11 +184,28 @@ function App() {
           />
         );
       case 'simulasi':
-        return <SimulationView />;
+        return (
+          <SimulationView
+            formData={simulationData}
+            onUpdateFormData={setSimulationData}
+            onNavigateToAI={() => setActiveTab('strategi')}
+          />
+        );
       case 'portofolio':
-        return <PortfolioView />;
+        return (
+          <PortfolioView
+            analyzedAssets={portfolioAssets}
+            onUpdateAnalyzedAssets={setPortfolioAssets}
+          />
+        );
       case 'strategi':
-        return <StrategyView />;
+        return (
+          <StrategyView
+            simulationData={simulationData}
+            portfolioAssets={portfolioAssets}
+            currentUser={currentUser}
+          />
+        );
       case 'pengaturan':
         return (
           <SettingsView

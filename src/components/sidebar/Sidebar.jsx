@@ -25,7 +25,7 @@ export default function Sidebar({
   const menuItems = [
     {
       id: 'dasbor',
-      label: 'Dasbor',
+      label: 'Dashboard',
       icon: DashboardIcon,
     },
     {
