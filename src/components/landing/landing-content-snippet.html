@@ -49,29 +49,33 @@
   margin: 0;
 }
 
-/* SECTION 1: HERO */
 .ft-hero-section {
-  padding: 72px 40px 84px 40px;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 60px 40px;
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .ft-hero-container {
-  max-width: 1140px;
+  max-width: 860px;
   width: 100%;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.12fr 0.88fr;
-  gap: 44px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 .ft-hero-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  max-width: 560px;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
 }
 
 .ft-hero-badge {
@@ -120,16 +124,17 @@
 }
 
 .ft-hero-desc {
-  font-size: 16px;
+  font-size: 16.5px;
   line-height: 1.65;
   color: var(--muted);
-  max-width: 480px;
-  margin: 0 0 32px 0;
+  max-width: 640px;
+  margin: 0 auto 32px auto;
 }
 
 .ft-hero-actions {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
 }
@@ -723,12 +728,6 @@
     <div class="ft-hero-container">
       <!-- Kolom Kiri -->
       <div class="ft-hero-content">
-        <!-- Badge Hology 2026 -->
-        <div class="ft-hero-badge">
-          <span class="ft-badge-icon">H</span>
-          <span class="ft-badge-text">Hology 2026 — Fakultas Ilmu Komputer, Universitas Brawijaya</span>
-        </div>
-
         <!-- H1 Headline -->
         <h1 class="ft-hero-title">
           Kembaran digital untuk <span class="ft-hero-title-accent">uangmu</span>, yang bantu kamu memutuskan langkah selanjutnya.
@@ -743,78 +742,6 @@
         <div class="ft-hero-actions">
           <a href="#mulai-diskusi" class="ft-btn-cta-primary">Mulai diskusi dengan AI</a>
           <a href="#cara-kerja" class="ft-btn-cta-outline">Lihat cara kerja</a>
-        </div>
-      </div>
-
-      <!-- Kolom Kanan: Mockup Card Chat AI -->
-      <div class="ft-mockup-wrapper">
-        <!-- Floating Chip Kanan Atas: Skor Finansial (Gold Target Icon) -->
-        <div class="ft-chip-floating ft-chip-top-right">
-          <span style="color: var(--gold); display: flex; align-items: center;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <circle cx="12" cy="12" r="6"/>
-              <circle cx="12" cy="12" r="2"/>
-            </svg>
-          </span>
-          <span class="ft-chip-text">Skor finansial 88/100</span>
-        </div>
-
-        <!-- AI Chat Card -->
-        <div class="ft-mockup-card">
-          <div class="ft-mockup-header">
-            <div class="ft-mockup-title">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--lime)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-              </svg>
-              <span>Asisten Strategi</span>
-            </div>
-            <div class="ft-mockup-status">
-              <span class="ft-status-dot">●</span> Terhubung dengan roadmap
-            </div>
-          </div>
-
-          <!-- 3 Chat Bubbles -->
-          <div class="ft-chat-stream">
-            <div class="ft-bubble ft-bubble-ai">
-              Progres target FIRE 2035 Anda mencapai 68% dan Dana Darurat 100% aman. Ada sisa surplus Rp 1.850.000 bulan ini yang siap dialokasikan.
-            </div>
-            <div class="ft-bubble ft-bubble-user">
-              Bagusnya surplus dialokasikan ke SBN ORI024 atau tambah porsi saham BBCA & BBRI?
-            </div>
-            <div class="ft-bubble ft-bubble-ai">
-              Untuk amankan target FIRE 2035 dan yield kupon 6.6%, alokasi 60% ke saham ekuitas dan 40% ke SBN ORI024 adalah opsi paling optimal bulan ini.
-            </div>
-          </div>
-
-          <!-- 2 Kotak Statistik Kecil -->
-          <div class="ft-mockup-stats-row">
-            <div class="ft-stat-box">
-              <span class="ft-stat-box-label">Net Worth Twin</span>
-              <span class="ft-stat-box-val">
-                <span class="ft-stat-curr">Rp</span>
-                <span class="ft-stat-num">842.500.000</span>
-              </span>
-            </div>
-            <div class="ft-stat-box">
-              <span class="ft-stat-box-label">Rata-rata Roadmap</span>
-              <span class="ft-stat-box-val accent-lime">
-                <span class="ft-stat-num">71.0%</span>
-                <span class="ft-stat-subtag">On-Track</span>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Floating Chip Kiri Bawah: Dana Darurat (Lime Deep Checkmark Icon) -->
-        <div class="ft-chip-floating ft-chip-bottom-left">
-          <span style="color: var(--lime-deep); display: flex; align-items: center;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-              <polyline points="22 4 12 14.01 9 11.01"/>
-            </svg>
-          </span>
-          <span class="ft-chip-text">Dana darurat 100%</span>
         </div>
       </div>
     </div>

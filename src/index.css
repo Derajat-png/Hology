@@ -43,7 +43,7 @@
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --theme-transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  --theme-transition: none;
 }
 
 /* ==========================================================================
@@ -114,13 +114,11 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: var(--theme-transition);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-poppins);
   color: var(--color-secondary);
-  transition: color 0.25s ease;
 }
 
 button {
@@ -289,7 +287,6 @@ button {
   border-radius: 16px;
   padding: 24px;
   box-shadow: var(--shadow-sm);
-  transition: var(--theme-transition);
 }
 
 .card-title {
