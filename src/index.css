@@ -94,6 +94,19 @@
   padding: 0;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
 body {
   font-family: var(--font-inter);
   background-color: var(--color-bg-app);
@@ -101,8 +114,6 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
-  overflow-x: hidden;
   transition: var(--theme-transition);
 }
 
@@ -153,17 +164,15 @@ button {
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
-  animation: view-fade-in 0.25s ease-out;
+  animation: view-fade-in 0.15s ease-out;
 }
 
 @keyframes view-fade-in {
   from {
     opacity: 0;
-    transform: translateY(6px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -182,13 +191,16 @@ button {
   font-weight: 700;
   color: var(--color-secondary);
   letter-spacing: -0.02em;
-  margin: 0 0 6px 0;
+  margin: 0 0 10px 0 !important;
+  line-height: 1.3;
 }
 
 .view-subtitle {
+  font-family: var(--font-inter);
   font-size: 14px;
   color: var(--color-text-muted);
-  margin: 0;
+  line-height: 1.6;
+  margin: 0 !important;
 }
 
 .btn-header-primary {

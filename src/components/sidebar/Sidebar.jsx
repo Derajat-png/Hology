@@ -129,16 +129,28 @@ export default function Sidebar({
 
           <div
             className="twin-badge-card"
-            onClick={() => onOpenAuth && onOpenAuth('login')}
-            title="Klik untuk membuka alur Login / Daftar Akun"
+            onClick={() => onSelectTab && onSelectTab('pengaturan')}
+            title="Buka Pengaturan Akun"
             style={{ cursor: 'pointer' }}
           >
-            <div className="twin-avatar">
-              {currentUser?.name ? currentUser.name.substring(0, 2).toUpperCase() : 'FT'}
+            <div
+              className="twin-avatar"
+              style={{
+                backgroundColor: currentUser?.avatarType === 'image' && currentUser?.avatarImageSrc ? 'transparent' : (currentUser?.avatarColor || '#8dc63f'),
+                backgroundImage: currentUser?.avatarType === 'image' && currentUser?.avatarImageSrc ? `url(${currentUser.avatarImageSrc})` : 'none',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                color: '#ffffff',
+                fontWeight: 'bold',
+              }}
+            >
+              {currentUser?.avatarType === 'image' && currentUser?.avatarImageSrc
+                ? ''
+                : (currentUser?.avatarInitials || (currentUser?.name ? currentUser.name.substring(0, 2).toUpperCase() : 'BU'))}
             </div>
             <div className="twin-info">
-              <span className="twin-name">{currentUser?.name || 'Akun Finansial'}</span>
-              <span className="twin-model">{currentUser?.role || 'AI Twin v2.4'}</span>
+              <span className="twin-name">{currentUser?.name || 'Budi Santoso'}</span>
+              <span className="twin-model">{currentUser?.role || 'Twin Platinum'}</span>
             </div>
             {onLogout && (
               <button

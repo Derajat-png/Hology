@@ -6,63 +6,26 @@ import {
 } from '../Icons';
 
 export default function StrategyView() {
-  // State daftar goal strategi finansial
-  const [goals] = useState([
-    {
-      id: '1',
-      title: 'Strategi FIRE 2035',
-      desc: 'Alokasi 40% income bulanan ke instrumen pasar modal dengan strategi DCA berkala.',
-      targetAmount: 3500000000,
-      targetYear: 2035,
-      progress: 68,
-      createdAt: '2024-01-10',
-    },
-    {
-      id: '2',
-      title: 'Dana Darurat Siaga',
-      desc: 'Tersimpan aman pada instrumen Reksa Dana Pasar Uang & Deposito Likuid (9 Bulan Pengeluaran).',
-      targetAmount: 120000000,
-      targetYear: 2026,
-      progress: 100,
-      createdAt: '2024-02-15',
-    },
-    {
-      id: '3',
-      title: 'Dana Pendidikan Lanjutan',
-      desc: 'Dikelola secara konservatif dengan instrumen Obligasi Negara Syariah (Sukuk) dan tabungan berjangka.',
-      targetAmount: 250000000,
-      targetYear: 2028,
-      progress: 45,
-      createdAt: '2024-03-01',
-    },
-  ]);
-
   // Chat State
   const [messages, setMessages] = useState([
     {
       id: 'msg-welcome',
       sender: 'ai',
       text:
-        'Halo Budi! Saya Asisten Strategi Finansial AI Anda. Saya telah membaca seluruh konteks roadmap Anda: **Strategi FIRE 2035 (68%)**, **Dana Darurat Siaga (100%)**, dan **Dana Pendidikan (45%)** dengan rata-rata pencapaian **71%**.\n\nAda keputusan menabung, alokasi arus kas, atau strategi investasi yang ingin Anda diskusikan hari ini?',
+        'Halo Budi! Saya Asisten Strategi Finansial AI Anda. Saya siap membantu menganalisis alokasi surplus, simulasi slip gaji, kecocokan aset portofolio, dan strategi roadmap keuangan Anda.\n\nAda keputusan finansial atau skenario investasi yang ingin Anda diskusikan hari ini?',
       time: 'Baru saja',
     },
   ]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const chatMessagesEndRef = useRef(null);
+  const chatScrollAreaRef = useRef(null);
 
-  // Auto scroll chat to bottom
+  // Auto scroll chat to bottom only within the chat box, preventing page jump
   useEffect(() => {
-    chatMessagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatScrollAreaRef.current) {
+      chatScrollAreaRef.current.scrollTop = chatScrollAreaRef.current.scrollHeight;
+    }
   }, [messages, isTyping]);
-
-  // Prompt templates yang bisa diklik cepat
-  const suggestedPrompts = [
-    'Alokasikan surplus dana bulan ini',
-    'Evaluasi porsi dividen vs SBN',
-    'Kapan target FIRE 2035 bisa tercapai?',
-    'Strategi rebalancing portofolio saham',
-  ];
 
   // AI Response Generator
   const generateAIResponse = (userPrompt) => {
@@ -105,6 +68,16 @@ export default function StrategyView() {
         '• Alokasi SBN & Sukuk: **28%** (Batas target: 30%)\n' +
         '• Kas Siaga Likuid: **20%** (Batas target: 20%)\n\n' +
         'Deviasi masih dalam batas toleransi wajar (hanya pergeseran +2% pada saham). Belum diperlukan rebalancing agresif bulan ini.'
+      );
+    }
+
+    if (promptLower.includes('darurat') || promptLower.includes('keamanan') || promptLower.includes('siaga')) {
+      return (
+        'Analisis Kesiapan **Dana Darurat Siaga** Anda:\n\n' +
+        '• Target Kebutuhan: **Rp 120.000.000** (Setara 9 bulan pengeluaran rutin)\n' +
+        '• Status Terkini: **100% Tercapai (Aman)**\n' +
+        '• Penempatan Instrumen: 60% Reksa Dana Pasar Uang + 40% Deposito Likuid.\n\n' +
+        '**Saran AI**: Dana darurat Anda sudah berada di zona aman maksimal. Seluruh kelebihan surplus kas bulanan berikutnya dapat 100% dialokasikan ke instrumen produktif (saham & SBN) untuk mempercepat pencapaian target FIRE.'
       );
     }
 
@@ -156,11 +129,6 @@ export default function StrategyView() {
     }
   };
 
-  // Rata-rata pencapaian
-  const averageProgress = Math.round(
-    goals.reduce((acc, curr) => acc + (curr.progress || 0), 0) / (goals.length || 1)
-  );
-
   return (
     <div className="strategy-page">
       {/* Header Utama */}
@@ -180,43 +148,92 @@ export default function StrategyView() {
       </div>
 
       {/* =========================================================================
-          KONSULTASI AI (2-Column Suite: Panel Konteks & Panel Chat)
+          KONSULTASI AI (2-Column Suite: Panel Konsultasi Langsung & Panel Chat)
           ========================================================================= */}
       <div className="strategy-ai-layout">
-        {/* KOLOM KIRI: Panel Konteks (290px) */}
+        {/* KOLOM KIRI: Panel Konsultasi Langsung (320px) */}
         <div className="strategy-context-column">
-          {/* Card 1: Konteks Roadmap Anda */}
           <div className="context-card card-white">
-            <span className="context-card-label">KONTEKS ROADMAP ANDA</span>
-            <div className="context-goals-list">
-              {goals.map((goal) => (
-                <div key={goal.id} className="context-goal-row">
-                  <span className="context-goal-title">{goal.title}</span>
-                  <span className="context-goal-percent">{goal.progress}%</span>
-                </div>
-              ))}
-              <div className="context-goal-row context-goal-avg">
-                <span className="context-goal-title bold-title">Rata-rata pencapaian</span>
-                <span className="context-goal-percent percent-lime">{averageProgress}%</span>
-              </div>
+            <div className="context-header-box">
+              <span className="context-card-label">KONSULTASI STRATEGIS</span>
+              <span className="context-card-hint">Klik pertanyaan untuk dijawab langsung:</span>
             </div>
-          </div>
 
-          {/* Card 2: Topik Cepat yang Disarankan */}
-          <div className="context-card card-white">
-            <span className="context-card-label">TOPIK CEPAT DISARANKAN</span>
-            <div className="context-prompts-list">
-              {suggestedPrompts.map((promptText, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  className="btn-context-prompt"
-                  onClick={() => handleSendMessage(promptText)}
-                >
-                  <SparklesIcon size={14} />
-                  <span>{promptText}</span>
-                </button>
-              ))}
+            <div className="context-consult-list">
+              {/* 1. Alokasi Surplus */}
+              <button
+                type="button"
+                className="consult-topic-btn"
+                onClick={() => handleSendMessage('Bagaimana cara mengalokasikan surplus bulanan Rp 1.850.000 secara optimal ke saham dan SBN?')}
+              >
+                <div className="consult-topic-header">
+                  <span className="consult-topic-tag tag-green">Arus Kas</span>
+                  <span className="consult-topic-arrow">→</span>
+                </div>
+                <div className="consult-topic-text">
+                  Bagaimana cara alokasi surplus bulanan Rp 1,85 Jt?
+                </div>
+              </button>
+
+              {/* 2. Dividen vs SBN */}
+              <button
+                type="button"
+                className="consult-topic-btn"
+                onClick={() => handleSendMessage('Bagusnya surplus dialokasikan ke SBN ORI024 atau tambah porsi saham BBCA & BBRI?')}
+              >
+                <div className="consult-topic-header">
+                  <span className="consult-topic-tag tag-purple">Pasif Income</span>
+                  <span className="consult-topic-arrow">→</span>
+                </div>
+                <div className="consult-topic-text">
+                  Lebih baik dividen saham atau kupon obligasi SBN?
+                </div>
+              </button>
+
+              {/* 3. Target FIRE */}
+              <button
+                type="button"
+                className="consult-topic-btn"
+                onClick={() => handleSendMessage('Kapan target FIRE 2035 saya bisa tercapai lebih cepat jika investasi ditambah?')}
+              >
+                <div className="consult-topic-header">
+                  <span className="consult-topic-tag tag-blue">Target FIRE</span>
+                  <span className="consult-topic-arrow">→</span>
+                </div>
+                <div className="consult-topic-text">
+                  Kapan target FIRE 2035 bisa dicapai lebih cepat?
+                </div>
+              </button>
+
+              {/* 4. Rebalancing Portofolio */}
+              <button
+                type="button"
+                className="consult-topic-btn"
+                onClick={() => handleSendMessage('Periksa apakah alokasi portofolio saham, SBN, dan kas saya perlu rebalancing bulan ini?')}
+              >
+                <div className="consult-topic-header">
+                  <span className="consult-topic-tag tag-amber">Portofolio</span>
+                  <span className="consult-topic-arrow">→</span>
+                </div>
+                <div className="consult-topic-text">
+                  Apakah portofolio aset saya perlu rebalancing?
+                </div>
+              </button>
+
+              {/* 5. Dana Darurat */}
+              <button
+                type="button"
+                className="consult-topic-btn"
+                onClick={() => handleSendMessage('Berapa alokasi dana darurat yang ideal untuk kondisi keuangan saya saat ini?')}
+              >
+                <div className="consult-topic-header">
+                  <span className="consult-topic-tag tag-teal">Proteksi</span>
+                  <span className="consult-topic-arrow">→</span>
+                </div>
+                <div className="consult-topic-text">
+                  Berapa alokasi dana darurat yang ideal saat ini?
+                </div>
+              </button>
             </div>
           </div>
         </div>
@@ -235,7 +252,7 @@ export default function StrategyView() {
           </div>
 
           {/* Area Pesan Chat */}
-          <div className="chat-messages-scroll-area">
+          <div className="chat-messages-scroll-area" ref={chatScrollAreaRef}>
             {messages.map((msg) => (
               <div
                 key={msg.id}
@@ -259,7 +276,6 @@ export default function StrategyView() {
                 <em>Sedang menyusun jawaban...</em>
               </div>
             )}
-            <div ref={chatMessagesEndRef} />
           </div>
 
           {/* Composer Input & Disclaimer */}

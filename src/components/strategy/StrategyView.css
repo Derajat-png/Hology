@@ -8,17 +8,15 @@
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.15s ease-out;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(6px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -150,10 +148,10 @@
   align-items: flex-start;
 }
 
-/* Kolom Kiri: Panel Konteks (290px) */
+/* Kolom Kiri: Panel Strategi & Keputusan (320px) */
 .strategy-context-column {
-  width: 290px;
-  min-width: 290px;
+  width: 320px;
+  min-width: 320px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -170,90 +168,119 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
 }
 
+.context-header-box {
+  margin-bottom: 14px;
+}
+
 .context-card-label {
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
   color: #6b756f;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 3px;
 }
 
-.context-goals-list {
+.context-card-hint {
+  font-size: 11.5px;
+  color: #64748b;
+  display: block;
+}
+
+/* Konsultasi Langsung Button Styles */
+.context-consult-list {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
-.context-goal-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #e3e6e1;
-  font-size: 13.5px;
-}
-
-.context-goal-row:last-child {
-  border-bottom: none;
-}
-
-.context-goal-title {
-  color: #1c2621;
-  font-weight: 500;
-}
-
-.context-goal-title.bold-title {
-  font-weight: 700;
-}
-
-.context-goal-percent {
-  font-weight: 700;
-  color: #5e8f26;
-  font-size: 13.5px;
-}
-
-.context-goal-percent.percent-lime {
-  color: #5e8f26;
-  font-size: 14px;
-}
-
-/* Card 2: Mulai Dari Sini (Card Forest) */
-.card-forest {
-  background-color: #0b3d2e;
-  color: #ffffff;
-  box-shadow: 0 4px 16px rgba(11, 61, 46, 0.16);
-}
-
-.label-mint {
-  color: #a7f3d0;
-}
-
-.prompt-chips-container {
+.consult-topic-btn {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
-
-.prompt-chip-btn {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 10px;
-  padding: 10px 12px;
-  text-align: left;
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 500;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  border: 1.5px solid #e2e8f0;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+  width: 100%;
   box-sizing: border-box;
 }
 
-.prompt-chip-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.35);
-  transform: translateY(-1px);
+.consult-topic-btn:hover {
+  background-color: #ffffff;
+  border-color: #8dc63f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(11, 61, 46, 0.08);
+}
+
+.consult-topic-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.consult-topic-tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.tag-green {
+  background-color: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.tag-purple {
+  background-color: #f3e8ff;
+  color: #7e22ce;
+  border: 1px solid #e9d5ff;
+}
+
+.tag-blue {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+.tag-amber {
+  background-color: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.tag-teal {
+  background-color: #ccfbf1;
+  color: #0f766e;
+  border: 1px solid #99f6e4;
+}
+
+.consult-topic-arrow {
+  font-size: 13px;
+  font-weight: 700;
+  color: #94a3b8;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.consult-topic-btn:hover .consult-topic-arrow {
+  transform: translateX(3px);
+  color: #5e8f26;
+}
+
+.consult-topic-text {
+  font-family: var(--font-inter), 'Segoe UI', system-ui, sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.45;
 }
 
 /* Kolom Kanan: Panel Chat */
@@ -1073,22 +1100,57 @@
   color: #94a3b8;
 }
 
-[data-theme="dark"] .context-goal-row {
-  border-color: #1a3032;
+[data-theme="dark"] .context-card-hint {
+  color: #94a3b8;
 }
 
-[data-theme="dark"] .context-goal-title {
+[data-theme="dark"] .consult-topic-btn {
+  background-color: #0e1a1b;
+  border-color: #1e3538;
+}
+
+[data-theme="dark"] .consult-topic-btn:hover {
+  background-color: #16282a;
+  border-color: #bef264;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .consult-topic-text {
   color: #f1f5f9;
 }
 
-[data-theme="dark"] .context-goal-percent,
-[data-theme="dark"] .context-goal-percent.percent-lime {
-  color: #bef264;
+[data-theme="dark"] .tag-green {
+  background-color: rgba(34, 197, 94, 0.18);
+  border-color: rgba(34, 197, 94, 0.35);
+  color: #86efac;
 }
 
-[data-theme="dark"] .card-forest {
-  background-color: #102122;
-  border: 1px solid #1f3b3e;
+[data-theme="dark"] .tag-purple {
+  background-color: rgba(168, 85, 247, 0.18);
+  border-color: rgba(168, 85, 247, 0.35);
+  color: #d8b4fe;
+}
+
+[data-theme="dark"] .tag-blue {
+  background-color: rgba(14, 165, 233, 0.18);
+  border-color: rgba(14, 165, 233, 0.35);
+  color: #7dd3fc;
+}
+
+[data-theme="dark"] .tag-amber {
+  background-color: rgba(245, 158, 11, 0.18);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #fcd34d;
+}
+
+[data-theme="dark"] .tag-teal {
+  background-color: rgba(20, 184, 166, 0.18);
+  border-color: rgba(20, 184, 166, 0.35);
+  color: #5eead4;
+}
+
+[data-theme="dark"] .consult-topic-btn:hover .consult-topic-arrow {
+  color: #bef264;
 }
 
 [data-theme="dark"] .strategy-chat-panel {

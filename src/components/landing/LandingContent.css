@@ -1,20 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap');
 
 /* ==========================================================================
-   Financial Twin - Landing Page Content
-   Theme Tokens & Symmetrical Centered Layout
+   Financial Twin - Landing Page Content / Dasbor
+   Theme Tokens (Full Dark & Light Mode Adaptation)
    ========================================================================== */
+
+/* Light Mode (Default) */
 .ft-landing {
   --ink: #0b2e22;
   --ink2: #123f2f;
   --cream: #f7f4ec;
-  --paper: #fffdf8;
-  --lime: #a9d94c;
-  --lime-deep: #7cb52e;
-  --gold: #e2a83f;
+  --paper: #ffffff;
+  --lime: #8dc63f;
+  --lime-deep: #5e8f26;
+  --gold: #d97706;
   --text: #152520;
   --muted: #5c6a61;
   --line: rgba(11, 46, 34, 0.12);
+  --chat-bg: #0b2e22;
+  --btn-cta-primary-bg: #0b2e22;
+  --btn-cta-primary-text: #ffffff;
+  --btn-cta-outline-border: rgba(11, 46, 34, 0.18);
+  --btn-cta-outline-text: #152520;
+  --card-bg: #ffffff;
+  --chip-bg: #ffffff;
+  --chip-text: #152520;
+  --strip-bg: #ffffff;
+  --step-circle-bg: #ffffff;
+  --step-circle-text: #0b2e22;
+  --progress-track: rgba(11, 46, 34, 0.08);
 
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: var(--cream);
@@ -28,6 +42,36 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Dark Mode Tokens */
+[data-theme="dark"] .ft-landing {
+  --ink: #102622;
+  --ink2: #153830;
+  --cream: var(--color-bg-app, #0b1315);
+  --paper: var(--color-bg-card, #132223);
+  --lime: #8dc63f;
+  --lime-deep: #a3e635;
+  --gold: #fbbf24;
+  --text: var(--color-text-main, #f1f5f9);
+  --muted: var(--color-text-muted, #94a3b8);
+  --line: var(--color-border, #1e3538);
+  --chat-bg: #081b15;
+  --btn-cta-primary-bg: #a3e635;
+  --btn-cta-primary-text: #081b15;
+  --btn-cta-outline-border: #1e3538;
+  --btn-cta-outline-text: #f1f5f9;
+  --card-bg: #132223;
+  --chip-bg: #132223;
+  --chip-text: #f1f5f9;
+  --strip-bg: #0f1c1d;
+  --step-circle-bg: #132223;
+  --step-circle-text: #a3e635;
+  --progress-track: rgba(255, 255, 255, 0.08);
+
+  background-color: var(--cream);
+  color: var(--text);
 }
 
 .ft-landing * {
@@ -83,7 +127,8 @@
   border-radius: 9999px;
   padding: 5px 16px 5px 6px;
   margin-bottom: 22px;
-  box-shadow: 0 2px 8px rgba(11, 46, 34, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .ft-badge-icon {
@@ -91,7 +136,7 @@
   height: 22px;
   border-radius: 50%;
   background-color: var(--lime);
-  color: var(--ink);
+  color: #081b15;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 11px;
@@ -114,6 +159,7 @@
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin-bottom: 20px;
+  color: var(--text);
 }
 
 .ft-hero-title-accent {
@@ -141,22 +187,22 @@
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  background-color: var(--ink);
-  color: #ffffff;
+  background-color: var(--btn-cta-primary-bg);
+  color: var(--btn-cta-primary-text);
   padding: 13px 26px;
   font-size: 14.5px;
-  font-weight: 600;
+  font-weight: 700;
   border: 1px solid transparent;
   cursor: pointer;
   text-decoration: none;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 16px rgba(11, 46, 34, 0.22);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
 }
 
 .ft-btn-cta-primary:hover {
-  background-color: var(--ink2);
+  filter: brightness(1.1);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(11, 46, 34, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 .ft-btn-cta-outline {
@@ -165,19 +211,20 @@
   justify-content: center;
   border-radius: 9999px;
   background-color: transparent;
-  color: var(--text);
+  color: var(--btn-cta-outline-text);
   padding: 12px 24px;
   font-size: 14.5px;
   font-weight: 600;
-  border: 1.5px solid var(--line);
+  border: 1.5px solid var(--btn-cta-outline-border);
   cursor: pointer;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .ft-btn-cta-outline:hover {
-  border-color: var(--ink);
-  background-color: rgba(11, 46, 34, 0.04);
+  border-color: var(--lime);
+  background-color: rgba(141, 198, 63, 0.08);
+  color: var(--text);
 }
 
 /* Right Column: AI Mockup Card */
@@ -190,13 +237,14 @@
 }
 
 .ft-mockup-card {
-  background-color: var(--ink);
+  background-color: var(--chat-bg);
   border-radius: 22px;
   padding: 24px 22px 22px 22px;
-  box-shadow: 0 24px 48px -10px rgba(11, 46, 34, 0.35);
+  box-shadow: 0 24px 48px -10px rgba(0, 0, 0, 0.4);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--line);
   position: relative;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 /* Card Header */
@@ -258,7 +306,7 @@
 
 .ft-bubble-user {
   background-color: var(--lime);
-  color: var(--ink);
+  color: #081b15;
   border-radius: 14px 14px 3px 14px;
   font-weight: 600;
   max-width: 86%;
@@ -330,15 +378,16 @@
 /* Floating Chips */
 .ft-chip-floating {
   position: absolute;
-  background-color: var(--paper);
+  background-color: var(--chip-bg);
   border: 1px solid var(--line);
   border-radius: 9999px;
   padding: 8px 15px;
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 10px 24px rgba(11, 46, 34, 0.16);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
   z-index: 3;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .ft-chip-top-right {
@@ -360,7 +409,7 @@
 .ft-chip-text {
   font-size: 12.5px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--chip-text);
   white-space: nowrap;
 }
 
@@ -368,13 +417,14 @@
    SECTION 2: STRIP STATISTIK
    ========================================================================== */
 .ft-stats-strip {
-  background-color: var(--paper);
+  background-color: var(--strip-bg);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   padding: 34px 40px;
   width: 100%;
   display: flex;
   justify-content: center;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .ft-stats-strip-container {
@@ -441,6 +491,7 @@
   line-height: 1.24;
   letter-spacing: -0.015em;
   margin-bottom: 10px;
+  color: var(--text);
 }
 
 .ft-section-subtext {
@@ -481,7 +532,7 @@
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--muted);
+  color: var(--lime-deep);
   margin-bottom: 8px;
 }
 
@@ -490,6 +541,7 @@
   line-height: 1.25;
   letter-spacing: -0.01em;
   margin-bottom: 12px;
+  color: var(--text);
 }
 
 .ft-feature-desc {
@@ -501,11 +553,16 @@
 
 /* Feature Visual Card */
 .ft-visual-card {
-  background-color: var(--paper);
+  background-color: var(--card-bg);
   border: 1px solid var(--line);
   border-radius: 20px;
   padding: 26px 28px;
-  box-shadow: 0 4px 20px rgba(11, 46, 34, 0.04);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+[data-theme="dark"] .ft-visual-card {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
 .ft-visual-card-header {
@@ -527,7 +584,7 @@
   font-size: 11.5px;
   font-weight: 600;
   color: var(--lime-deep);
-  background-color: rgba(169, 217, 76, 0.16);
+  background-color: rgba(141, 198, 63, 0.16);
   padding: 3px 9px;
   border-radius: 9999px;
 }
@@ -566,7 +623,7 @@
 .ft-progress-track {
   width: 100%;
   height: 7px;
-  background-color: rgba(11, 46, 34, 0.07);
+  background-color: var(--progress-track);
   border-radius: 9999px;
   overflow: hidden;
 }
@@ -582,13 +639,14 @@
    SECTION 4: CARA KERJA
    ========================================================================== */
 .ft-how-section {
-  background-color: var(--paper);
+  background-color: var(--strip-bg);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   padding: 88px 40px;
   width: 100%;
   display: flex;
   justify-content: center;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .ft-how-container {
@@ -636,7 +694,7 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background-color: var(--paper);
+  background-color: var(--step-circle-bg);
   border: 1.5px solid var(--line);
   display: flex;
   align-items: center;
@@ -644,9 +702,9 @@
   font-family: 'Fraunces', Georgia, serif;
   font-size: 17px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--step-circle-text);
   margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(11, 46, 34, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .ft-step-title {
@@ -654,6 +712,7 @@
   line-height: 1.25;
   letter-spacing: -0.01em;
   margin-bottom: 10px;
+  color: var(--text);
 }
 
 .ft-step-desc {

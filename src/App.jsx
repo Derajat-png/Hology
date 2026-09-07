@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Sidebar from './components/sidebar/Sidebar';
 import LoginPage from './components/login/LoginPage';
@@ -13,14 +13,20 @@ import { MenuIcon, SunIcon, MoonIcon } from './components/Icons';
 function App() {
   const [currentUser, setCurrentUser] = useState({
     name: 'Budi Santoso',
-    email: 'user.demo@financialtwin.id',
+    email: 'budi.santoso@financialtwin.id',
+    phone: '+62 812-3456-7890',
     role: 'Twin Platinum Member',
+    avatarType: 'initials',
+    avatarColor: '#8dc63f',
+    avatarInitials: 'BU',
+    avatarImageSrc: null,
   });
 
   const [activeTab, setActiveTab] = useState('dasbor');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [authMode, setAuthMode] = useState('login'); // 'login' | 'register'
+  const mainWrapperRef = useRef(null);
 
   // Dark Mode State dengan persistensi LocalStorage & System Theme Detection
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -31,7 +37,15 @@ function App() {
       }
       return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     } catch {
-      return false;
+      return true; // Default dark
+    }
+  });
+
+  const [accentKey, setAccentKey] = useState(() => {
+    try {
+      return localStorage.getItem('financial_twin_accent') || 'lime';
+    } catch {
+      return 'lime';
     }
   });
 
@@ -41,10 +55,34 @@ function App() {
       document.documentElement.setAttribute('data-theme', mode);
       document.body.setAttribute('data-theme', mode);
       localStorage.setItem('financial_twin_theme', mode);
+
+      const ACCENTS = {
+        lime: { dark: '#8dc63f', light: '#529321', darkHover: '#5e8f26', lightHover: '#3b6b15' },
+        emerald: { dark: '#10b981', light: '#059669', darkHover: '#059669', lightHover: '#047857' },
+        blue: { dark: '#38bdf8', light: '#0284c7', darkHover: '#0284c7', lightHover: '#0369a1' },
+        amber: { dark: '#fbbf24', light: '#d97706', darkHover: '#d97706', lightHover: '#b45309' },
+        purple: { dark: '#a855f7', light: '#7e22ce', darkHover: '#7e22ce', lightHover: '#6b21a8' },
+      };
+
+      const palette = ACCENTS[accentKey] || ACCENTS.lime;
+      const primaryColor = isDarkMode ? palette.dark : palette.light;
+      const hoverColor = isDarkMode ? palette.darkHover : palette.lightHover;
+
+      document.documentElement.style.setProperty('--color-primary', primaryColor);
+      document.documentElement.style.setProperty('--color-primary-hover', hoverColor);
+      document.documentElement.style.setProperty('--settings-lime', primaryColor);
+      document.documentElement.style.setProperty('--settings-lime-dark', hoverColor);
+      localStorage.setItem('financial_twin_accent', accentKey);
     } catch {
       // Ignore localStorage errors if restricted
     }
-  }, [isDarkMode]);
+  }, [isDarkMode, accentKey]);
+
+  useEffect(() => {
+    if (mainWrapperRef.current) {
+      mainWrapperRef.current.scrollTo(0, 0);
+    }
+  }, [activeTab]);
 
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => !prev);
@@ -101,6 +139,7 @@ function App() {
         return (
           <SettingsView
             currentUser={currentUser}
+            onUpdateUser={(updated) => setCurrentUser((prev) => ({ ...prev, ...updated }))}
             onOpenAuth={handleOpenAuth}
             onLogout={handleLogout}
           />
@@ -130,7 +169,7 @@ function App() {
       />
 
       {/* Main Content Area */}
-      <div className="app-main-wrapper">
+      <div className="app-main-wrapper" ref={mainWrapperRef}>
         {/* Mobile Header Bar */}
         <header className="mobile-topbar">
           <button
